@@ -1,0 +1,16 @@
+{
+  "name": "versil",
+  "version": "1.0.0",
+  "description": "Versil Game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mahdi Nemati",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "typeorm": "^0.2.30"
+  },
+  "devDependencies": {}
+}
