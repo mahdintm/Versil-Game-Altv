@@ -5,4 +5,7 @@
 data/*
 modules/*
 altv-server.exe
+cache/*
+crashdumps/*
+server.log
 
