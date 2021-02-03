@@ -1,0 +1,212 @@
+<html>
+
+<head>
+    <link href="css/Main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/JQUERYMain.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/ajax.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        let selected = 0;
+        $(function() {
+            var regusername = 0;
+            var regpassword = 0;
+            var regemail = 0;
+            var canregister = 0;
+            $(document).keyup(function(e) {
+                if (e.keyCode == 27) {
+                    $("#body").fadeOut();
+                    $.post('http://VGmain/close', JSON.stringify({}));
+                }
+            });
+
+            window.addEventListener('message', function(event) {
+                if (event.data.type == "open") {
+                    $('#body').css('display', 'block');
+                    $("#body").fadeIn();
+                    $('input').val("");
+                }
+            });
+
+            window.addEventListener('message', function(event) {
+                if (event.data.type == "close") {
+                    $('#body').css('display', 'none');
+                    $("#body").fadeOut();
+                    $.post('http://VGmain/close', JSON.stringify({}));
+                }
+            });
+
+            window.addEventListener('message', function(event) {
+                if (event.data.type == "usercan") {
+                    $("#uname_response").html("<span style='color: green;'>این نام کاربری قابل انخاب است.</span>");
+                    var canregister = 1
+                }
+            });
+
+            window.addEventListener('message', function(event) {
+                if (event.data.type == "useralraedy") {
+                    $("#uname_response").html("<span style='color: red;'>این نام کاربری قبلاً انتخاب شده است. از نام دیگری استفاده کنید.</span>");
+                }
+            });
+
+            window.addEventListener('message', function(event) {
+                if (event.data.type == "errorpassword") {
+                    $("#error_login_response").html("<span style='color: red;'><b>نام کاربری یا کلمه عبور شما اشتباه است.</b></span>");
+                }
+            });
+
+            window.addEventListener('message', function(event) {
+                if (event.data.type == "errorrockstar") {
+                    $("#error_login_response").html("<span style='color: red;'><b>این حساب کاربری با راکستار ایدی شما مطاقبت ندارد.</b></span>");
+                }
+            });
+
+            $("#close").click(() => {
+                $("#body").fadeOut();
+                $.post('http://VGmain/close', JSON.stringify({}));
+            });
+            $("#login").click(function() {
+                $.post('http://VGmain/login', JSON.stringify({
+                    luser: $("#usernameText").val(),
+                    lpass: $("#passwordText").val()
+                }));
+                var inputFF = document.getElementById("passwordText");
+                inputFF.value = "";
+                $(this).blur();
+            });
+            $("#create").click(function() {
+                /* if (regusername == 1) {
+                     if (regpassword == 1) {
+                         if (regemail == 1) {
+                             canregister == 1;
+                         };
+                     };
+                 };
+                 if (canregister == 1) {*/
+                $.post('http://VGmain/nuiregister', JSON.stringify({
+                    ruser: $("#usernametext").val(),
+                    rpass: $("#passwordtext").val(),
+                    remail: $("#email").val()
+                }));
+                $(this).blur();
+                /* } else {
+                     $("#canreg_response").html("<span style='color: red;'>مشکلی در ثبت نام شما وجود دارد.</span>");
+                 }*/
+            });
+
+            $('button').click(function() {
+                $(this).blur();
+            });
+        });
+        //Mahdi Script
+        $(document).ready(function() {
+
+            $("#usernametext").keyup(function() {
+                var username = $(this).val().trim();
+                var letters = /^[0-9a-zA-Z_.]+$/;
+                if (username != '') {
+                    if (username.match(letters)) {
+                        if (username.length > 2) {
+                            $.post('http://VGmain/ajax', JSON.stringify({
+                                ajaxuser: $("#usernametext").val()
+                            }));
+                            $("#uname_response").html("<span style='color: red;'></span>");
+
+                        } else {
+                            $("#uname_response").html("<span style='color: red;'>تعداد نویسه نام کاربری شما باید بین 3 و30 باشد.</span>");
+                        }
+
+                    } else {
+                        $("#uname_response").html("<span style='color: red;'>فقط حروف (a-z)، اعداد (۰ تا ۹) و نقطه (.) مجاز است.</span>");
+                    }
+                } else {
+                    $("#uname_response").html("");
+                }
+            });
+
+            $("#usernametext").keyup(function() {
+                var regusername = $(this).val().trim();
+                var letters = /^[0-9a-zA-Z_.]+$/;
+                if (regusername != '') {
+                    if (regusername.match(letters)) {
+                        if (regusername.length > 2) {
+                            $.post('http://VGmain/ajax', JSON.stringify({
+                                ajaxuser: $("#usernametext").val()
+                            }));
+                            $("#uname_response").html("<span style='color: red;'></span>");
+
+                        } else {
+                            $("#uname_response").html("<span style='color: red;'>تعداد نویسه نام کاربری شما باید بین 3 و30 باشد.</span>");
+                        }
+
+                    } else {
+                        $("#uname_response").html("<span style='color: red;'>فقط حروف (a-z)، اعداد (۰ تا ۹) و نقطه (.) مجاز است.</span>");
+                    }
+                } else {
+                    $("#uname_response").html("");
+                }
+            });
+
+        });
+    </script>
+</head>
+
+<body id="body" style="background-color: black;">
+    <div id="close">&#10060;</div>
+
+
+    <div id="box">
+        <div id="main"></div>
+
+        <div id="loginform">
+            <h1>ورود</h1>
+            <input type="email" id="usernameText" placeholder="نام کاربری" /><br>
+            <input type="password" id="passwordText" placeholder="کلمه عبور" /><br>
+            <div id="error_login_response" style="margin-top: 10px;margin-right: 9px;color: red;"></div>
+            <button type="button" id="login">ورود</button>
+        </div>
+
+        <div id="signupform">
+            <h1>ثبت نام</h1>
+            <input type="text" id="usernametext" name="usernametext" placeholder="نام کاربری" /><br>
+            <div id="uname_response"></div>
+            <input type="password" style="margin-bottom: -2;border: none;" id="passwordtext" placeholder="کلمه عبور" /><br>
+            <div class="progress-bar progress-bar-success" style="transition: 100ms; width: 40%;margin-right: 5px; height: 3px;background-color: red;margin-top: 0;" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+            <input type="password" id="password2" placeholder="کلمه عبور را مجددا وارد کنید" /><br>
+            <input type="text" id="email" placeholder="ایمیل" /><br>
+            <div id="canreg_response"></div>
+            <button type="button" id="create">ثبت نام</button>
+        </div>
+
+        <div id="login_msg">اکانت دارید؟</div>
+        <div id="signup_msg">اکانت ندارید؟</div>
+
+        <button id="login_btn">ورود</button>
+        <button id="signup_btn">ثبت نام</button>
+
+
+    </div>
+    <div id="errormenu" style="display:none">
+        <div class="showBox">
+            <div class="showSubErrorBox">
+                <div id="textMessage"></div>
+            </div>
+        </div>
+    </div>
+    <div id="succesmenu" style="display:none">
+        <div class="showBox">
+            <div class="showSubSuccesBox">
+                <div id="textMessageSucces"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
