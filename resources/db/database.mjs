@@ -1,5 +1,6 @@
 import * as alt from 'alt';
 import orm from 'typeorm';
+import './entities/datastore.mjs';
 
 var currentConnection;
 // Singleton Connection Info
