@@ -2,6 +2,7 @@
 # Log file
 *.log
 # Data Altv Files
+resources/database/*
 data/*
 modules/*
 altv-server.exe
