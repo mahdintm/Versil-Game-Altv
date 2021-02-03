@@ -10,4 +10,8 @@ crashdumps/*
 server.log
 node_modules/*
 package-lock.json
+<<<<<<< HEAD
 package.json
+=======
+package.json
+>>>>>>> c432d6a0860dfa62cf0a8cdd340a6251e2aa3f83
