@@ -1,8 +1,8 @@
 import * as alt from 'alt';
 import chat from 'chat';
-import vg from 'VGfunction'
-import SQL from '../db/database.mjs';
-import { Account } from '../db/entities/data.mjs';
+import vg from 'VGfunction';
+import SQL from '../../db/database.mjs';
+import { Account } from '../../db/entities/data.mjs';
 
 const db = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', 'Waezakmi2new3mahdi', 'alt', [Account]);
 var pInfo = {};
@@ -15,13 +15,16 @@ chat.registerCmd('insert', (player, args) => {
 
 chat.registerCmd('select', (player, args) => {
     db.fetchAllByField('pName', args[0], 'Account', data => {
+        console.log(data)
         pInfo[0] = data[0];
     });
 });
 chat.registerCmd('aa', (player, args) => {
-    console.log(vg.getplayerid(args[0]));
+    db.updatePartialData(args[0], { pPassword: args[1] }, Account, res => {})
 });
-
+chat.registerCmd('test2', (player, args) => {
+    vg.setplayermodel(args[0], args[1]);
+})
 const spawnPos = {
     x: -2639.872,
     y: 1866.812,
@@ -34,7 +37,7 @@ const spawnP = {
 };
 alt.on('playerConnect', player => {
     vg.VGsetplayerid(player.id);
-    player.model = 'mp_m_freemode_01';
+    console.log(player.id);
     player.spawn(spawnP.x, spawnP.y, spawnP.z, 1);
 
 });

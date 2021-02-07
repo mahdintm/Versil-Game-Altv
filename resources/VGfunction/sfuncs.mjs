@@ -15,6 +15,14 @@ export function getplayerid(id) {
     return Ids[id];
 }
 
+export function setplayermodel(playerid, model) {
+    console.log("slm");
+    let vgid = getplayerid(playerid)
+    if (vgid != undefined) {
+        alt.Player.getByID(vgid).model = model;
+    }
+}
+
 export function VGsetplayerid(playerid) {
     for (let i = 1; i < 1000; i++) {
         if (Ids[i] == undefined) {
@@ -26,4 +34,4 @@ export function VGsetplayerid(playerid) {
     }
 };
 
-export default { getplayerid, VGsetplayerid };
+export default { getplayerid, VGsetplayerid, setplayermodel };
