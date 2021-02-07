@@ -4,11 +4,10 @@
 # Data Altv Files
 data/*
 modules/*
+node_modules/*
+package-lock.json
+package.json
 altv-server.exe
 cache/*
 crashdumps/*
 server.log
-node_modules/*
-package-lock.json
-package.json
-#aa
