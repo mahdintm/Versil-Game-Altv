@@ -3,6 +3,9 @@
 *.log
 # Data Altv Files
 data/*
+node_modules/*
+package-lock.json
+package.json
 modules/*
 node_modules/*
 package-lock.json

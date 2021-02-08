@@ -27,18 +27,18 @@ export default class ConnectionInfo {
                 entities: entityArray,
                 cache: true
             };
-            alt.emit('serverlog', 'success', '** Versil Game Server BOT ** ==> Starting Mysql Connection');
+            // alt.emit('serverlog', 'success', '** Versil Game Server BOT ** ==> Starting Mysql Connection');
             orm.createConnection(config)
                 .then(conn => {
                     this.connection = conn;
                     conn.synchronize().then(res => {
                         currentConnection = this;
-                        alt.emit('serverlog', 'success', '** Versil Game Server BOT ** ==> Server Is Connected To Mysql');
+                        // alt.emit('serverlog', 'success', '** Versil Game Server BOT ** ==> Server Is Connected To Mysql');
                         return currentConnection;
                     });
                 })
                 .catch(err => {
-                    console.log(err);
+                    // console.log(err);
                     throw err;
                 });
         }
