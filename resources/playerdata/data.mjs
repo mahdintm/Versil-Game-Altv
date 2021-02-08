@@ -8,7 +8,7 @@ export function loginData(id, data) {
 }
 
 export function getData(id, data) {
-    return pInfo[0]["pName"]
+    return pInfo[id][data];
 }
 
 export function setData(id, data, value) {

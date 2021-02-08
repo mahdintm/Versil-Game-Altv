@@ -23,9 +23,17 @@ export const Account = new orm.EntitySchema({
             type: 'int',
             default: '0'
         },
-        pStaff: {
+        pLeader: {
             type: 'int',
             default: '0',
+        },
+        pHouse: {
+            type: 'int',
+            default: '0',
+        },
+        pSkin: {
+            type: 'varchar',
+            default: 'mp_m_freemode_01',
         }
 
     }

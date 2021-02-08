@@ -2,6 +2,13 @@ import * as alt from 'alt';
 import chat from 'chat';
 import vg from 'VGfunction';
 import './login/login.mjs';
+import pdata from 'playerdata';
+
+
+chat.registerCmd('aa', (player, args) => {
+    alt.emit('character:Sync', player, someData);
+});
+
 
 alt.on('playerConnect', player => {
     alt.emitClient(player, 'loginweb:Load')
@@ -44,9 +51,7 @@ chat.registerCmd('veh', (player, args) => {
 //         pInfo[0] = data[0];
 //     });
 // });
-// chat.registerCmd('aa', (player, args) => {
 
-// });
 // chat.registerCmd('test2', (player, args) => {
 //     vg.setplayermodel(args[0], args[1]);
 // })
