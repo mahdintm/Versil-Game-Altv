@@ -6,7 +6,7 @@ import './login/login.mjs';
 alt.on('playerConnect', player => {
     alt.emitClient(player, 'loginweb:Load')
 });
-
+//in cmd marbut be span mashine
 chat.registerCmd('veh', (player, args) => {
 
     try {
