@@ -1,4 +1,5 @@
 import * as alt from 'alt';
+import pdata from 'playerdata';
 var Ids = {};
 
 alt.on('serverlog', (type, args) => {
@@ -15,6 +16,15 @@ export function getplayerid(id) {
     return Ids[id];
 };
 
+export function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
+
+
 export function setplayermodel(playerid, model) {
     let vgid = getplayerid(playerid);
     if (vgid != undefined) {
@@ -24,14 +34,14 @@ export function setplayermodel(playerid, model) {
 export function spawnplayer(id) {
     if (pdata.getData(id, "pHouse") == 0) {
         let p = alt.Player.getByID(id);
-        p.getByID(id).spawn(-2639.872, 1866.812, 160.135, 0.1);
-        p.getByID(getplayerid(playerid)).model = pdata.getData(id, "pSkin");
+        p.spawn(-2639.872, 1866.812, 160.135, 0.1);
+        p.model = 'mp_m_freemode_01';
     } else {
         console.log("house dare");
     }
 };
 
-export function VGsetplayerid(playerid) {
+export function setplayerid(playerid) {
     for (let i = 1; i < 1000; i++) {
         if (Ids[i] == undefined) {
             Ids[i] = playerid;
@@ -40,4 +50,4 @@ export function VGsetplayerid(playerid) {
     }
 };
 
-export default { getplayerid, VGsetplayerid, setplayermodel };
+export default { getplayerid, setplayerid, setplayermodel, spawnplayer };
