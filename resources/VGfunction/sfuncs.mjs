@@ -50,4 +50,4 @@ export function setplayerid(playerid) {
     }
 };
 
-export default { getplayerid, setplayerid, setplayermodel, spawnplayer };
+export default { getplayerid, setplayerid, setplayermodel, spawnplayer, sleep };

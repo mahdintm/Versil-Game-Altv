@@ -5,28 +5,39 @@ import pdata from 'playerdata';
 import SQL from '../../../db/database.mjs';
 import { Account } from '../../../db/entities/data.mjs';
 const db = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', 'Waezakmi2new3mahdi', 'alt', [Account]);
-
+alt.onClient('registerServer', (player, user, pass, email) => {
+    db.upsertData({ pName: user.toLowerCase(), pPassword: pass, pEmail: email }, 'Account', res => {});
+    alt.emitClient(player, 'loginbyregister', user, pass);
+})
 alt.onClient('serverlogin', (player, user, pass) => {
-    let a;
-    let b = false;
+    console.log(user, pass);
+    vg.sleep(15000);
     db.fetchAllByField('pName', user, 'Account', data => {
+        console.log(data);
+        if (data[0] != undefined) {
+            const a = data.find(acc => {
+                if (acc.pName == (user.toLowerCase()) && acc.pPassword == pass) {
+                    pdata.loginData(player.id, data);
+                    vg.spawnplayer(player.id);
+                    alt.emitClient(player, 'loginweb:close');
+                } else {
+                    alt.emitClient(player, 'loginweb:erroruserpass');
+                }
+            })
 
-        a = data[0];
-        console.log(a);
-        b = true;
-
-    });
-    sleep(2000);
-    if (b == true) {
-        if (a[0]["pName"] == (user.toLowerCase()) && a[0]["pPassword"] == pass) {
-            pdata.loginData(0, a);
-            vg.spawnplayer(player.id);
-            alt.emitClient(player, 'loginweb:close');
         } else {
+            console.log("ine");
             alt.emitClient(player, 'loginweb:erroruserpass');
         }
-    } else {
-        console.log("ine");
-        alt.emitClient(player, 'loginweb:erroruserpass');
-    }
+    });
 });
+
+alt.onClient('checkajax', (player, username) => {
+    db.fetchAllByField('pName', username, 'Account', data => {
+        if (data[0] != undefined) {
+            alt.emitClient(player, 'answerAJAX', 1);
+        } else {
+            alt.emitClient(player, 'answerAJAX', 2);
+        }
+    });
+})
