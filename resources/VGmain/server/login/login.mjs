@@ -7,16 +7,13 @@ import { Account } from '../../../db/entities/data.mjs';
 const db = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', 'Waezakmi2new3mahdi', 'alt', [Account]);
 alt.onClient('registerServer', (player, user, pass, email) => {
     db.upsertData({ pName: user.toLowerCase(), pPassword: pass, pEmail: email }, 'Account', res => {});
-    alt.emitClient(player, 'loginbyregister', user, pass);
+    //alt.emitClient(player, 'loginbyregister', user, pass);
 })
 alt.onClient('serverlogin', (player, user, pass) => {
-    console.log(user, pass);
-    vg.sleep(15000);
     db.fetchAllByField('pName', user, 'Account', data => {
-        console.log(data);
         if (data[0] != undefined) {
             const a = data.find(acc => {
-                if (acc.pName == (user.toLowerCase()) && acc.pPassword == pass) {
+                if (acc.pName === (user.toLowerCase()) && acc.pPassword === pass) {
                     pdata.loginData(player.id, data);
                     vg.spawnplayer(player.id);
                     alt.emitClient(player, 'loginweb:close');

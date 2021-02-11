@@ -5,6 +5,7 @@ const pInfo = {}
 
 export function loginData(id, data) {
     pInfo[id] = data[0];
+    console.log(pInfo[id]["pAdmin"]);
 }
 
 export function getData(id, data) {

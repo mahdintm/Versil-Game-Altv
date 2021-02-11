@@ -4,9 +4,12 @@ import vg from 'VGfunction';
 import './login/login.mjs';
 import pdata from 'playerdata';
 
-
-chat.registerCmd('aa', (player, args) => {
-    alt.emit('character:Sync', player, someData);
+//cmd /Milad
+chat.registerCmd('Milad', (player, args) => {
+    console.log(pdata.getData(player.id, 'pName'));
+});
+chat.registerCmd('aria', (player, args) => {
+    console.log(player);
 });
 
 
@@ -14,16 +17,7 @@ alt.on('playerConnect', player => {
     alt.emitClient(player, 'loginweb:Load')
 });
 
-chat.registerCmd('veh', (player, args) => {
 
-    try {
-        const newveh = new alt.Vehicle(args[0], -2639.872, 1866.812, 160.135, 0, 0, 0);
-        alt.emitClient(player, 'vehicle:SetInto', newveh);
-    } catch (err) {
-        chat.send(player, "");
-    }
-
-});
 
 // chat.registerCmd('g', (player, args) => {
 
