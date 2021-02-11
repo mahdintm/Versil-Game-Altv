@@ -38,3 +38,41 @@ export const Account = new orm.EntitySchema({
 
     }
 });
+
+export const Vehicles = new orm.EntitySchema({
+    name: 'Vehicles',
+    columns: {
+        id: {
+            primary: true,
+            type: 'int',
+            generated: true
+        },
+        model: {
+            type: 'varchar',
+            length: 20
+        },
+        type: {
+            type: 'varchar',
+            length: 20
+        },
+        x: {
+            type: 'double'
+        },
+        y: {
+            type: 'double'
+        },
+        z: {
+            type: 'double'
+        },
+        rx: {
+            type: 'double'
+        },
+        ry: {
+            type: 'double'
+        },
+        zu: {
+            type: 'double'
+        }
+
+    }
+});
