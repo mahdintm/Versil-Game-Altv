@@ -6,7 +6,10 @@ import pdata from 'playerdata';
 
 //cmd /Milad
 chat.registerCmd('Milad', (player, args) => {
-    chat.send("Miald Khaiemal ast.")
+    console.log(pdata.getData(player.id, 'pName'));
+});
+chat.registerCmd('aria', (player, args) => {
+    console.log(player);
 });
 
 
@@ -14,10 +17,7 @@ alt.on('playerConnect', player => {
     alt.emitClient(player, 'loginweb:Load')
 });
 
-chat.registerCmd('veh', (player, args) => {
-    const newveh = new alt.Vehicle(args[0], -2639.872, 1866.812, 160.135, 0, 0, 0);
-    alt.emitClient(player, 'vehicle:SetInto', newveh);
-});
+
 
 // chat.registerCmd('g', (player, args) => {
 
