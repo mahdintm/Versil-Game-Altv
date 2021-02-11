@@ -22,5 +22,20 @@ function veh(player, args) {
     }
 };
 
+function hp(player, args) {
+    if (checkadmin(player, 2)) {
+        const pos = { x: player.pos.x, y: player.pos.y, z: player.pos.z }
+        const newveh = new alt.Vehicle(args[0], pos.x, pos.y, pos.z, 0, 0, 0);
+        alt.emitClient(player, 'setIntoVehicle', newveh);
+    } else {
+        notadmin(player)
+    }
+}
+
+chat.registerCmd('sethp', hp)
 chat.registerCmd('vehicle', veh);
 chat.registerCmd('veh', veh);
+
+chat.registerCmd('notif', (player, args) => {
+    alt.emitClient(player, 'shownotify', args[0], args[1], args[2], args[3], args[4], args[5]);
+});
