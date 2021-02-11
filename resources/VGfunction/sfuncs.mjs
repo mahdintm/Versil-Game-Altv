@@ -65,4 +65,13 @@ export function setplayerid(playerid) {
     }
 };
 
+export function deleteplayerid(playerid) {
+    for (let i = 1; i < 1000; i++) {
+        if (Ids[i] == playerid) {
+            Ids[i] = undefined;
+            break;
+        }
+    }
+}
+
 export default { getplayerid, setplayerid, setplayermodel, spawnplayer, sleep, adminchat };

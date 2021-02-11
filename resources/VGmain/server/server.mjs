@@ -1,17 +1,8 @@
 import * as alt from 'alt';
-import chat from 'chat';
+//import chat from 'chat';
 import vg from 'VGfunction';
 import './login/login.mjs';
-import pdata from 'playerdata';
-
-//cmd /Milad
-chat.registerCmd('Milad', (player, args) => {
-    console.log(pdata.getData(player.id, 'pName'));
-});
-chat.registerCmd('aria', (player, args) => {
-    console.log(player);
-});
-
+//import pdata from 'playerdata';
 
 alt.on('playerConnect', player => {
     alt.emitClient(player, 'loginweb:Load')
@@ -21,6 +12,7 @@ alt.on('playerConnect', player => {
 chat.registerCmd('veh', (player, args) => {
 =======
 
+<<<<<<< HEAD
 >>>>>>> 5b36bf912e2767396c419ca7f99e6f60fbf56dd8
 
 
@@ -64,3 +56,8 @@ chat.registerCmd('veh', (player, args) => {
 //     y: 5411.912,
 //     z: 24.83151
 // };
+=======
+alt.on('playerDisconnect', player => {
+    vg.deleteplayerid(player.id);
+});
+>>>>>>> 1e3291870c0351721f83d8f276d7172d9e4d17b4
