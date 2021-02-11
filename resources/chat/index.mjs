@@ -1,4 +1,5 @@
 import alt from 'alt';
+import pdata from 'playerdata';
 
 let cmdHandlers = {};
 
@@ -14,10 +15,11 @@ function invokeCmd(player, cmd, args) {
 
 alt.onClient('chatmessage', (player, msg) => {
     if (msg[0] === '/') {
+        var vgname = pdata.getData(player.id, "pName");
         msg = msg.trim().slice(1);
 
         if (msg.length > 0) {
-            alt.log('[chat:cmd] ' + player.name + ': /' + msg);
+            alt.log('[chat:cmd] ' + vgname + ': /' + msg);
 
             let args = msg.split(' ');
             let cmd = args.shift();
@@ -28,9 +30,9 @@ alt.onClient('chatmessage', (player, msg) => {
         msg = msg.trim();
 
         if (msg.length > 0) {
-            alt.log('[chat:msg] ' + player.name + ': ' + msg);
+            alt.log('[chat:msg] ' + vgname + ': ' + msg);
 
-            alt.emitClient(null, 'chatmessage', player.name, msg.replace(/</g, '&lt;').replace(/'/g, '&#39').replace(/"/g, '&#34'));
+            alt.emitClient(null, 'chatmessage', vgname, msg.replace(/</g, '&lt;').replace(/'/g, '&#39').replace(/"/g, '&#34'));
         }
     }
 });

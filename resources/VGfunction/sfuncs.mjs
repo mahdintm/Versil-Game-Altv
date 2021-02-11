@@ -49,7 +49,7 @@ export function setplayermodel(playerid, model) {
 export function spawnplayer(id) {
     if (pdata.getData(id, "pHouse") == 0) {
         let p = alt.Player.getByID(id);
-        p.spawn(-2639.872, 1866.812, 160.135, 0.1);
+        p.spawn(-1008.672546, 23.868131, 50.3084716);
         p.model = 'mp_m_freemode_01';
     } else {
         console.log("house dare");
@@ -74,4 +74,4 @@ export function deleteplayerid(playerid) {
     }
 }
 
-export default { getplayerid, setplayerid, setplayermodel, spawnplayer, sleep, adminchat };
+export default { getplayerid, setplayerid, setplayermodel, spawnplayer, sleep, adminchat, deleteplayerid };
