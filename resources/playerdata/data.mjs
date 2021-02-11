@@ -3,9 +3,9 @@ import { Account } from '../db/entities/data.mjs';
 const security = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', 'Waezakmi2new3mahdi', 'alt', [Account]);
 const pInfo = {}
 
-export function loginData(id, data) {
+export function loginData(id, data, pname) {
     pInfo[id] = data[0];
-    console.log(pInfo[id]["pAdmin"]);
+    pInfo[id]["pName"] = pname;
 }
 
 export function getData(id, data) {

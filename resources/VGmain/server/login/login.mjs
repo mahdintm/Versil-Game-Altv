@@ -14,8 +14,9 @@ alt.onClient('serverlogin', (player, user, pass) => {
         if (data[0] != undefined) {
             const a = data.find(acc => {
                 if (acc.pName === (user.toLowerCase()) && acc.pPassword === pass) {
-                    pdata.loginData(player.id, data);
+                    pdata.loginData(player.id, data, user);
                     vg.spawnplayer(player.id);
+                    vg.setplayerid(player.id)
                     alt.emitClient(player, 'loginweb:close');
                 } else {
                     alt.emitClient(player, 'loginweb:erroruserpass');

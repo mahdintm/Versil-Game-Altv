@@ -1,6 +1,21 @@
 import * as alt from 'alt';
 import pdata from 'playerdata';
+import chat from 'chat';
 var Ids = {};
+
+export function adminchat(player, msg) {
+    let play;
+    let name;
+    for (let i = 1; i < 1000; i++) {
+        if (getplayerid(i) != undefined) {
+            play = alt.Player.getByID(getplayerid(i));
+            name = pdata.getData(play.id, "pName");
+            if (pdata.getData(play.id, "pAdmin") > 1) {
+                chat.send(play, `{BBDE42}AdminChat -> ${name} : ${msg}`);
+            }
+        }
+    }
+}
 
 alt.on('serverlog', (type, args) => {
     if (type == 'error') {
@@ -50,4 +65,4 @@ export function setplayerid(playerid) {
     }
 };
 
-export default { getplayerid, setplayerid, setplayermodel, spawnplayer, sleep };
+export default { getplayerid, setplayerid, setplayermodel, spawnplayer, sleep, adminchat };
