@@ -28,4 +28,5 @@ alt.onServer('loginweb:Load', () => {
 
 alt.onServer('loginweb:close', () => {
     webview.destroy();
+    alt.showCursor(false);
 })
