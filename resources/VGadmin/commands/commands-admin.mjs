@@ -19,8 +19,15 @@ function areadmin(player) {
     }
 }
 //for send message youare not admin
+// pLand baraye zaban hast age 1 bashe yani english 2 bashe fenglish 3 bashe farsi
 function notadmin(player) {
-    chat.send(player, `{ff0000}Versil BOT -> {d8db0d}You are not admin.`);
+    if (pdata.getData(player.id, "pLang") == 1) {
+        chat.send(player, `{ff0000}Versil BOT -> {d8db0d}You are not admin.`);
+    } else if (pdata.getData(player.id, "pLang") == 2) {
+
+    } else if (pdata.getData(player.id, "pLang") == 3) {
+
+    }
 }
 //for cmd create vehicle
 function veh(player, args) {
