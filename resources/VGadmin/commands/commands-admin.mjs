@@ -69,6 +69,13 @@ function veh(player, args) {
         console.log(newveh.id);
         newveh.numberPlateText = `AV ${newveh.id}`;
         alt.emitClient(player, 'setIntoVehicle', newveh);
+        if (pdata.getData(player.id, "pLang") == 1) {
+            chat.send(player, `{ff0000}Versil BOT -> {d8db0d}Error: ${msg}`);
+        } else if (pdata.getData(player.id, "pLang") == 2) {
+            chat.send(player, `{ff0000}Versil BOT -> {d8db0d}Khata: ${msg}`);
+        } else if (pdata.getData(player.id, "pLang") == 3) {
+            chat.send(player, `{ff0000}Versil BOT -> {d8db0d}خطا: ${msg}`);
+        }
     } else {
         notadmin(player);
     }
