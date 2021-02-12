@@ -34,9 +34,9 @@ function auth(player) {
     if (pdata.getData(player.id, "pLang") == 1) {
         chat.send(player, `{ff0000}Versil BOT -> {d8db0d}You are permission not enough fot this access.`);
     } else if (pdata.getData(player.id, "pLang") == 2) {
-        chat.send(player, `{ff0000}Versil BOT -> {d8db0d}Shoma  be in faaliat dastresi nadarid.`);
+        chat.send(player, `{ff0000}Versil BOT -> {d8db0d}Shoma  be in faaliat dastresi kafi nadarid.`);
     } else if (pdata.getData(player.id, "pLang") == 3) {
-        chat.send(player, `{ff0000}Versil BOT -> {d8db0d}شما دسترسی کامل برای انجام این کار را ندارید.`);
+        chat.send(player, `{ff0000}Versil BOT -> {d8db0d}شما دسترسی کافی برای انجام این کار را ندارید.`);
     }
 }
 //for cmd create vehicle
