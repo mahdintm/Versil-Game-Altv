@@ -17,6 +17,7 @@ export function adminchat(player, msg) {
     }
 }
 
+
 alt.on('serverlog', (type, args) => {
     if (type == 'error') {
         console.log('\x1B[31m', args, '\x1B[37m');
@@ -49,7 +50,7 @@ export function setplayermodel(playerid, model) {
 export function spawnplayer(id) {
     if (pdata.getData(id, "pHouse") == 0) {
         let p = alt.Player.getByID(id);
-        p.spawn(-1008.672546, 23.868131, 50.3084716);
+        p.spawn(-1039.84619140625, -2741.248291015625, 13.879150390625);
         p.model = 'mp_m_freemode_01';
     } else {
         console.log("house dare");
