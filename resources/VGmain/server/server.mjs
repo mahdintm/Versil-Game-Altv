@@ -11,3 +11,6 @@ alt.on('playerConnect', player => {
 alt.on('playerDisconnect', player => {
     vg.deleteplayerid(player.id);
 });
+
+
+//مشمسمیمشسمنی
