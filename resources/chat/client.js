@@ -71,6 +71,5 @@ alt.on('keyup', (key) => {
             view.emit('hideChat', hidden);
         }
     })
-    //5sd
-
 export default { pushMessage, pushLine };
+
