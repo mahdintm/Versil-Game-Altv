@@ -7,10 +7,7 @@ import './login/login.mjs';
 alt.on('playerConnect', player => {
     alt.emitClient(player, 'loginweb:Load')
 });
-
 alt.on('playerDisconnect', player => {
     vg.deleteplayerid(player.id);
 });
 
-
-//مشمسمیمشسمنی
