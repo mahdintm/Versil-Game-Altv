@@ -34,6 +34,10 @@ export const Account = new orm.EntitySchema({
         pSkin: {
             type: 'varchar',
             default: 'mp_m_freemode_01',
+        },
+        pLang {
+            type: 'int',
+            default: '1'
         }
 
     }
