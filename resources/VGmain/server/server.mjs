@@ -61,3 +61,5 @@ alt.on('playerDisconnect', player => {
     vg.deleteplayerid(player.id);
 });
 >>>>>>> 1e3291870c0351721f83d8f276d7172d9e4d17b4
+
+// yaaaaaaaaaaaaaaaaak yaaaaaaaakeshoon
