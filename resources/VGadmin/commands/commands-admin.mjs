@@ -2,10 +2,11 @@ import * as alt from 'alt';
 import pdata from 'playerdata';
 import chat from 'chat';
 import vdata from 'vehicledata';
+import vg from 'VGfunction';
 import SQL from '../../db/database.mjs';
 import { Vehicles } from '../../db/entities/data.mjs';
 const db = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', 'Waezakmi2new3mahdi', 'alt', [Vehicles]);
-
+//------------------------------------------------------------ Functions ------------------------------------------------------------//
 //for check admini level
 function checkadmin(player, admin) {
     if ((pdata.getData(player.id, 'pAdmin')) >= admin) {
@@ -16,6 +17,14 @@ function checkadmin(player, admin) {
 function areadmin(player) {
     if ((pdata.getData(player.id, 'pAdmin')) >= 1) {
         return true;
+    }
+}
+//for find player by id or name or partial name
+function findplayer(value) {
+    if (Number.isInteger(value)) {
+        return alt.Player.getByID(vg.getplayerid(i));
+    } else {
+        return (vg.findbyname(value));
     }
 }
 //for send message youare not admin
@@ -39,6 +48,18 @@ function auth(player) {
         chat.send(player, `{ff0000}Versil BOT -> {d8db0d}شما دسترسی کافی برای انجام این کار را ندارید.`);
     }
 }
+//for error args
+function errorargs(player, msg) {
+    if (pdata.getData(player.id, "pLang") == 1) {
+        chat.send(player, `{ff0000}Versil BOT -> {d8db0d}Error: ${msg}`);
+    } else if (pdata.getData(player.id, "pLang") == 2) {
+        chat.send(player, `{ff0000}Versil BOT -> {d8db0d}Khata: ${msg}`);
+    } else if (pdata.getData(player.id, "pLang") == 3) {
+        chat.send(player, `{ff0000}Versil BOT -> {d8db0d}خطا: ${msg}`);
+    }
+}
+
+//------------------------------------------------------------ CMD Functions ------------------------------------------------------------//
 //for cmd create vehicle
 function veh(player, args) {
     if (checkadmin(player, 2)) {
@@ -70,20 +91,21 @@ function mypos(player) {
         notadmin(player)
     }
 }
-
+//for cmd make admin
 function makeadmin(player, args) {
     if (areadminmin(player)) {
         if (checkadmin(player, 15)) {
             if (args[0] == undefined && args[1] == undefined) {
 
             } else {
-
+                let msg = "/makeadmin(ma) [Playername/Playerid] [AdminLevel]"
+                errorargs(player, msg)
             }
         } else {
             notadmin(player)
         }
     } else {
-
+        auth(player)
     }
 }
 //for cmd create static vehicle
@@ -98,7 +120,7 @@ function crvehicle(player, args) {
             vdata.addplatenumstatic();
             newveh.numberPlateText = plate;
             vdata.vehiclesetdata(newveh.id, args[0], "static", 0, pos.x, pos.y, pos.z, 0, 0, 0, plate);
-            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => { });
+            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => {});
         } else {
             chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crsvehicle(csv) [Model]");
         }
@@ -133,7 +155,7 @@ function crvehiclef(player, args) {
             }
             newveh.numberPlateText = plate;
             vdata.vehiclesetdata(newveh.id, args[0], "faction", args[1], pos.x, pos.y, pos.z, 0, 0, 0, plate);
-            db.upsertData({ model: args[0].toLowerCase(), type: "faction", factionid: args[1], x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => { });
+            db.upsertData({ model: args[0].toLowerCase(), type: "faction", factionid: args[1], x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => {});
         } else {
             chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crfvehicle(cfv) [Model] [Faction-ID]");
         }
@@ -151,10 +173,14 @@ chat.registerCmd('crsvehicle', crvehicle);
 chat.registerCmd('csv', crvehicle);
 chat.registerCmd('crfvehicle', crvehiclef);
 chat.registerCmd('cfv', crvehiclef);
+chat.registerCmd('makeadmin', makeadmin);
+chat.registerCmd('ma', crvehiclef);
 
 
 
-
+chat.registerCmd('aaaa', (player, args) => {
+    console.log(pdata.findbyname(args[0]))
+})
 
 // chat.registerCmd('dv', (player, args) => {
 //     let id = alt.Vehicle.getByID(args[0]);

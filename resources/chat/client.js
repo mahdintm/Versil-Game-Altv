@@ -73,7 +73,3 @@ alt.on('keyup', (key) => {
 })
 
 export default { pushMessage, pushLine };
-// yaaaaaaaaaaaaaaaak
-
-//asad
-// kiram dahanet

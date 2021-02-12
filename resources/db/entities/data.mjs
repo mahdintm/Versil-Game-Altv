@@ -35,7 +35,7 @@ export const Account = new orm.EntitySchema({
             type: 'varchar',
             default: 'mp_m_freemode_01',
         },
-        pLang {
+        pLang: {
             type: 'int',
             default: '1'
         }

@@ -8,6 +8,14 @@ export function loginData(id, data, pname) {
     pInfo[id]["pName"] = pname;
 }
 
+export function findbyname(value) {
+    for (var i = 0; i < pInfo.length; i++) {
+        if (pInfo[i]["pName"].toLowerCase() == value.toLowerCase()) {
+            return pInfo[i];
+        }
+    }
+}
+
 export function getData(id, data) {
     return pInfo[id][data];
 }
@@ -33,4 +41,4 @@ function mysqlupdate(id, data, value) {
     }
 }
 
-export default { getData, setData, loginData };
+export default { getData, setData, loginData, findbyname };
