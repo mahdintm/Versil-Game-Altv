@@ -1,6 +1,5 @@
 import * as alt from 'alt';
 import orm from 'typeorm';
-import './entities/datastore.mjs';
 
 var currentConnection;
 // Singleton Connection Info
@@ -38,7 +37,7 @@ export default class ConnectionInfo {
                     });
                 })
                 .catch(err => {
-                    // console.log(err);
+                    console.log(err);
                     throw err;
                 });
         }
