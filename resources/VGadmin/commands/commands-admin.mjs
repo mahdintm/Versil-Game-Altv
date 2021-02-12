@@ -70,11 +70,11 @@ function veh(player, args) {
         newveh.numberPlateText = `AV ${newveh.id}`;
         alt.emitClient(player, 'setIntoVehicle', newveh);
         if (pdata.getData(player.id, "pLang") == 1) {
-            chat.send(player, `{ff0000}Versil BOT -> {d8db0d}You'vehicle has been spawned ✔`);
+            chat.send(player, `{ff0000}Versil BOT -> {05ff48}You'vehicle has been spawned ✔`);
         } else if (pdata.getData(player.id, "pLang") == 2) {
-            chat.send(player, `{ff0000}Versil BOT -> {d8db0d}mashin shoma ba movafaghiyat spawn shod ✔`);
+            chat.send(player, `{ff0000}Versil BOT -> {05ff48}mashin shoma ba movafaghiyat spawn shod ✔`);
         } else if (pdata.getData(player.id, "pLang") == 3) {
-            chat.send(player, `{ff0000}Versil BOT -> {d8db0d}ماشین شما اسپان شد ✔ `);
+            chat.send(player, `{ff0000}Versil BOT -> {05ff48}ماشین شما اسپان شد ✔ `);
         }
     } else {
         notadmin(player);
