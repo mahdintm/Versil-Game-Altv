@@ -9,7 +9,7 @@ export function loginData(id, data, pname) {
 }
 
 export function findbyname(value) {
-    for (var i = 0; i < pInfo.length; i++) {
+    for (var i = 0; i < 1000; i++) {
         if (pInfo[i]["pName"].toLowerCase() == value.toLowerCase()) {
             return pInfo[i]["pName"];
         }
