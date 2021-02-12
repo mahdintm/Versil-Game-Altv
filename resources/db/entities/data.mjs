@@ -55,6 +55,10 @@ export const Vehicles = new orm.EntitySchema({
             type: 'varchar',
             length: 20
         },
+        factionid: {
+            type: 'int',
+            default: 0
+        },
         x: {
             type: 'double'
         },
@@ -70,7 +74,7 @@ export const Vehicles = new orm.EntitySchema({
         ry: {
             type: 'double'
         },
-        zu: {
+        rz: {
             type: 'double'
         }
 
