@@ -21,10 +21,12 @@ function areadmin(player) {
 }
 //for find player by id or name or partial name
 function findplayer(value) {
-    if (Number.isInteger(value)) {
+    if (Number(value)) {
+        console.log("avali");
         return alt.Player.getByID(vg.getplayerid(i));
     } else {
-        return (vg.findbyname(value));
+        console.log("avali");
+        return (pdata.findbyname(value));
     }
 }
 //for send message youare not admin
@@ -127,7 +129,7 @@ function crvehicle(player, args) {
             vdata.addplatenumstatic();
             newveh.numberPlateText = plate;
             vdata.vehiclesetdata(newveh.id, args[0], "static", 0, pos.x, pos.y, pos.z, 0, 0, 0, plate);
-            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => { });
+            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => {});
         } else {
             chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crsvehicle(csv) [Model]");
         }
@@ -162,7 +164,7 @@ function crvehiclef(player, args) {
             }
             newveh.numberPlateText = plate;
             vdata.vehiclesetdata(newveh.id, args[0], "faction", args[1], pos.x, pos.y, pos.z, 0, 0, 0, plate);
-            db.upsertData({ model: args[0].toLowerCase(), type: "faction", factionid: args[1], x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => { });
+            db.upsertData({ model: args[0].toLowerCase(), type: "faction", factionid: args[1], x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => {});
         } else {
             chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crfvehicle(cfv) [Model] [Faction-ID]");
         }
@@ -186,7 +188,7 @@ chat.registerCmd('ma', crvehiclef);
 
 
 chat.registerCmd('aaaa', (player, args) => {
-    console.log(pdata.findbyname(args[0]))
+    console.log(findplayer(args[0]))
 })
 
 // chat.registerCmd('dv', (player, args) => {
