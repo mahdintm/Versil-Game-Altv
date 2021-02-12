@@ -70,11 +70,11 @@ function veh(player, args) {
         newveh.numberPlateText = `AV ${newveh.id}`;
         alt.emitClient(player, 'setIntoVehicle', newveh);
         if (pdata.getData(player.id, "pLang") == 1) {
-            chat.send(player, `{ff0000}Versil BOT -> {d8db0d}Error: ${msg}`);
+            chat.send(player, `{ff0000}Versil BOT -> {d8db0d}You'vehicle has been spawned ✔`);
         } else if (pdata.getData(player.id, "pLang") == 2) {
-            chat.send(player, `{ff0000}Versil BOT -> {d8db0d}Khata: ${msg}`);
+            chat.send(player, `{ff0000}Versil BOT -> {d8db0d}mashin shoma ba movafaghiyat spawn shod ✔`);
         } else if (pdata.getData(player.id, "pLang") == 3) {
-            chat.send(player, `{ff0000}Versil BOT -> {d8db0d}خطا: ${msg}`);
+            chat.send(player, `{ff0000}Versil BOT -> {d8db0d}ماشین شما اسپان شد ✔ `);
         }
     } else {
         notadmin(player);
@@ -127,7 +127,7 @@ function crvehicle(player, args) {
             vdata.addplatenumstatic();
             newveh.numberPlateText = plate;
             vdata.vehiclesetdata(newveh.id, args[0], "static", 0, pos.x, pos.y, pos.z, 0, 0, 0, plate);
-            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => {});
+            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => { });
         } else {
             chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crsvehicle(csv) [Model]");
         }
@@ -162,7 +162,7 @@ function crvehiclef(player, args) {
             }
             newveh.numberPlateText = plate;
             vdata.vehiclesetdata(newveh.id, args[0], "faction", args[1], pos.x, pos.y, pos.z, 0, 0, 0, plate);
-            db.upsertData({ model: args[0].toLowerCase(), type: "faction", factionid: args[1], x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => {});
+            db.upsertData({ model: args[0].toLowerCase(), type: "faction", factionid: args[1], x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => { });
         } else {
             chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crfvehicle(cfv) [Model] [Faction-ID]");
         }
