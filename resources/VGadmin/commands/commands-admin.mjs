@@ -21,7 +21,7 @@ function areadmin(player) {
 }
 //for find player by id or name or partial name
 function findplayer(value) {
-    if (Number(value)) {
+    if (!isNaN(value)) {
         console.log("avali");
         return alt.Player.getByID(vg.getplayerid(i));
     } else {
