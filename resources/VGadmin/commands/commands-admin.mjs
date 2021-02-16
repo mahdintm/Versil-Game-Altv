@@ -222,31 +222,30 @@ function kick(player, args) {
         notadmin(player)
 
     }
-}
-chat.registerCmd('sethp', hp)
-chat.registerCmd('vehicle', veh);
-chat.registerCmd('veh', veh);
-chat.registerCmd('mypos', mypos);
-chat.registerCmd('crsvehicle', crvehicle);
-chat.registerCmd('csv', crvehicle);
-chat.registerCmd('crfvehicle', crvehiclef);
-chat.registerCmd('cfv', crvehiclef);
-chat.registerCmd('makeadmin', makeadmin);
-chat.registerCmd('ma', crvehiclef);
-chat.registerCmd('kick', kick);
-chat.registerCmd('givegun', givegun);
+    chat.registerCmd('sethp', hp)
+    chat.registerCmd('vehicle', veh);
+    chat.registerCmd('veh', veh);
+    chat.registerCmd('mypos', mypos);
+    chat.registerCmd('crsvehicle', crvehicle);
+    chat.registerCmd('csv', crvehicle);
+    chat.registerCmd('crfvehicle', crvehiclef);
+    chat.registerCmd('cfv', crvehiclef);
+    chat.registerCmd('makeadmin', makeadmin);
+    chat.registerCmd('ma', crvehiclef);
+    chat.registerCmd('kick', kick);
+    chat.registerCmd('gg', givegun);
 
 
-chat.registerCmd('aaaa', (player, args) => {
-    console.log(pdata.findbyname(player, args[0]))
-})
+    chat.registerCmd('aaaa', (player, args) => {
+        console.log(pdata.findbyname(player, args[0]))
+    })
 
-// chat.registerCmd('dv', (player, args) => {
-//     let id = alt.Vehicle.getByID(args[0]);
-//     id.destroy();
-// })
+    // chat.registerCmd('dv', (player, args) => {
+    //     let id = alt.Vehicle.getByID(args[0]);
+    //     id.destroy();
+    // })
 
 
-// alt.on('playerEnteringVehicle', (player, vehicle, seat) => {
-//     console.log(vehicle.pos.rx);
-// })
+    // alt.on('playerEnteringVehicle', (player, vehicle, seat) => {
+    //     console.log(vehicle.pos.rx);
+    // })
