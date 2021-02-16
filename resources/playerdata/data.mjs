@@ -5,15 +5,15 @@ const security = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', 'Waezakmi2new3mahd
 const pInfo = {}
 
 
-alt.on('anyResourceStart', (name) => {
-    if (name == "playerdata") {
-        alt.setTimeout(() => {
-            for (var i = 0; i < 1000; i++) {
-                pInfo[i] = { "pName": undefined }
-            }
-        }, 2000);
-    }
-})
+// alt.on('anyResourceStart', (name) => {
+//     if (name == "playerdata") {
+//         alt.setTimeout(() => {
+//             for (var i = 0; i < 1000; i++) {
+//                 pInfo[i] = { "pName": undefined }
+//             }
+//         }, 2000);
+//     }
+// })
 
 
 
@@ -48,17 +48,13 @@ function mysqlupdate(id, data, value) {
     }
 }
 
-export function findbyname(player, value) {
+export function findbyname(value) {
     for (var i = 0; i < 1000; i++) {
-        console.log(player.id);
-        console.log(i)
-        console.log(getData(i, "pName"));
-        // if (a == value) {
-        //     console.log(pInfo[i]["pName"]);
-        // }
-        // if (pInfo[i]["pName"].toLowerCase() == value.toLowerCase()) {
-        //     return alt.Player.getByID(i);;
-        // }
+        if (pInfo[i] != undefined) {
+            if (pInfo[i]["pName"].toLowerCase() == value.toLowerCase()) {
+                return alt.Player.getByID(i);
+            }
+        }
     }
 }
 
