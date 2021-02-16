@@ -58,5 +58,9 @@ export function findbyname(value) {
     }
 }
 
+export function getplayername(playerid) {
+    return pInfo[playerid]["pName"];
+}
 
-export default { getData, setData, loginData, findbyname };
+
+export default { getData, setData, loginData, findbyname, getplayername };
