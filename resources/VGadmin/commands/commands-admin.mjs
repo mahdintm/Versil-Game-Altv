@@ -179,7 +179,11 @@ function givegun(player, args) {
         if (checkadmin(player, 15)) {
             if (args[0] != undefined && args[1] != undefined && args[2] != undefined) {
                 alt.Player.getByID(vg.getplayerid(args[0])).giveWeapon(args[1], args[2], true);
-                chat.send(player, `${player.name} your weapon has been added`)
+                chat.send(player, `{ff0000}Versil BOT -> {05ff48}You are weapon has been added ✔`);
+            } else if (pdata.getData(player.id, "pLang") == 2) {
+                chat.send(player, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+            } else if (pdata.getData(player.id, "pLang") == 3) {
+                chat.send(player, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
             } else {
                 let msg = "/givegun [Playername/Playerid] [weaponname] [ammo]"
                 errorargs(player, msg)
