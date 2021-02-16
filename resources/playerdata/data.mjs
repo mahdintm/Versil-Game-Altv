@@ -8,13 +8,6 @@ export function loginData(id, data, pname) {
     pInfo[id]["pName"] = pname;
 }
 
-export function findbyname(value) {
-    for (var i = 0; i < 1000; i++) {
-        if (pInfo[i]["pName"].toLowerCase() == value.toLowerCase()) {
-            return pInfo[i]["pName"];
-        }
-    }
-}
 
 export function getData(id, data) {
     return pInfo[id][data];
@@ -40,5 +33,20 @@ function mysqlupdate(id, data, value) {
         security.updatePartialData(vg.getplayerid(id), { pLeader: value }, Account, res => {})
     }
 }
+
+export function findbyname(player, value) {
+    for (var i = 0; i < 1000; i++) {
+        console.log(player.id);
+        console.log(i)
+        console.log(getData(i, "pName"));
+        // if (a == value) {
+        //     console.log(pInfo[i]["pName"]);
+        // }
+        // if (pInfo[i]["pName"].toLowerCase() == value.toLowerCase()) {
+        //     return alt.Player.getByID(i);;
+        // }
+    }
+}
+
 
 export default { getData, setData, loginData, findbyname };
