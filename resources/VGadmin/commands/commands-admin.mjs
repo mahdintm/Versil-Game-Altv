@@ -23,7 +23,6 @@ function areadmin(player) {
 var reg = new RegExp('^[0-9]$');
 //for find player by id or name or partial name
 function findplayer(value) {
-    HEAD
     if (reg.test(value)) {
         console.log("avali");
         return alt.Player.getByID(vg.getplayerid(value));
@@ -181,13 +180,14 @@ function givegun(player, args) {
     if (areadmin(player)) {
         if (checkadmin(player, 5)) {
             if (args[0] != undefined && args[1] != undefined && args[2] != undefined) {
-                alt.Player.getByID(vg.getplayerid(args[0])).giveWeapon(args[1], args[2], true);
-                if (pdata.getData(player.id, "pLang") == 1) {
-                    chat.send(player, `{ff0000}Versil BOT -> {05ff48}You are weapon has been added ✔`);
-                } else if (pdata.getData(player.id, "pLang") == 2) {
-                    chat.send(player, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
-                } else if (pdata.getData(player.id, "pLang") == 3) {
-                    chat.send(player, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
+                let tplayer = findplayer(args[0]);
+                tplayer.giveWeapon(alt.hash(args[1]), args[2], true);
+                if (pdata.getData(tplayer.id, "pLang") == 1) {
+                    chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}You are weapon has been added ✔`);
+                } else if (pdata.getData(tplayer.id, "pLang") == 2) {
+                    chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+                } else if (pdata.getData(tplayer.id, "pLang") == 3) {
+                    chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
                 }
             } else {
                 let msg = "/givegun [Playername/Playerid] [weaponname] [ammo]"
@@ -222,30 +222,31 @@ function kick(player, args) {
         notadmin(player)
 
     }
-    chat.registerCmd('sethp', hp)
-    chat.registerCmd('vehicle', veh);
-    chat.registerCmd('veh', veh);
-    chat.registerCmd('mypos', mypos);
-    chat.registerCmd('crsvehicle', crvehicle);
-    chat.registerCmd('csv', crvehicle);
-    chat.registerCmd('crfvehicle', crvehiclef);
-    chat.registerCmd('cfv', crvehiclef);
-    chat.registerCmd('makeadmin', makeadmin);
-    chat.registerCmd('ma', crvehiclef);
-    chat.registerCmd('kick', kick);
-    chat.registerCmd('gg', givegun);
+}
+chat.registerCmd('sethp', hp)
+chat.registerCmd('vehicle', veh);
+chat.registerCmd('veh', veh);
+chat.registerCmd('mypos', mypos);
+chat.registerCmd('crsvehicle', crvehicle);
+chat.registerCmd('csv', crvehicle);
+chat.registerCmd('crfvehicle', crvehiclef);
+chat.registerCmd('cfv', crvehiclef);
+chat.registerCmd('makeadmin', makeadmin);
+chat.registerCmd('ma', crvehiclef);
+chat.registerCmd('kick', kick);
+chat.registerCmd('gg', givegun);
 
 
-    chat.registerCmd('aaaa', (player, args) => {
-        console.log(pdata.findbyname(player, args[0]))
-    })
+chat.registerCmd('aaaa', (player, args) => {
+    console.log(pdata.findbyname(args[0]))
+})
 
-    // chat.registerCmd('dv', (player, args) => {
-    //     let id = alt.Vehicle.getByID(args[0]);
-    //     id.destroy();
-    // })
+// chat.registerCmd('dv', (player, args) => {
+//     let id = alt.Vehicle.getByID(args[0]);
+//     id.destroy();
+// })
 
 
-    // alt.on('playerEnteringVehicle', (player, vehicle, seat) => {
-    //     console.log(vehicle.pos.rx);
-    // })
+// alt.on('playerEnteringVehicle', (player, vehicle, seat) => {
+//     console.log(vehicle.pos.rx);
+// })
