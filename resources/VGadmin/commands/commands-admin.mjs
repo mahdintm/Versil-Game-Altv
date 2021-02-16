@@ -192,6 +192,28 @@ function givegun(player, args) {
 
     }
 }
+//for CMD kick
+//kickplayer playerid respone
+function kick(player, args) {
+    if (areadminmin(player)) {
+        if (checkadmin(player, 15)) {
+            if (args[0] != undefined && args[1] != undefined) {
+                alt.Player.getByID(vg.getplayerid(args[0])).kick(args[1]...);
+                alt.setTimeout(() => {
+                    console.log(`${alt.Player.getByID(vg.getplayerid(args[0])).name} will be kicked in 5 seconds.`);
+                }, 2000);
+            } else {
+                let msg = "/kick [Playerid] [respone]"
+                errorargs(player, msg)
+            }
+        } else {
+            auth(player)
+        }
+    } else {
+        notadmin(player)
+
+    }
+}
 chat.registerCmd('sethp', hp)
 chat.registerCmd('vehicle', veh);
 chat.registerCmd('veh', veh);
@@ -202,8 +224,8 @@ chat.registerCmd('crfvehicle', crvehiclef);
 chat.registerCmd('cfv', crvehiclef);
 chat.registerCmd('makeadmin', makeadmin);
 chat.registerCmd('ma', crvehiclef);
-
-
+chat.registerCmd('kick', kick);
+chat.registerCmd('givegun', givegun);
 
 chat.registerCmd('aaaa', (player, args) => {
     console.log(findplayer(args[0]))
