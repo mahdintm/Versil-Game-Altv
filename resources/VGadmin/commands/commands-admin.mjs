@@ -129,7 +129,7 @@ function crvehicle(player, args) {
             vdata.addplatenumstatic();
             newveh.numberPlateText = plate;
             vdata.vehiclesetdata(newveh.id, args[0], "static", 0, pos.x, pos.y, pos.z, 0, 0, 0, plate);
-            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => {});
+            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => { });
         } else {
             chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crsvehicle(csv) [Model]");
         }
@@ -164,7 +164,7 @@ function crvehiclef(player, args) {
             }
             newveh.numberPlateText = plate;
             vdata.vehiclesetdata(newveh.id, args[0], "faction", args[1], pos.x, pos.y, pos.z, 0, 0, 0, plate);
-            db.upsertData({ model: args[0].toLowerCase(), type: "faction", factionid: args[1], x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => {});
+            db.upsertData({ model: args[0].toLowerCase(), type: "faction", factionid: args[1], x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => { });
         } else {
             chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crfvehicle(cfv) [Model] [Faction-ID]");
         }
@@ -172,8 +172,26 @@ function crvehiclef(player, args) {
         notadmin(player)
     }
 }
+//for CMD give gun
+//givegun playerid weaponneme ammo
+function givegun(player, args) {
+    if (areadminmin(player)) {
+        if (checkadmin(player, 15)) {
+            if (args[0] != undefined && args[1] != undefined && args[2] != undefined) {
+                alt.Player.getByID(vg.getplayerid(args[0])).giveWeapon(args[1], args[2], true);
+                chat.send(player, `${player.name} your weapon has been added`)
+            } else {
+                let msg = "/givegun [Playername/Playerid] [weaponname] [ammo]"
+                errorargs(player, msg)
+            }
+        } else {
+            auth(player)
+        }
+    } else {
+        notadmin(player)
 
-
+    }
+}
 chat.registerCmd('sethp', hp)
 chat.registerCmd('vehicle', veh);
 chat.registerCmd('veh', veh);
