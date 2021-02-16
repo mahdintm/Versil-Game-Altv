@@ -86,160 +86,170 @@ function veh(player, args) {
 };
 //for cmd sethp
 function hp(player, args) {
-    if (checkadmin(player, 2)) {
-        const pos = { x: player.pos.x, y: player.pos.y, z: player.pos.z }
-        const newveh = new alt.Vehicle(args[0], pos.x, pos.y, pos.z, 0, 0, 0);
-        alt.emitClient(player, 'setIntoVehicle', newveh);
-    } else {
-        notadmin(player)
-    }
-}
-//for cmd see my pos
-function mypos(player) {
-    if (checkadmin(player, 2)) {
-        return chat.send(player, `X: ${player.pos.x}, Y: ${player.pos.y}, Z: ${player.pos.z}`);
-    } else {
-        notadmin(player)
-    }
-}
-//for cmd make admin
-function makeadmin(player, args) {
-    if (areadminmin(player)) {
-        if (checkadmin(player, 15)) {
-            if (args[0] == undefined && args[1] == undefined) {
-
-            } else {
-                let msg = "/makeadmin(ma) [Playername/Playerid] [AdminLevel]"
-                errorargs(player, msg)
-            }
-        } else {
-            notadmin(player)
-        }
-    } else {
-        auth(player)
-    }
-}
-//for cmd create static vehicle
-function crvehicle(player, args) {
-    if (checkadmin(player, 2)) {
-        if (args[0] != undefined) {
-            const pos = { x: player.pos.x, y: player.pos.y, z: player.pos.z }
-            const newveh = new alt.Vehicle(args[0], pos.x, pos.y, pos.z, 0, 0, 0);
-            alt.emitClient(player, 'setIntoVehicle', newveh);
-            let pl = vdata.getplatenumstatic();
-            let plate = `AV ${pl}`;
-            vdata.addplatenumstatic();
-            newveh.numberPlateText = plate;
-            vdata.vehiclesetdata(newveh.id, args[0], "static", 0, pos.x, pos.y, pos.z, 0, 0, 0, plate);
-            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => {});
-        } else {
-            chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crsvehicle(csv) [Model]");
-        }
-    } else {
-        notadmin(player)
-    }
-}
-
-//for cmd create faction vehicle
-function crvehiclef(player, args) {
-    if (checkadmin(player, 2)) {
-        if (args[0] != undefined && args[1] != undefined) {
-            const pos = { x: player.pos.x, y: player.pos.y, z: player.pos.z }
-            const newveh = new alt.Vehicle(args[0], pos.x, pos.y, pos.z, 0, 0, 0);
-            alt.emitClient(player, 'setIntoVehicle', newveh);
-            if (args[1] == 1) {
-                let pl = vdata.getplatenumfaction(args[1]);
-                var plate = `PD ${pl}`;
-                vdata.addplatenumstatic(args[1]);
-            } else if (args[1] == 2) {
-                let pl = vdata.getplatenumfaction(args[1]);
-                var plate = `FBI ${pl}`;
-                vdata.addplatenumstatic(args[1]);
-            } else if (args[1] == 3) {
-                let pl = vdata.getplatenumfaction(args[1]);
-                var plate = `NG ${pl}`;
-                vdata.addplatenumstatic(args[1]);
-            } else if (args[1] == 4) {
-                let pl = vdata.getplatenumfaction(args[1]);
-                var plate = `Taxi ${pl}`;
-                vdata.addplatenumstatic(args[1]);
-            }
-            newveh.numberPlateText = plate;
-            vdata.vehiclesetdata(newveh.id, args[0], "faction", args[1], pos.x, pos.y, pos.z, 0, 0, 0, plate);
-            db.upsertData({ model: args[0].toLowerCase(), type: "faction", factionid: args[1], x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => {});
-        } else {
-            chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crfvehicle(cfv) [Model] [Faction-ID]");
-        }
-    } else {
-        notadmin(player)
-    }
-}
-//for CMD give gun
-//givegun playerid weaponneme ammo
-function givegun(player, args) {
     if (areadmin(player)) {
-        if (checkadmin(player, 5)) {
-            if (args[0] != undefined && args[1] != undefined && args[2] != undefined) {
+        if (checkadmin(player, 1)) {
+            if (args[0] != undefined && args[1] != undefined) {
                 let tplayer = findplayer(args[0]);
-                tplayer.giveWeapon(alt.hash(args[1]), args[2], true);
+
                 if (pdata.getData(tplayer.id, "pLang") == 1) {
-                    chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}You are weapon has been added ✔`);
+                    chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}You are healed  ✔`);
                 } else if (pdata.getData(tplayer.id, "pLang") == 2) {
-                    chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+                    chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}shoma heal shodid ✔`);
                 } else if (pdata.getData(tplayer.id, "pLang") == 3) {
-                    chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
+                    chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}شما درمان شدید ✔ `);
                 }
             } else {
-                let msg = "/givegun [Playername/Playerid] [weaponname] [ammo]"
+                let msg = "/hp [Playername/Playerid] [healnum]"
                 errorargs(player, msg)
             }
-        } else {
-            auth(player)
-        }
-    } else {
-        notadmin(player)
 
-    }
-}
-//for CMD kick
-//kickplayer playerid respone
-function kick(player, args) {
-    if (areadmin(player)) {
-        if (checkadmin(player, 15)) {
-            if (args[0] != undefined && args[1] != undefined) {
-                alt.Player.getByID(vg.getplayerid(args[0])).kick(...args[1]);
-                alt.setTimeout(() => {
-                    console.log(`${alt.Player.getByID(vg.getplayerid(args[0])).name} will be kicked in 5 seconds.`);
-                }, 2000);
+        }
+        //for cmd see my pos
+        function mypos(player) {
+            if (checkadmin(player, 2)) {
+                return chat.send(player, `X: ${player.pos.x}, Y: ${player.pos.y}, Z: ${player.pos.z}`);
             } else {
-                let msg = "/kick [Playerid] [respone]"
-                errorargs(player, msg)
+                notadmin(player)
             }
-        } else {
-            auth(player)
         }
-    } else {
-        notadmin(player)
+        //for cmd make admin
+        function makeadmin(player, args) {
+            if (areadminmin(player)) {
+                if (checkadmin(player, 15)) {
+                    if (args[0] == undefined && args[1] == undefined) {
 
-    }
-}
-chat.registerCmd('sethp', hp)
-chat.registerCmd('vehicle', veh);
-chat.registerCmd('veh', veh);
-chat.registerCmd('mypos', mypos);
-chat.registerCmd('crsvehicle', crvehicle);
-chat.registerCmd('csv', crvehicle);
-chat.registerCmd('crfvehicle', crvehiclef);
-chat.registerCmd('cfv', crvehiclef);
-chat.registerCmd('makeadmin', makeadmin);
-chat.registerCmd('ma', crvehiclef);
-chat.registerCmd('kick', kick);
-chat.registerCmd('gg', givegun);
+                    } else {
+                        let msg = "/makeadmin(ma) [Playername/Playerid] [AdminLevel]"
+                        errorargs(player, msg)
+                    }
+                } else {
+                    notadmin(player)
+                }
+            } else {
+                auth(player)
+            }
+        }
+        //for cmd create static vehicle
+        function crvehicle(player, args) {
+            if (checkadmin(player, 2)) {
+                if (args[0] != undefined) {
+                    const pos = { x: player.pos.x, y: player.pos.y, z: player.pos.z }
+                    const newveh = new alt.Vehicle(args[0], pos.x, pos.y, pos.z, 0, 0, 0);
+                    alt.emitClient(player, 'setIntoVehicle', newveh);
+                    let pl = vdata.getplatenumstatic();
+                    let plate = `AV ${pl}`;
+                    vdata.addplatenumstatic();
+                    newveh.numberPlateText = plate;
+                    vdata.vehiclesetdata(newveh.id, args[0], "static", 0, pos.x, pos.y, pos.z, 0, 0, 0, plate);
+                    db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => { });
+                } else {
+                    chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crsvehicle(csv) [Model]");
+                }
+            } else {
+                notadmin(player)
+            }
+        }
+
+        //for cmd create faction vehicle
+        function crvehiclef(player, args) {
+            if (checkadmin(player, 2)) {
+                if (args[0] != undefined && args[1] != undefined) {
+                    const pos = { x: player.pos.x, y: player.pos.y, z: player.pos.z }
+                    const newveh = new alt.Vehicle(args[0], pos.x, pos.y, pos.z, 0, 0, 0);
+                    alt.emitClient(player, 'setIntoVehicle', newveh);
+                    if (args[1] == 1) {
+                        let pl = vdata.getplatenumfaction(args[1]);
+                        var plate = `PD ${pl}`;
+                        vdata.addplatenumstatic(args[1]);
+                    } else if (args[1] == 2) {
+                        let pl = vdata.getplatenumfaction(args[1]);
+                        var plate = `FBI ${pl}`;
+                        vdata.addplatenumstatic(args[1]);
+                    } else if (args[1] == 3) {
+                        let pl = vdata.getplatenumfaction(args[1]);
+                        var plate = `NG ${pl}`;
+                        vdata.addplatenumstatic(args[1]);
+                    } else if (args[1] == 4) {
+                        let pl = vdata.getplatenumfaction(args[1]);
+                        var plate = `Taxi ${pl}`;
+                        vdata.addplatenumstatic(args[1]);
+                    }
+                    newveh.numberPlateText = plate;
+                    vdata.vehiclesetdata(newveh.id, args[0], "faction", args[1], pos.x, pos.y, pos.z, 0, 0, 0, plate);
+                    db.upsertData({ model: args[0].toLowerCase(), type: "faction", factionid: args[1], x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => { });
+                } else {
+                    chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crfvehicle(cfv) [Model] [Faction-ID]");
+                }
+            } else {
+                notadmin(player)
+            }
+        }
+        //for CMD give gun
+        //givegun playerid weaponneme ammo
+        function givegun(player, args) {
+            if (areadmin(player)) {
+                if (checkadmin(player, 5)) {
+                    if (args[0] != undefined && args[1] != undefined && args[2] != undefined) {
+                        let tplayer = findplayer(args[0]);
+                        tplayer.giveWeapon(alt.hash(args[1]), args[2], true);
+                        if (pdata.getData(tplayer.id, "pLang") == 1) {
+                            chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}You are weapon has been added ✔`);
+                        } else if (pdata.getData(tplayer.id, "pLang") == 2) {
+                            chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+                        } else if (pdata.getData(tplayer.id, "pLang") == 3) {
+                            chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
+                        }
+                    } else {
+                        let msg = "/givegun [Playername/Playerid] [weaponname] [ammo]"
+                        errorargs(player, msg)
+                    }
+                } else {
+                    auth(player)
+                }
+            } else {
+                notadmin(player)
+
+            }
+        }
+        //for CMD kick
+        //kickplayer playerid respone
+        function kick(player, args) {
+            if (areadmin(player)) {
+                if (checkadmin(player, 15)) {
+                    if (args[0] != undefined && args[1] != undefined) {
+                        alt.Player.getByID(vg.getplayerid(args[0])).kick(...args[1]);
+                        alt.setTimeout(() => {
+                            console.log(`${alt.Player.getByID(vg.getplayerid(args[0])).name} will be kicked in 5 seconds.`);
+                        }, 2000);
+                    } else {
+                        let msg = "/kick [Playerid] [respone]"
+                        errorargs(player, msg)
+                    }
+                } else {
+                    auth(player)
+                }
+            } else {
+                notadmin(player)
+
+            }
+        }
+        chat.registerCmd('hp', hp)
+        chat.registerCmd('vehicle', veh);
+        chat.registerCmd('veh', veh);
+        chat.registerCmd('mypos', mypos);
+        chat.registerCmd('crsvehicle', crvehicle);
+        chat.registerCmd('csv', crvehicle);
+        chat.registerCmd('crfvehicle', crvehiclef);
+        chat.registerCmd('cfv', crvehiclef);
+        chat.registerCmd('makeadmin', makeadmin);
+        chat.registerCmd('ma', crvehiclef);
+        chat.registerCmd('kick', kick);
+        chat.registerCmd('gg', givegun);
 
 
-chat.registerCmd('aaaa', (player, args) => {
-    console.log(pdata.findbyname(args[0]))
-})
+        chat.registerCmd('aaaa', (player, args) => {
+            console.log(pdata.findbyname(args[0]))
+        })
 
 // chat.registerCmd('dv', (player, args) => {
 //     let id = alt.Vehicle.getByID(args[0]);
