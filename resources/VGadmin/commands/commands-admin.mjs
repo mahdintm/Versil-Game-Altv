@@ -203,16 +203,19 @@ function givegun(player, args) {
 }
 //for CMD kick
 //kickplayer playerid respone
+
 function kick(player, args) {
     if (areadmin(player)) {
-        if (checkadmin(player, 15)) {
+        if (checkadmin(player, 5)) {
             if (args[0] != undefined && args[1] != undefined) {
-                alt.Player.getByID(vg.getplayerid(args[0])).kick(...args[1]);
+                let tplayer = findplayer(args[0]);
+                let reason = [...args[1]];
+                console.log(`${pdata.getplayername(tplayer.id)} will be kicked in 500 ms.`);
                 alt.setTimeout(() => {
-                    console.log(`${alt.Player.getByID(vg.getplayerid(args[0])).name} will be kicked in 5 seconds.`);
-                }, 2000);
+                    tplayer.kick(`You are kicked By admin ${pdata.getplayername(player.id)} for reason: ${args.slice(1).join(" ")}`);
+                }, 500);
             } else {
-                let msg = "/kick [Playerid] [respone]"
+                let msg = "/kick [Playername/Playerid] [reason]"
                 errorargs(player, msg)
             }
         } else {
