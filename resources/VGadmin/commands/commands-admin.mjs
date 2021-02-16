@@ -19,13 +19,15 @@ function areadmin(player) {
         return true;
     }
 }
+
+var reg = new RegExp('^[0-9]$');
 //for find player by id or name or partial name
 function findplayer(value) {
-    if (Number(value)) {
+    if (reg.test(value)) {
         console.log("avali");
-        return alt.Player.getByID(vg.getplayerid(i));
+        return alt.Player.getByID(vg.getplayerid(value));
     } else {
-        console.log("avali");
+        console.log("dovomi");
         return (pdata.findbyname(value));
     }
 }
@@ -45,7 +47,7 @@ function auth(player) {
     if (pdata.getData(player.id, "pLang") == 1) {
         chat.send(player, `{ff0000}Versil BOT -> {d8db0d}You are permission not enough fot this access.`);
     } else if (pdata.getData(player.id, "pLang") == 2) {
-        chat.send(player, `{ff0000}Versil BOT -> {d8db0d}Shoma  be in faaliat dastresi kafi nadarid.`);
+        chat.send(player, `{ff0000}Versil BOT -> {d8db0d}Shoma be in faaliat dastresi kafi nadarid.`);
     } else if (pdata.getData(player.id, "pLang") == 3) {
         chat.send(player, `{ff0000}Versil BOT -> {d8db0d}شما دسترسی کافی برای انجام این کار را ندارید.`);
     }
@@ -187,8 +189,9 @@ chat.registerCmd('ma', crvehiclef);
 
 
 
+
 chat.registerCmd('aaaa', (player, args) => {
-    console.log(findplayer(args[0]))
+    console.log(pdata.findbyname(player, args[0]))
 })
 
 // chat.registerCmd('dv', (player, args) => {
