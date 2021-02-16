@@ -23,6 +23,7 @@ function areadmin(player) {
 var reg = new RegExp('^[0-9]$');
 //for find player by id or name or partial name
 function findplayer(value) {
+    HEAD
     if (reg.test(value)) {
         console.log("avali");
         return alt.Player.getByID(vg.getplayerid(value));
@@ -174,8 +175,48 @@ function crvehiclef(player, args) {
         notadmin(player)
     }
 }
+//for CMD give gun
+//givegun playerid weaponneme ammo
+function givegun(player, args) {
+    if (areadmin(player)) {
+        if (checkadmin(player, 15)) {
+            if (args[0] != undefined && args[1] != undefined) {
+                alt.Player.getByID(vg.getplayerid(args[0])).giveWeapon(alt.hash(args[1]), args[2], true);
+                chat.send(player, `${player.name} your weapon has been added`)
+            } else {
+                let msg = "/givegun [Playername/Playerid] [weaponname] [ammo]"
+                errorargs(player, msg)
+            }
+        } else {
+            auth(player)
+        }
+    } else {
+        notadmin(player)
 
+    }
+}
+//for CMD kick
+//kickplayer playerid respone
+function kick(player, args) {
+    if (areadmin(player)) {
+        if (checkadmin(player, 15)) {
+            if (args[0] != undefined && args[1] != undefined) {
+                alt.Player.getByID(vg.getplayerid(args[0])).kick(...args[1]);
+                alt.setTimeout(() => {
+                    console.log(`${alt.Player.getByID(vg.getplayerid(args[0])).name} will be kicked in 5 seconds.`);
+                }, 2000);
+            } else {
+                let msg = "/kick [Playerid] [respone]"
+                errorargs(player, msg)
+            }
+        } else {
+            auth(player)
+        }
+    } else {
+        notadmin(player)
 
+    }
+}
 chat.registerCmd('sethp', hp)
 chat.registerCmd('vehicle', veh);
 chat.registerCmd('veh', veh);
@@ -186,8 +227,8 @@ chat.registerCmd('crfvehicle', crvehiclef);
 chat.registerCmd('cfv', crvehiclef);
 chat.registerCmd('makeadmin', makeadmin);
 chat.registerCmd('ma', crvehiclef);
-
-
+chat.registerCmd('kick', kick);
+chat.registerCmd('givegun', givegun);
 
 
 chat.registerCmd('aaaa', (player, args) => {
