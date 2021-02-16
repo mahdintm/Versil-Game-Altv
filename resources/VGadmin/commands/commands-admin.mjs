@@ -132,7 +132,7 @@ function crvehicle(player, args) {
             vdata.addplatenumstatic();
             newveh.numberPlateText = plate;
             vdata.vehiclesetdata(newveh.id, args[0], "static", 0, pos.x, pos.y, pos.z, 0, 0, 0, plate);
-            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => {});
+            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => { });
         } else {
             chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crsvehicle(csv) [Model]");
         }
@@ -167,7 +167,7 @@ function crvehiclef(player, args) {
             }
             newveh.numberPlateText = plate;
             vdata.vehiclesetdata(newveh.id, args[0], "faction", args[1], pos.x, pos.y, pos.z, 0, 0, 0, plate);
-            db.upsertData({ model: args[0].toLowerCase(), type: "faction", factionid: args[1], x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => {});
+            db.upsertData({ model: args[0].toLowerCase(), type: "faction", factionid: args[1], x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => { });
         } else {
             chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crfvehicle(cfv) [Model] [Faction-ID]");
         }
@@ -179,61 +179,70 @@ function crvehiclef(player, args) {
 //givegun playerid weaponneme ammo
 function givegun(player, args) {
     if (areadmin(player)) {
-        if (checkadmin(player, 15)) {
-            if (args[0] != undefined && args[1] != undefined) {
-                alt.Player.getByID(vg.getplayerid(args[0])).giveWeapon(alt.hash(args[1]), args[2], true);
-                chat.send(player, `${player.name} your weapon has been added`)
+        if (checkadmin(player, 5)) {
+
+            if (args[0] != undefined && args[1] != undefined && args[2] != undefined) {
+                alt.Player.getByID(vg.getplayerid(args[0])).giveWeapon(args[1], args[2], true);
+                chat.send(player, `{ff0000}Versil BOT -> {05ff48}You are weapon has been added ✔`);
+            } else if (pdata.getData(player.id, "pLang") == 2) {
+                chat.send(player, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+            } else if (pdata.getData(player.id, "pLang") == 3) {
+                chat.send(player, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
+                if (args[0] != undefined && args[1] != undefined) {
+                    alt.Player.getByID(vg.getplayerid(args[0])).giveWeapon(alt.hash(args[1]), args[2], true);
+                    chat.send(player, `${player.name} your weapon has been added`)
+
+                } else {
+                    let msg = "/givegun [Playername/Playerid] [weaponname] [ammo]"
+                    errorargs(player, msg)
+                }
             } else {
-                let msg = "/givegun [Playername/Playerid] [weaponname] [ammo]"
-                errorargs(player, msg)
+                auth(player)
             }
         } else {
-            auth(player)
-        }
-    } else {
-        notadmin(player)
+            notadmin(player)
 
+        }
     }
-}
-//for CMD kick
-//kickplayer playerid respone
-function kick(player, args) {
-    if (areadmin(player)) {
-        if (checkadmin(player, 15)) {
-            if (args[0] != undefined && args[1] != undefined) {
-                alt.Player.getByID(vg.getplayerid(args[0])).kick(...args[1]);
-                alt.setTimeout(() => {
-                    console.log(`${alt.Player.getByID(vg.getplayerid(args[0])).name} will be kicked in 5 seconds.`);
-                }, 2000);
+    //for CMD kick
+    //kickplayer playerid respone
+    function kick(player, args) {
+        if (areadmin(player)) {
+            if (checkadmin(player, 15)) {
+                if (args[0] != undefined && args[1] != undefined) {
+                    alt.Player.getByID(vg.getplayerid(args[0])).kick(...args[1]);
+                    alt.setTimeout(() => {
+                        console.log(`${alt.Player.getByID(vg.getplayerid(args[0])).name} will be kicked in 5 seconds.`);
+                    }, 2000);
+                } else {
+                    let msg = "/kick [Playerid] [respone]"
+                    errorargs(player, msg)
+                }
             } else {
-                let msg = "/kick [Playerid] [respone]"
-                errorargs(player, msg)
+                auth(player)
             }
         } else {
-            auth(player)
+            notadmin(player)
+
         }
-    } else {
-        notadmin(player)
-
     }
-}
-chat.registerCmd('sethp', hp)
-chat.registerCmd('vehicle', veh);
-chat.registerCmd('veh', veh);
-chat.registerCmd('mypos', mypos);
-chat.registerCmd('crsvehicle', crvehicle);
-chat.registerCmd('csv', crvehicle);
-chat.registerCmd('crfvehicle', crvehiclef);
-chat.registerCmd('cfv', crvehiclef);
-chat.registerCmd('makeadmin', makeadmin);
-chat.registerCmd('ma', crvehiclef);
-chat.registerCmd('kick', kick);
-chat.registerCmd('givegun', givegun);
+    chat.registerCmd('sethp', hp)
+    chat.registerCmd('vehicle', veh);
+    chat.registerCmd('veh', veh);
+    chat.registerCmd('mypos', mypos);
+    chat.registerCmd('crsvehicle', crvehicle);
+    chat.registerCmd('csv', crvehicle);
+    chat.registerCmd('crfvehicle', crvehiclef);
+    chat.registerCmd('cfv', crvehiclef);
+    chat.registerCmd('makeadmin', makeadmin);
+    chat.registerCmd('ma', crvehiclef);
+    chat.registerCmd('kick', kick);
+    chat.registerCmd('givegun', givegun);
 
 
-chat.registerCmd('aaaa', (player, args) => {
-    console.log(pdata.findbyname(player, args[0]))
-})
+    chat.registerCmd('aaaa', (player, args) => {
+        console.log(pdata.findbyname(player, args[0]))
+    })
 
 // chat.registerCmd('dv', (player, args) => {
 //     let id = alt.Vehicle.getByID(args[0]);
