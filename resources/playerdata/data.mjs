@@ -34,17 +34,17 @@ export function setData(id, data, value) {
 
 function mysqlupdate(id, data, value) {
     if (data == "pName") {
-        security.updatePartialData(vg.getplayerid(id), { pName: value }, Account, res => {})
+        security.updatePartialData(vg.getplayerid(id), { pName: value }, Account, res => { })
     } else if (data == "pPassword") {
-        security.updatePartialData(vg.getplayerid(id), { pPassword: value }, Account, res => {})
+        security.updatePartialData(vg.getplayerid(id), { pPassword: value }, Account, res => { })
     } else if (data == "pSkin") {
-        security.updatePartialData(vg.getplayerid(id), { pSkin: value }, Account, res => {})
+        security.updatePartialData(vg.getplayerid(id), { pSkin: value }, Account, res => { })
     } else if (data == "pHouse") {
-        security.updatePartialData(vg.getplayerid(id), { pHouse: value }, Account, res => {})
+        security.updatePartialData(vg.getplayerid(id), { pHouse: value }, Account, res => { })
     } else if (data == "pAdmin") {
-        security.updatePartialData(vg.getplayerid(id), { pAdmin: value }, Account, res => {})
+        security.updatePartialData(vg.getplayerid(id), { pAdmin: value }, Account, res => { })
     } else if (data == "pLeader") {
-        security.updatePartialData(vg.getplayerid(id), { pLeader: value }, Account, res => {})
+        security.updatePartialData(vg.getplayerid(id), { pLeader: value }, Account, res => { })
     }
 }
 
@@ -58,5 +58,9 @@ export function findbyname(value) {
     }
 }
 
+export function getplayername(playerid) {
+    return pInfo[playerid]["pName"];
+}
 
-export default { getData, setData, loginData, findbyname };
+
+export default { getData, setData, loginData, findbyname, getplayername };
