@@ -9,7 +9,7 @@ alt.on('anyResourceStart', (name) => {
     if (name == "playerdata") {
         alt.setTimeout(() => {
             for (var i = 0; i < 1000; i++) {
-                pInfo[i]["pName"] = undefined;
+                pInfo[i] = { "pName": undefined }
             }
         }, 2000);
     }
