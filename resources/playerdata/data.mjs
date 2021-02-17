@@ -4,24 +4,10 @@ import { Account } from '../db/entities/data.mjs';
 const security = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', 'Waezakmi2new3mahdi', 'alt', [Account]);
 const pInfo = {}
 
-
-// alt.on('anyResourceStart', (name) => {
-//     if (name == "playerdata") {
-//         alt.setTimeout(() => {
-//             for (var i = 0; i < 1000; i++) {
-//                 pInfo[i] = { "pName": undefined }
-//             }
-//         }, 2000);
-//     }
-// })
-
-
-
 export function loginData(id, data, pname) {
     pInfo[id] = data[0];
     pInfo[id]["pName"] = pname;
 }
-
 
 export function getData(id, data) {
     return pInfo[id][data];
@@ -62,5 +48,12 @@ export function getplayername(playerid) {
     return pInfo[playerid]["pName"];
 }
 
+export function cleardata(playerid) {
+    pInfo[playerid] = undefined;
+}
 
-export default { getData, setData, loginData, findbyname, getplayername };
+export function getpinfo(playerid) {
+    return pInfo[playerid];
+}
+
+export default { getData, setData, loginData, findbyname, getplayername, cleardata, getpinfo };
