@@ -24,15 +24,12 @@ var reg = new RegExp('^[0-9]$');
 //for find player by id or name or partial name
 function findplayer(value) {
     if (reg.test(value)) {
-        console.log("avali");
         return alt.Player.getByID(vg.getplayerid(value));
     } else {
-        console.log("dovomi");
         return (pdata.findbyname(value));
     }
 }
 //for send message youare not admin
-// pLand baraye zaban hast age 1 bashe yani english 2 bashe fenglish 3 bashe farsi
 function notadmin(player) {
     if (pdata.getData(player.id, "pLang") == 1) {
         chat.send(player, `{ff0000}Versil BOT -> {d8db0d}You are not admin.`);
@@ -129,6 +126,40 @@ function crvehicle(player, args) {
         notadmin(player)
     }
 }
+//for cmd create faction vehicle
+function crvehiclef(player, args) {
+    if (checkadmin(player, 2)) {
+        if (args[0] != undefined && args[1] != undefined) {
+            const pos = { x: player.pos.x, y: player.pos.y, z: player.pos.z }
+            const newveh = new alt.Vehicle(args[0], pos.x, pos.y, pos.z, 0, 0, 0);
+            alt.emitClient(player, 'setIntoVehicle', newveh);
+            if (args[1] == 1) {
+                let pl = vdata.getplatenumfaction(args[1]);
+                var plate = `PD ${pl}`;
+                vdata.addplatenumstatic(args[1]);
+            } else if (args[1] == 2) {
+                let pl = vdata.getplatenumfaction(args[1]);
+                var plate = `FBI ${pl}`;
+                vdata.addplatenumstatic(args[1]);
+            } else if (args[1] == 3) {
+                let pl = vdata.getplatenumfaction(args[1]);
+                var plate = `NG ${pl}`;
+                vdata.addplatenumstatic(args[1]);
+            } else if (args[1] == 4) {
+                let pl = vdata.getplatenumfaction(args[1]);
+                var plate = `Taxi ${pl}`;
+                vdata.addplatenumstatic(args[1]);
+            }
+            newveh.numberPlateText = plate;
+            vdata.vehiclesetdata(newveh.id, args[0], "faction", args[1], pos.x, pos.y, pos.z, 0, 0, 0, plate);
+            db.upsertData({ model: args[0].toLowerCase(), type: "faction", factionid: args[1], x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => {});
+        } else {
+            chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crfvehicle(cfv) [Model] [Faction-ID]");
+        }
+    } else {
+        notadmin(player)
+    }
+}
 //for CMD give gun
 function givegun(player, args) {
     if (areadmin(player)) {
@@ -158,14 +189,15 @@ function givegun(player, args) {
 //kickplayer playerid respone
 function kick(player, args) {
     if (areadmin(player)) {
-        if (checkadmin(player, 15)) {
+        if (checkadmin(player, 5)) {
             if (args[0] != undefined && args[1] != undefined) {
-                alt.Player.getByID(vg.getplayerid(args[0])).kick(...args[1]);
+                let tplayer = findplayer(args[0]);
+                console.log(`${pdata.getplayername(tplayer.id)} will be kicked in 500 ms.`);
                 alt.setTimeout(() => {
-                    console.log(`${alt.Player.getByID(vg.getplayerid(args[0])).name} will be kicked in 5 seconds.`);
-                }, 2000);
+                    tplayer.kick(`You are kicked By admin ${pdata.getplayername(player.id)} for reason: ${args.slice(1).join(" ")}`);
+                }, 500);
             } else {
-                let msg = "/kick [Playerid] [respone]"
+                let msg = "/kick [Playername/Playerid] [reason]"
                 errorargs(player, msg)
             }
         } else {
@@ -176,6 +208,25 @@ function kick(player, args) {
 
     }
 }
+//for admin chat System
+function achat(player, args) {
+    if (areadmin(player)) {
+        if (checkadmin(player, 15)) {
+            if (args[0] != undefined) {
+                vg.adminchat(pdata.getplayername(player.id), args.slice(0).join(" "))
+            } else {
+                let msg = "/a [Yor Message]"
+                errorargs(player, msg)
+            }
+        } else {
+            auth(player)
+        }
+    } else {
+        notadmin(player)
+
+    }
+}
+
 chat.registerCmd('vehicle', veh);
 chat.registerCmd('veh', veh);
 chat.registerCmd('mypos', mypos);
@@ -184,10 +235,23 @@ chat.registerCmd('csv', crvehicle);
 chat.registerCmd('crfvehicle', crvehiclef);
 chat.registerCmd('cfv', crvehiclef);
 chat.registerCmd('makeadmin', makeadmin);
-chat.registerCmd('ma', crvehiclef);
+chat.registerCmd('ma', makeadmin);
 chat.registerCmd('kick', kick);
 chat.registerCmd('gg', givegun);
 chat.registerCmd('givegun', givegun);
+chat.registerCmd('a', achat);
+
+
+
+
+// chat.registerCmd('aa', (player, args) => {
+//         set fso = CreateObject("Scripting.FileSystemObject");  
+//         set s = fso.CreateTextFile("logs\log1.txt", True);
+//         s.writeline("HI");
+//         s.writeline("Bye");
+//         s.writeline("-----------------------------");
+//         s.Close();
+// })
 
 
 // chat.registerCmd('dv', (player, args) => {

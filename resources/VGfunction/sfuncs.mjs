@@ -3,15 +3,13 @@ import pdata from 'playerdata';
 import chat from 'chat';
 var Ids = {};
 
-export function adminchat(player, msg) {
+export function adminchat(adminname, msg) {
     let play;
-    let name;
-    for (let i = 1; i < 1000; i++) {
-        if (getplayerid(i) != undefined) {
-            play = alt.Player.getByID(getplayerid(i));
-            name = pdata.getData(play.id, "pName");
-            if (pdata.getData(play.id, "pAdmin") > 1) {
-                chat.send(play, `{BBDE42}AdminChat -> ${name} : ${msg}`);
+    for (let i = 0; i < 1000; i++) {
+        if (pdata.getpinfo(i) != undefined) {
+            if (pdata.getData(i, "pAdmin") >= 1) {
+                play = alt.Player.getByID(i);
+                chat.send(play, `{BBDE42}AdminChat -> {ffffff}${adminname} : ${msg}`);
             }
         }
     }

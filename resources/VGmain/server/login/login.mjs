@@ -17,6 +17,7 @@ alt.onClient('serverlogin', (player, user, pass) => {
                     pdata.loginData(player.id, data, user);
                     vg.spawnplayer(player.id);
                     vg.setplayerid(player.id)
+                    console.log(player.id);
                     alt.emitClient(player, 'loginweb:close');
                 } else {
                     alt.emitClient(player, 'loginweb:erroruserpass');
