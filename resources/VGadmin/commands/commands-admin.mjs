@@ -24,9 +24,17 @@ var reg = new RegExp('^[0-9]$');
 //for find player by id or name or partial name
 function findplayer(value) {
     if (reg.test(value)) {
-        return alt.Player.getByID(vg.getplayerid(value));
+        if (vg.getplayerid(value) != undefined) {
+            return alt.Player.getByID(vg.getplayerid(value));
+        } else {
+            return undefined;
+        }
     } else {
-        return (pdata.findbyname(value));
+        if (pdata.findbyname(value) != undefined) {
+            return (pdata.findbyname(value));
+        } else {
+            return undefined;
+        }
     }
 }
 //for send message youare not admin
@@ -118,7 +126,7 @@ function crvehicle(player, args) {
             vdata.addplatenumstatic();
             newveh.numberPlateText = plate;
             vdata.vehiclesetdata(newveh.id, args[0], "static", 0, pos.x, pos.y, pos.z, 0, 0, 0, plate);
-            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => { });
+            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => {});
         } else {
             chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crsvehicle(csv) [Model]");
         }
@@ -223,7 +231,6 @@ function achat(player, args) {
         }
     } else {
         notadmin(player)
-
     }
 }
 
