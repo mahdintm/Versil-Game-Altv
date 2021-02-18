@@ -27,12 +27,12 @@ body {
     top: -35vh;
     left: -35vw;
     transition: all .2s;
-    opacity: .5;
+    opacity: 1;
     z-index: -1;
 }
 
 .shblock.active {
-    opacity: .9;
+    opacity: 1;
 }
 
 .chatbox {
@@ -42,7 +42,7 @@ body {
     width: 450px;
     height: 250px;
     padding: 15px;
-    opacity: .7;
+    opacity: 1;
     transition: all .5s;
 }
 
@@ -56,7 +56,7 @@ body {
     padding: 5px 0;
     margin: 0;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, .5);
-    font-size: 1em;
+    font-size: 1.18em;
     color: rgba(255, 255, 255, .9);
     width: 100%;
     word-break: break-all;

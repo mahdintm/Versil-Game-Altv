@@ -47,18 +47,18 @@ function fadeIn(el, time) {
     tick();
 }
 
-function fadeOut(el, time) {
-    el.style.opacity = 1;
+// function fadeOut(el, time) {
+//     el.style.opacity = 1;
 
-    var last = +new Date();
-    var tick = function() {
-        el.style.opacity = 1 - (new Date() - last) / time;
+//     var last = +new Date();
+//     var tick = function() {
+//         el.style.opacity = 1 - (new Date() - last) / time;
 
-        if (+el.style.opacity > 0)
-            (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
-    };
-    tick();
-}
+//         if (+el.style.opacity > 0)
+//             (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+//     };
+//     tick();
+// }
 
 function scrollTo(el, to, time) {
     if (time <= 0) {
@@ -115,11 +115,11 @@ function addString(text) {
     highlightChat();
 }
 
-function addMessage(name, text) {
+function addMessage(name, text, link) {
     if (messagesBlock.children.length > 100)
         messagesBlock.removeChild(messagesBlock.children[0]);
     var p = document.createElement('p');
-    p.innerHTML = '<b>' + name + ': </b>' + colorify(text);
+    p.innerHTML = '<img src="' + link + '" alt="img player">' + '<matn>' + '<b>' + name + ': </b>' + colorify(text) + '<mayn>';
     messagesBlock.appendChild(p);
     checkOverflow();
     highlightChat();
