@@ -9,7 +9,18 @@ export function adminchat(adminname, msg) {
         if (pdata.getpinfo(i) != undefined) {
             if (pdata.getData(i, "pAdmin") >= 1) {
                 play = alt.Player.getByID(i);
-                chat.send(play, `{BBDE42}AdminChat -> {ffffff}${adminname} : ${msg}`);
+                chat.send(play, `{BBDE42}AdminChat -> {fcb212}${adminname} : {ffffff}${msg}`);
+            }
+        }
+    }
+}
+export function founderchat(adminname, msg) {
+    let play;
+    for (let i = 0; i < 1000; i++) {
+        if (pdata.getpinfo(i) != undefined) {
+            if (pdata.getData(i, "pAdmin") >= 12) {
+                play = alt.Player.getByID(i);
+                chat.send(play, `{ec1313}FounderChat -> {fcb212}${adminname} : {ffffff}${msg}`);
             }
         }
     }
@@ -73,4 +84,4 @@ export function deleteplayerid(playerid) {
     }
 }
 
-export default { getplayerid, setplayerid, setplayermodel, spawnplayer, sleep, adminchat, deleteplayerid };
+export default { getplayerid, setplayerid, setplayermodel, spawnplayer, sleep, adminchat, deleteplayerid, founderchat };

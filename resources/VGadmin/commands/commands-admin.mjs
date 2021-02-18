@@ -118,7 +118,7 @@ function crvehicle(player, args) {
             vdata.addplatenumstatic();
             newveh.numberPlateText = plate;
             vdata.vehiclesetdata(newveh.id, args[0], "static", 0, pos.x, pos.y, pos.z, 0, 0, 0, plate);
-            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => { });
+            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: 0, ry: 0, rz: 0 }, 'vehicles', res => {});
         } else {
             chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crsvehicle(csv) [Model]");
         }
@@ -211,11 +211,29 @@ function kick(player, args) {
 //for admin chat System
 function achat(player, args) {
     if (areadmin(player)) {
-        if (checkadmin(player, 15)) {
+        if (checkadmin(player, 1)) {
             if (args[0] != undefined) {
                 vg.adminchat(pdata.getplayername(player.id), args.slice(0).join(" "))
             } else {
                 let msg = "/a [Yor Message]"
+                errorargs(player, msg)
+            }
+        } else {
+            auth(player)
+        }
+    } else {
+        notadmin(player)
+
+    }
+}
+//for founder chat System
+function fochat(player, args) {
+    if (areadmin(player)) {
+        if (checkadmin(player, 12)) {
+            if (args[0] != undefined) {
+                vg.founderchat(pdata.getplayername(player.id), args.slice(0).join(" "))
+            } else {
+                let msg = "/fc [Yor Message]"
                 errorargs(player, msg)
             }
         } else {
@@ -240,6 +258,7 @@ chat.registerCmd('kick', kick);
 chat.registerCmd('gg', givegun);
 chat.registerCmd('givegun', givegun);
 chat.registerCmd('a', achat);
+chat.registerCmd('fc', fochat);
 
 
 
