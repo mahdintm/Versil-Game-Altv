@@ -24,9 +24,17 @@ var reg = new RegExp('^[0-9]$');
 //for find player by id or name or partial name
 function findplayer(value) {
     if (reg.test(value)) {
-        return alt.Player.getByID(vg.getplayerid(value));
+        if (vg.getplayerid(value) != undefined) {
+            return alt.Player.getByID(vg.getplayerid(value));
+        } else {
+            return undefined;
+        }
     } else {
-        return (pdata.findbyname(value));
+        if (pdata.findbyname(value) != undefined) {
+            return (pdata.findbyname(value));
+        } else {
+            return undefined;
+        }
     }
 }
 //for send message youare not admin
@@ -223,7 +231,6 @@ function achat(player, args) {
         }
     } else {
         notadmin(player)
-
     }
 }
 //for founder chat System
