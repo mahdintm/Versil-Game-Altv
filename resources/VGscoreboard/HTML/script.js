@@ -1,29 +1,6 @@
 let table = document.getElementById('playerlist');
 
-function addMessage(name, text) {
-    var insert = document.getElementById("a");
-    var new_row = insert.parentNode.insertRow(insert.rowIndex + 1);
-    new_row.insertCell(0).innerHTML = "test";
-    new_row.insertCell(1).innerHTML = "test2";
-    return "aaa";
-}
-
-function addrow(playername, id, ping) {
-    // $('#a').append = "<tr><td>February</td><td>$80</td></tr>";
-    $('.playerlist')[0].append('<tr><td></td><td>$80</td></tr>');
-
-}
-
-function add(id, pname) {
-    let table = document.getElementById('playerlist');
-    var thtml = '<table>';
-    thtml += '<tr><td>' + id + '</td><td>' + pname + '</td><td></td></tr>';
-    thtml += '</table>';
-    console.log(table)
-    table.innerHTML += thtml
-}
-
-function pri(id) {
+function get(id) {
     let table = document.getElementById('playerlist');
     for (var i = 1; i < 1000; i++) {
         if (table.rows[i] != undefined) {
@@ -56,3 +33,19 @@ function setping(id, ping) {
         }
     }
 }
+
+alt.on('add', (id, pname) => {
+    let table = document.getElementById('playerlist');
+    var thtml = '<table>';
+    thtml += '<tr><td>' + id + '</td><td>' + pname + '</td><td>0</td></tr>';
+    thtml += '</table>';
+    console.log(table)
+    table.innerHTML += thtml
+});
+alt.on('show', () => {
+    document.getElementById("wrap").style.display = "block";
+});
+
+alt.on('close', () => {
+    document.getElementById("wrap").style.display = "none";
+});
