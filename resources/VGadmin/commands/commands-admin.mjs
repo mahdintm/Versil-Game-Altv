@@ -251,6 +251,29 @@ function fochat(player, args) {
 
     }
 }
+//for CMD sethp
+function sethp(player, args) {
+    if (areadmin(player)) {
+        if (checkadmin(player, 5)) {
+            if (args[0] != undefined && args[1] != undefined) {
+                if (args[1] >= 0 && args[1] <= 100) {
+                    let tplayer = findplayer(args[0]);
+                    tplayer.health = parseInt(args[1]) + 100;
+                } else {
+                    let msg = "/sethp [Playername/Playerid] [HP] --> HP 0 - 100"
+                    errorargs(player, msg)
+                }
+            } else {
+                let msg = "/sethp [Playername/Playerid] [HP]"
+                errorargs(player, msg)
+            }
+        } else {
+            auth(player)
+        }
+    } else {
+        notadmin(player)
+    }
+}
 
 chat.registerCmd('vehicle', veh);
 chat.registerCmd('veh', veh);
@@ -266,6 +289,7 @@ chat.registerCmd('gg', givegun);
 chat.registerCmd('givegun', givegun);
 chat.registerCmd('a', achat);
 chat.registerCmd('fc', fochat);
+chat.registerCmd('sethp', sethp);
 
 
 

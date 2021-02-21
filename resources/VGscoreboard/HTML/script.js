@@ -34,7 +34,8 @@ function setping(id, ping) {
     }
 }
 
-alt.on('add', (id, pname) => {
+alt.on('addrow', (id, pname) => {
+    console.log("mano seda kard3")
     let table = document.getElementById('playerlist');
     var thtml = '<table>';
     thtml += '<tr><td>' + id + '</td><td>' + pname + '</td><td>0</td></tr>';

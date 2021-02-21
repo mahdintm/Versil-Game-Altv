@@ -6,3 +6,7 @@ alt.onServer('setIntoVehicle', (veh) => {
         game.setPedIntoVehicle(alt.Player.local.scriptID, veh.scriptID, -1);
     }, 800);
 });
+
+alt.onServer('addrowscoreboard', (playerid, playername) => {
+
+})

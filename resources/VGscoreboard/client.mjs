@@ -29,3 +29,9 @@ alt.on('scoreboard:close', () => {
     webview.emit('close');
     alt.showCursor(false);
 });
+
+alt.onServer('addrowscoreboard', (playerid, playername) => {
+    console.log(playerid);
+    console.log(playername);
+    webview.emit('addrow', playerid, playername);
+})
