@@ -23,7 +23,7 @@ function dl(id) {
     }
 }
 
-function setping(id, ping) {
+alt.on('updateping', (id, ping) => {
     let table = document.getElementById('playerlist');
     for (var i = 1; i < 1000; i++) {
         if (table.rows[i] != undefined) {
@@ -32,7 +32,7 @@ function setping(id, ping) {
             }
         }
     }
-}
+})
 
 alt.on('addrow', (id, pname, ping) => {
     console.log("web: ", id, " ", pname, " ", ping)

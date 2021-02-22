@@ -34,3 +34,7 @@ alt.onServer("addrow", (id, name, ping) => {
     console.log("Client : ", id, " ", name, " ", ping)
     webview.emit('addrow', id, name, ping);
 })
+
+alt.onServer("updatepingsc", (id, ping) => {
+    webview.emit('updateping', (id, ping));
+});
