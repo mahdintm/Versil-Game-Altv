@@ -34,13 +34,12 @@ function setping(id, ping) {
     }
 }
 
-alt.on('addrow', (id, pname) => {
-    console.log("mano seda kard3")
+alt.on('addrow', (id, pname, ping) => {
+    console.log("web: ", id, " ", pname, " ", ping)
     let table = document.getElementById('playerlist');
     var thtml = '<table>';
-    thtml += '<tr><td>' + id + '</td><td>' + pname + '</td><td>0</td></tr>';
+    thtml += '<tr><td>' + id + '</td><td>' + pname + '</td><td>' + ping + '</td></tr>';
     thtml += '</table>';
-    console.log(table)
     table.innerHTML += thtml
 });
 alt.on('show', () => {

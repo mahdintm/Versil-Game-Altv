@@ -30,8 +30,7 @@ alt.on('scoreboard:close', () => {
     alt.showCursor(false);
 });
 
-alt.onServer('addrowscoreboard', (playerid, playername) => {
-    console.log(playerid);
-    console.log(playername);
-    webview.emit('addrow', playerid, playername);
+alt.onServer("addrow", (id, name, ping) => {
+    console.log("Client : ", id, " ", name, " ", ping)
+    webview.emit('addrow', id, name, ping);
 })

@@ -2,6 +2,7 @@ import * as alt from 'alt';
 //import chat from 'chat';
 import vg from 'VGfunction';
 import pdata from 'playerdata';
+import sc from 'VGscoreboard';
 import SQL from '../../../db/database.mjs';
 import { Account } from '../../../db/entities/data.mjs';
 const db = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', 'Waezakmi2new3mahdi', 'alt', [Account]);
@@ -16,13 +17,8 @@ alt.onClient('serverlogin', (player, user, pass) => {
                 if (acc.pName === (user.toLowerCase()) && acc.pPassword === pass) {
                     pdata.loginData(player.id, data, user);
                     vg.spawnplayer(player.id);
-                    vg.setplayerid(player.id)
-                    for (let i = 1; i < 1000; i++) {
-                        if (vg.getplayerid(i) == player.id) {
-                            console.log("mano seda kard")
-                            alt.emitClient(null, 'addrowscoreboard', i, pdata.getplayername(player.id));
-                        }
-                    }
+                    let id = vg.setplayerid(player.id);
+                    sc.addrow(id, player.id, pdata.getplayername(player.id), player.ping);
                     alt.emitClient(player, 'loginweb:close');
                 } else {
                     alt.emitClient(player, 'loginweb:erroruserpass');

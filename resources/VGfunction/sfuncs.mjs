@@ -70,7 +70,7 @@ export function setplayerid(playerid) {
     for (let i = 1; i < 1000; i++) {
         if (Ids[i] == undefined) {
             Ids[i] = playerid;
-            break;
+            return i;
         }
     }
 };
@@ -83,15 +83,5 @@ export function deleteplayerid(playerid) {
         }
     }
 }
-
-alt.on('playerConnect',()=>{
-    for(let i = 1;i<1000;i++){
-        if(player.id == getplayerid(i))
-        {
-            alt.emitClient('addrow',(name,i));
-            alt.emitClient('update',());
-        }
-    }
-})
 
 export default { getplayerid, setplayerid, setplayermodel, spawnplayer, sleep, adminchat, deleteplayerid, founderchat };
