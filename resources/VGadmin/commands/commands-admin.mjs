@@ -287,9 +287,14 @@ function gotoplayer(player, args) {
         if (checkadmin(player, 5)) {
             if (args[0] != undefined) {
                 let tplayer = findplayer(args[0]);
-                alt.on('playerEnteredVehicle', (player, vehicle) => {
+                if (player.vehicle != null) {
+                    console.log("savare mashin")
+                    player.vehicle.pos = tplayer.pos.x + 2, tplayer.pos.y, tplayer.pos.z + 2;
+                } else {
+                    console.log("piade baradar")
                     player.spawn(tplayer.pos.x + 2, tplayer.pos.y, tplayer.pos.z);
-                })
+                }
+
             } else {
                 let msg = "/goto [Playername/Playerid]"
                 errorargs(player, msg)
@@ -334,9 +339,7 @@ chat.registerCmd('goto', gotoplayer);
 
 
 chat.registerCmd('test', (player, args) => {
-    alt.on('playerEnteredVehicle', (player, vehicle) => {
-        console.log(vehicle)
-    })
+    console.log(player.vehicle.pos)
 })
 
 
