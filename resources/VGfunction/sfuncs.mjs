@@ -56,6 +56,7 @@ export function setplayermodel(playerid, model) {
         alt.Player.getByID(vgid).model = model;
     }
 };
+
 export function spawnplayer(id) {
     if (pdata.getData(id, "pHouse") == 0) {
         let p = alt.Player.getByID(id);

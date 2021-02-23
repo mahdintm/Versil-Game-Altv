@@ -1,26 +1,39 @@
 import * as alt from 'alt';
-import { getplayerid } from '../VGfunction/sfuncs.mjs';
+import vg from 'VGfunction';
 var sb = {};
 
 export function addrow(id, playerid, name, ping) {
     console.log("Serverside : ", id, " ", playerid, " ", name, " ", ping)
-    sb[playerid] = { "id": id, "name": name, "ping": ping }
+    sb[playerid] = { "id": id, "idalt": playerid, "name": name, "ping": ping }
     alt.emitClient(null, 'addrow', id, name, ping)
 }
-let a = 1
-while (a == 2) {
+
+setInterval(function() {
     for (let i = 1; i < 1000; i++) {
-        if (getplayerid(i) != undefined) {
-            alt.emitClient(null, "updatepingsc", alt.Player.getByID(getplayerid(i)).ping)
+        if (vg.getplayerid(i) != undefined) {
+            alt.emitClient(null, "updatepingsc", i, alt.Player.getByID(vg.getplayerid(i)).ping)
+        }
+    }
+}, 500);
+
+setInterval(function() {
+    for (let i = 1; i < 1000; i++) {
+        if (sb[i] != undefined) {
+            alt.emitClient(null, "updaterowsc", sb[i]["id"], sb[i]["name"], sb[i]["ping"])
+        }
+    }
+}, 2000);
+
+export function deleterow(playerid) {
+    for (let i = 1; i < 1000; i++) {
+        if (sb[i] != undefined) {
+            if (sb[i]["id"] == playerid) {
+                alt.emitClient(null, 'deleterowcsc', (i));
+            }
         }
     }
 }
 
-export function deleterow(playerid) {
-    //sb[playerid] = undefined;
-    //ali.emitClient(null, 'delete', (id));
-}
 
 
-
-export default { addrow };
+export default { addrow, deleterow };

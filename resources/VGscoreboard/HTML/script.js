@@ -12,7 +12,7 @@ function get(id) {
     }
 }
 
-function dl(id) {
+alt.on('deleterowsc', (id) => {
     let table = document.getElementById('playerlist');
     for (var i = 1; i < 1000; i++) {
         if (table.rows[i] != undefined) {
@@ -21,27 +21,47 @@ function dl(id) {
             }
         }
     }
-}
+})
 
 alt.on('updateping', (id, ping) => {
     let table = document.getElementById('playerlist');
     for (var i = 1; i < 1000; i++) {
         if (table.rows[i] != undefined) {
             if (table.rows[i].cells[0].innerHTML == id) {
-                table.rows[i].cells[2].innerHTML = ping;
+                if (ping - 45 <= 0) {
+                    table.rows[i].cells[2].innerHTML = 1;
+                } else {
+                    table.rows[i].cells[2].innerHTML = ping - 45;
+                }
             }
         }
     }
 })
 
 alt.on('addrow', (id, pname, ping) => {
-    console.log("web: ", id, " ", pname, " ", ping)
     let table = document.getElementById('playerlist');
-    var thtml = '<table>';
-    thtml += '<tr><td>' + id + '</td><td>' + pname + '</td><td>' + ping + '</td></tr>';
-    thtml += '</table>';
-    table.innerHTML += thtml
+    var row = table.insertRow(id);
+    var cid = row.insertCell(0);
+    var cname = row.insertCell(1);
+    var cping = row.insertCell(2);
+    cid.innerHTML = id;
+    cname.innerHTML = pname;
+    cping.innerHTML = ping;
 });
+
+alt.on('updaterowscw', (id, pname) => {
+    let table = document.getElementById('playerlist');
+    if (table.rows[id] == undefined) {
+        var row = table.insertRow(id);
+        var cid = row.insertCell(0);
+        var cname = row.insertCell(1);
+        var cping = row.insertCell(2);
+        cid.innerHTML = id;
+        cname.innerHTML = pname;
+        cping.innerHTML = 0;
+    }
+});
+
 alt.on('show', () => {
     document.getElementById("wrap").style.display = "block";
 });

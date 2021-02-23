@@ -36,5 +36,14 @@ alt.onServer("addrow", (id, name, ping) => {
 })
 
 alt.onServer("updatepingsc", (id, ping) => {
-    webview.emit('updateping', (id, ping));
+    webview.emit('updateping', parseInt(id), parseInt(ping));
+});
+
+
+alt.onServer("deleterowcsc", (id) => {
+    webview.emit('deleterowsc', parseInt(id));
+});
+
+alt.onServer("updaterowsc", (id, name) => {
+    webview.emit('updaterowscw', parseInt(id), name);
 });

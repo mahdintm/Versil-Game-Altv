@@ -99,21 +99,28 @@ function mypos(player) {
 }
 //for cmd make admin
 function makeadmin(player, args) {
-    if (areadminmin(player)) {
-        if (checkadmin(player, 15)) {
-            if (args[0] == undefined && args[1] == undefined) {
-
+    if (areadmin(player)) {
+        if (checkadmin(player, 5)) {
+            if (args[0] != undefined && args[1] != undefined) {
+                if (args[1] >= 0 && args[1] <= 14) {
+                    let tplayer = findplayer(args[0]);
+                    pdata.setData(tplayer.id, "pAdmin", args[1])
+                } else {
+                    let msg = "/makeadmin(ma) [Playername/Playerid] [0-14]"
+                    errorargs(player, msg)
+                }
             } else {
                 let msg = "/makeadmin(ma) [Playername/Playerid] [AdminLevel]"
                 errorargs(player, msg)
             }
         } else {
-            notadmin(player)
+            auth(player)
         }
     } else {
-        auth(player)
+        notadmin(player)
     }
 }
+
 //for cmd create static vehicle
 function crvehicle(player, args) {
     if (checkadmin(player, 2)) {
@@ -122,7 +129,7 @@ function crvehicle(player, args) {
             const newveh = new alt.Vehicle(args[0], pos.x, pos.y, pos.z, 0, 0, 0);
             alt.emitClient(player, 'setIntoVehicle', newveh);
             let pl = vdata.getplatenumstatic();
-            let plate = `AV ${pl}`;
+            let plate = `SV ${pl}`;
             vdata.addplatenumstatic();
             newveh.numberPlateText = plate;
             vdata.vehiclesetdata(newveh.id, args[0], "static", 0, pos.x, pos.y, pos.z, 0, 0, 0, plate);
@@ -274,6 +281,26 @@ function sethp(player, args) {
         notadmin(player)
     }
 }
+//for CMD goto
+function gotoplayer(player, args) {
+    if (areadmin(player)) {
+        if (checkadmin(player, 5)) {
+            if (args[0] != undefined) {
+                let tplayer = findplayer(args[0]);
+                alt.on('playerEnteredVehicle', (player, vehicle) => {
+                    player.spawn(tplayer.pos.x + 2, tplayer.pos.y, tplayer.pos.z);
+                })
+            } else {
+                let msg = "/goto [Playername/Playerid]"
+                errorargs(player, msg)
+            }
+        } else {
+            auth(player)
+        }
+    } else {
+        notadmin(player)
+    }
+}
 
 chat.registerCmd('vehicle', veh);
 chat.registerCmd('veh', veh);
@@ -290,7 +317,9 @@ chat.registerCmd('givegun', givegun);
 chat.registerCmd('a', achat);
 chat.registerCmd('fc', fochat);
 chat.registerCmd('sethp', sethp);
+chat.registerCmd('goto', gotoplayer);
 
+//live tu tanhaii :D
 
 
 
@@ -304,10 +333,11 @@ chat.registerCmd('sethp', sethp);
 // })
 
 
-// chat.registerCmd('dv', (player, args) => {
-//     let id = alt.Vehicle.getByID(args[0]);
-//     id.destroy();
-// })
+chat.registerCmd('test', (player, args) => {
+    alt.on('playerEnteredVehicle', (player, vehicle) => {
+        console.log(vehicle)
+    })
+})
 
 
 // alt.on('playerEnteringVehicle', (player, vehicle, seat) => {
