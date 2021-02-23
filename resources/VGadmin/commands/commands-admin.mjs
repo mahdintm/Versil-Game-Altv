@@ -288,10 +288,10 @@ function gotoplayer(player, args) {
             if (args[0] != undefined) {
                 let tplayer = findplayer(args[0]);
                 if (player.vehicle != null) {
-                    console.log("savare mashin")
-                    player.vehicle.pos = tplayer.pos.x + 2, tplayer.pos.y, tplayer.pos.z + 2;
+                    const pos = { x: tplayer.pos.x, y: tplayer.pos.y, z: tplayer.pos.z }
+                    player.vehicle.pos = new alt.Vector3(player.pos.x + 2, player.pos.y, player.pos.z + 2)
+
                 } else {
-                    console.log("piade baradar")
                     player.spawn(tplayer.pos.x + 2, tplayer.pos.y, tplayer.pos.z);
                 }
 
@@ -324,8 +324,13 @@ chat.registerCmd('fc', fochat);
 chat.registerCmd('sethp', sethp);
 chat.registerCmd('goto', gotoplayer);
 
-//live tu tanhaii :D
 
+
+
+
+chat.registerCmd('test', (player, args) => {
+    alt.emitClient(player, 'sendnotif', "slm", args[0])
+})
 
 
 // chat.registerCmd('aa', (player, args) => {
@@ -336,11 +341,6 @@ chat.registerCmd('goto', gotoplayer);
 //         s.writeline("-----------------------------");
 //         s.Close();
 // })
-
-
-chat.registerCmd('test', (player, args) => {
-    console.log(player.vehicle.pos)
-})
 
 
 // alt.on('playerEnteringVehicle', (player, vehicle, seat) => {
