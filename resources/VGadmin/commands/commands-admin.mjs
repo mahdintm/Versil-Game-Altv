@@ -243,7 +243,7 @@ function achat(player, args) {
 //for founder chat System
 function fochat(player, args) {
     if (areadmin(player)) {
-        if (checkadmin(player, 12)) {
+        if (checkadmin(player, 6)) {
             if (args[0] != undefined) {
                 vg.founderchat(pdata.getplayername(player.id), args.slice(0).join(" "))
             } else {
@@ -289,8 +289,23 @@ function gotoplayer(player, args) {
                 let tplayer = findplayer(args[0]);
                 if (player.vehicle != null) {
                     const pos = { x: tplayer.pos.x, y: tplayer.pos.y, z: tplayer.pos.z }
-                    player.vehicle.pos = new alt.Vector3(player.pos.x + 2, player.pos.y, player.pos.z + 2)
-
+                    player.vehicle.pos = new alt.Vector3(player.pos.x + 2, player.pos.y, player.pos.z + 2);
+                    //send to player
+                    if (pdata.getData(tplayer.id, "pLang") == 1) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}You are weapon has been added ✔`);
+                    } else if (pdata.getData(tplayer.id, "pLang") == 2) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+                    } else if (pdata.getData(tplayer.id, "pLang") == 3) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
+                    }
+                    //send to admin
+                    if (pdata.getData(player.id, "pLang") == 1) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}You are weapon has been added ✔`);
+                    } else if (pdata.getData(player.id, "pLang") == 2) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+                    } else if (pdata.getData(player.id, "pLang") == 3) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
+                    }
                 } else {
                     player.spawn(tplayer.pos.x + 2, tplayer.pos.y, tplayer.pos.z);
                 }
@@ -326,10 +341,16 @@ chat.registerCmd('goto', gotoplayer);
 
 
 
-
+function color(color) {
+    if (color == "red") {
+        return "fc0303"
+    } else if (color == "blue") {
+        return "3903fc"
+    }
+}
 
 chat.registerCmd('test', (player, args) => {
-    alt.emitClient(player, 'sendnotif', "slm", args[0])
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
 })
 
 

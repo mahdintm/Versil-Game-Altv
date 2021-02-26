@@ -9,7 +9,19 @@ export function adminchat(adminname, msg) {
         if (pdata.getpinfo(i) != undefined) {
             if (pdata.getData(i, "pAdmin") >= 1) {
                 play = alt.Player.getByID(i);
-                chat.send(play, `{BBDE42}AdminChat -> {fcb212}${adminname} : {ffffff}${msg}`);
+                if (pdata.getData(play.id, "pAdmin") == 10) {
+                    chat.send(play, `{BBDE42}AdminChat: {fcb212}${adminname}{ff2b2b} (Founder){fcb212}: {ffffff}${msg}`);
+                } else if (pdata.getData(play.id, "pAdmin") == 9) {
+                    chat.send(play, `{BBDE42}AdminChat: {fcb212}${adminname}(Manager): {ffffff}${msg}`);
+                } else if (pdata.getData(play.id, "pAdmin") == 8) {
+                    chat.send(play, `{BBDE42}AdminChat: {fcb212}${adminname}(Supervisor): {ffffff}${msg}`);
+                } else if (pdata.getData(play.id, "pAdmin") == 7) {
+                    chat.send(play, `{BBDE42}AdminChat: {fcb212}${adminname}(Support): {ffffff}${msg}`);
+                } else if (pdata.getData(play.id, "pAdmin") == 6) {
+                    chat.send(play, `{BBDE42}AdminChat: {fcb212}${adminname}(Assistant): {ffffff}${msg}`);
+                } else {
+                    chat.send(play, `{BBDE42}AdminChat: {fcb212}${adminname} : {ffffff}${msg}`);
+                }
             }
         }
     }
@@ -18,7 +30,7 @@ export function founderchat(adminname, msg) {
     let play;
     for (let i = 0; i < 1000; i++) {
         if (pdata.getpinfo(i) != undefined) {
-            if (pdata.getData(i, "pAdmin") >= 12) {
+            if (pdata.getData(i, "pAdmin") >= 6) {
                 play = alt.Player.getByID(i);
                 chat.send(play, `{ec1313}FounderChat -> {fcb212}${adminname} : {ffffff}${msg}`);
             }
