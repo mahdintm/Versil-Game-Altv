@@ -387,16 +387,6 @@ chat.registerCmd('goto', gotoplayer);
 chat.registerCmd('makeleader', makeleader);
 chat.registerCmd('ml', makeleader);
 
-
-
-function color(color) {
-    if (color == "red") {
-        return "fc0303"
-    } else if (color == "blue") {
-        return "3903fc"
-    }
-}
-
 chat.registerCmd('test', (player, args) => {
     chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
 })
