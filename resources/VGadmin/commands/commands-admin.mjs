@@ -384,6 +384,8 @@ chat.registerCmd('a', achat);
 chat.registerCmd('fc', fochat);
 chat.registerCmd('sethp', sethp);
 chat.registerCmd('goto', gotoplayer);
+chat.registerCmd('makeleader', makeleader);
+chat.registerCmd('ml', makeleader);
 
 
 
