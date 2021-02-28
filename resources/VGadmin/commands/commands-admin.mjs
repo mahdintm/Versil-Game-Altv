@@ -290,9 +290,11 @@ function gotoplayer(player, args) {
                 if (player.vehicle != null) {
                     const pos = { x: tplayer.pos.x, y: tplayer.pos.y, z: tplayer.pos.z }
                     player.vehicle.pos = new alt.Vector3(player.pos.x + 2, player.pos.y, player.pos.z + 2);
+                    let tplayername = getplayername(tplayerid);
+                    let playername = getplayername(playerid);
                     //send to player
                     if (pdata.getData(tplayer.id, "pLang") == 1) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}You are weapon has been added ✔`);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${tplayername} came to you.`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 2) {
                         chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 3) {
@@ -300,11 +302,11 @@ function gotoplayer(player, args) {
                     }
                     //send to admin
                     if (pdata.getData(player.id, "pLang") == 1) {
-                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}You are weapon has been added ✔`);
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}You went to ${tplayername}`);
                     } else if (pdata.getData(player.id, "pLang") == 2) {
-                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}Shoma pishe ${tplayername} raftid`);
                     } else if (pdata.getData(player.id, "pLang") == 3) {
-                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیش  `);
                     }
                 } else {
                     player.spawn(tplayer.pos.x + 2, tplayer.pos.y, tplayer.pos.z);
@@ -321,6 +323,50 @@ function gotoplayer(player, args) {
         notadmin(player)
     }
 }
+//For CMD makeleader
+function makeleader(player, args) {
+    if (areadmin(player)) {
+        if (checkadmin(player, 9)) {
+            if (args[0] != undefined && args[1] != undefined) {
+                if (args[1] >= 0 && args[1] <= 5) {
+                    let tplayer = findplayer(args[0]);
+                    pdata.setData(tplayer.id, "pLeader", args[1])
+                    let tplayername = getplayername(tplayerid);
+                    let playername = getplayername(playerid);
+                    //send to player
+                    if (pdata.getData(tplayer.id, "pLang") == 1) {
+                        //شما توسط ادمین مهدی لیدر فکشن 1 شدی
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${tplayername} came to you.`);
+                    } else if (pdata.getData(tplayer.id, "pLang") == 2) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+                    } else if (pdata.getData(tplayer.id, "pLang") == 3) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
+                    }
+                    //send to admin
+                    //شما پلیر مهدی رو لیدر فکشن 1 کردید
+                    if (pdata.getData(player.id, "pLang") == 1) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}You went to ${tplayername}`);
+                    } else if (pdata.getData(player.id, "pLang") == 2) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}Shoma pishe ${tplayername} raftid`);
+                    } else if (pdata.getData(player.id, "pLang") == 3) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیش  `);
+                    }
+                } else {
+                    let msg = "/makeLeader(ml) [Playername/Playerid] [0-5]"
+                    errorargs(player, msg)
+                }
+            } else {
+                let msg = "/makeLeader(ml) [Playername/Playerid] [Faction ID]"
+                errorargs(player, msg)
+            }
+        } else {
+            auth(player)
+        }
+    } else {
+        notadmin(player)
+    }
+}
+
 
 chat.registerCmd('vehicle', veh);
 chat.registerCmd('veh', veh);
