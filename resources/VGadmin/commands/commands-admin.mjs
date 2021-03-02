@@ -105,6 +105,24 @@ function makeadmin(player, args) {
                 if (args[1] >= 0 && args[1] <= 14) {
                     let tplayer = findplayer(args[0]);
                     pdata.setData(tplayer.id, "pAdmin", args[1])
+                    let tplayername = getplayername(tplayerid);
+                    let playername = getplayername(playerid);
+                    //send to player
+                    if (pdata.getData(tplayer.id, "pLang") == 1) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${tplayername} came to you.`);
+                    } else if (pdata.getData(tplayer.id, "pLang") == 2) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+                    } else if (pdata.getData(tplayer.id, "pLang") == 3) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
+                    }
+                    //send to admin
+                    if (pdata.getData(player.id, "pLang") == 1) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}You went to ${tplayername}`);
+                    } else if (pdata.getData(player.id, "pLang") == 2) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}Shoma pishe ${tplayername} raftid`);
+                    } else if (pdata.getData(player.id, "pLang") == 3) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیش  `);
+                    }
                 } else {
                     let msg = "/makeadmin(ma) [Playername/Playerid] [0-14]"
                     errorargs(player, msg)
