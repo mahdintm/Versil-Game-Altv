@@ -31,6 +31,8 @@ function mysqlupdate(id, data, value) {
         security.updatePartialData(getData(id, "id"), { pAdmin: value }, Account, res => {})
     } else if (data == "pLeader") {
         security.updatePartialData(getData(id, "id"), { pLeader: value }, Account, res => {})
+    } else {
+        console.log("Error on SetData pdata");
     }
 }
 
