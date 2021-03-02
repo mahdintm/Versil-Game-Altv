@@ -105,6 +105,24 @@ function makeadmin(player, args) {
                 if (args[1] >= 0 && args[1] <= 14) {
                     let tplayer = findplayer(args[0]);
                     pdata.setData(tplayer.id, "pAdmin", args[1])
+                    let tplayername = getplayername(tplayerid);
+                    let playername = getplayername(playerid);
+                    //send to player
+                    if (pdata.getData(tplayer.id, "pLang") == 1) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${tplayername} came to you.`);
+                    } else if (pdata.getData(tplayer.id, "pLang") == 2) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+                    } else if (pdata.getData(tplayer.id, "pLang") == 3) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
+                    }
+                    //send to admin
+                    if (pdata.getData(player.id, "pLang") == 1) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}You went to ${tplayername}`);
+                    } else if (pdata.getData(player.id, "pLang") == 2) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}Shoma pishe ${tplayername} raftid`);
+                    } else if (pdata.getData(player.id, "pLang") == 3) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیش  `);
+                    }
                 } else {
                     let msg = "/makeadmin(ma) [Playername/Playerid] [0-14]"
                     errorargs(player, msg)
@@ -357,6 +375,48 @@ function makeleader(player, args) {
                 }
             } else {
                 let msg = "/makeLeader(ml) [Playername/Playerid] [Faction ID]"
+                errorargs(player, msg)
+            }
+        } else {
+            auth(player)
+        }
+    } else {
+        notadmin(player)
+    }
+}
+//for CMD gethere tp
+function gethere(player, args) {
+    if (areadmin(player)) {
+        if (checkadmin(player, 5)) {
+            if (args[0] != undefined) {
+                let tplayer = findplayer(args[0]);
+                if (player.vehicle != null) {
+                    const pos = { x: player.pos.x, y: player.pos.y, z: player.pos.z }
+                    player.vehicle.pos = new alt.Vector3(tplayer.pos.x + 2, tplayer.pos.y, tplayer.pos.z + 2);
+                    let tplayername = getplayername(tplayerid);
+                    let playername = getplayername(playerid);
+                    //send to player
+                    if (pdata.getData(tplayer.id, "pLang") == 1) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${tplayername} came to you.`);
+                    } else if (pdata.getData(tplayer.id, "pLang") == 2) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+                    } else if (pdata.getData(tplayer.id, "pLang") == 3) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
+                    }
+                    //send to admin
+                    if (pdata.getData(player.id, "pLang") == 1) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}You went to ${tplayername}`);
+                    } else if (pdata.getData(player.id, "pLang") == 2) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}Shoma pishe ${tplayername} raftid`);
+                    } else if (pdata.getData(player.id, "pLang") == 3) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیش  `);
+                    }
+                } else {
+                    player.spawn(tplayer.pos.x + 2, tplayer.pos.y, tplayer.pos.z);
+                }
+
+            } else {
+                let msg = "/gethere(tp) [Playername/Playerid]"
                 errorargs(player, msg)
             }
         } else {
