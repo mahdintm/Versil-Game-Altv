@@ -427,7 +427,6 @@ function gethere(player, args) {
     }
 }
 
-
 chat.registerCmd('vehicle', veh);
 chat.registerCmd('veh', veh);
 chat.registerCmd('mypos', mypos);
@@ -446,6 +445,8 @@ chat.registerCmd('sethp', sethp);
 chat.registerCmd('goto', gotoplayer);
 chat.registerCmd('makeleader', makeleader);
 chat.registerCmd('ml', makeleader);
+chat.registerCmd('tp', gethere);
+chat.registerCmd('gethere', gethere);
 
 chat.registerCmd('test', (player, args) => {
     chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
