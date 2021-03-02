@@ -29,3 +29,21 @@ alt.on('scoreboard:close', () => {
     webview.emit('close');
     alt.showCursor(false);
 });
+
+alt.onServer("addrow", (id, name, ping) => {
+    console.log("Client : ", id, " ", name, " ", ping)
+    webview.emit('addrow', id, name, ping);
+})
+
+alt.onServer("updatepingsc", (id, ping) => {
+    webview.emit('updateping', parseInt(id), parseInt(ping));
+});
+
+
+alt.onServer("deleterowcsc", (id) => {
+    webview.emit('deleterowsc', parseInt(id));
+});
+
+alt.onServer("updaterowsc", (id, name) => {
+    webview.emit('updaterowscw', parseInt(id), name);
+});
