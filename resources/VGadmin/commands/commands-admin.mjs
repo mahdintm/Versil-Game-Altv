@@ -110,19 +110,19 @@ function makeadmin(player, args) {
                     let playername = getplayername(playerid);
                     //send to player
                     if (pdata.getData(tplayer.id, "pLang") == 1) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${tplayername} came to you.`);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${playername} came to you.`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 2) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admine ${playername} pishe shoma oomad.`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 3) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}ادمینه ${playername} پیشه شما اومد .`);
                     }
                     //send to admin
                     if (pdata.getData(player.id, "pLang") == 1) {
                         chat.send(player, `{ff0000}Versil BOT -> {05ff48}You went to ${tplayername}`);
                     } else if (pdata.getData(player.id, "pLang") == 2) {
-                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}Shoma pishe ${tplayername} raftid`);
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}Shoma pishe ${tplayername} raftid.`);
                     } else if (pdata.getData(player.id, "pLang") == 3) {
-                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیش  `);
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیشه ${tplayername} رفتید . `);
                     }
                 } else {
                     let msg = "/makeadmin(ma) [Playername/Playerid] [0-14]"
@@ -331,6 +331,24 @@ function gotoplayer(player, args) {
                     }
                 } else {
                     player.spawn(tplayer.pos.x + 2, tplayer.pos.y, tplayer.pos.z);
+                    let tplayername = getplayername(tplayerid);
+                    let playername = getplayername(playerid);
+                    //send to player
+                    if (pdata.getData(tplayer.id, "pLang") == 1) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${tplayername} came to you.`);
+                    } else if (pdata.getData(tplayer.id, "pLang") == 2) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}pishe shoma  ${tplayername} oomad`);
+                    } else if (pdata.getData(tplayer.id, "pLang") == 3) {
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}  اومد  ${tplayername} پیش شما `);
+                    }
+                    //send to adminz
+                    if (pdata.getData(player.id, "pLang") == 1) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}You went to ${tplayername}`);
+                    } else if (pdata.getData(player.id, "pLang") == 2) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}Shoma pishe ${tplayername} raftid`);
+                    } else if (pdata.getData(player.id, "pLang") == 3) {
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیشه  ${tplayername} رفتید  `);
+                    }
                 }
 
             } else {
@@ -363,14 +381,14 @@ function makeleader(player, args) {
                     } else if (pdata.getData(tplayer.id, "pLang") == 3) {
                         chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
                     }
-                    //send to admin
+                    //send to admin.
                     //شما پلیر مهدی رو لیدر فکشن 1 کردید
                     if (pdata.getData(player.id, "pLang") == 1) {
-                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}You went to ${tplayername}`);
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}You promoted ${tplayername}`);
                     } else if (pdata.getData(player.id, "pLang") == 2) {
-                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}Shoma pishe ${tplayername} raftid`);
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48 shoma  ${tplayername}ra promote kardid . `);
                     } else if (pdata.getData(player.id, "pLang") == 3) {
-                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیش  `);
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما  ${tplayername} را ارتقاع درجه دادید `);
                     }
                 } else {
                     let msg = "/makeLeader(ml) [Playername/Playerid] [0-5]"
@@ -387,7 +405,7 @@ function makeleader(player, args) {
         notadmin(player)
     }
 }
-//for CMD gethere tp
+//for CMD gethere tp / bring
 function gethere(player, args) {
     if (areadmin(player)) {
         if (checkadmin(player, 5)) {
@@ -400,19 +418,19 @@ function gethere(player, args) {
                     let playername = getplayername(playerid);
                     //send to player
                     if (pdata.getData(tplayer.id, "pLang") == 1) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${tplayername} came to you.`);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${playername}brought you.`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 2) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${playername} shomaro tp dad.`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 3) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}ادمین ${playername} شمارو تلپورت کرد`);
                     }
-                    //send to admin
+                    //send to admin .
                     if (pdata.getData(player.id, "pLang") == 1) {
-                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}You went to ${tplayername}`);
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}You brought to ${tplayername}`);
                     } else if (pdata.getData(player.id, "pLang") == 2) {
                         chat.send(player, `{ff0000}Versil BOT -> {05ff48}Shoma pishe ${tplayername} raftid`);
                     } else if (pdata.getData(player.id, "pLang") == 3) {
-                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیش  `);
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیشه ${tplayername} رفتید  `);
                     }
                 } else {
                     player.spawn(tplayer.pos.x + 2, tplayer.pos.y, tplayer.pos.z);
