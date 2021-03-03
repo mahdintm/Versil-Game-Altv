@@ -381,7 +381,7 @@ function makeleader(player, args) {
                     } else if (pdata.getData(tplayer.id, "pLang") == 3) {
                         chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
                     }
-                    //send to admin
+                    //send to admin.
                     //شما پلیر مهدی رو لیدر فکشن 1 کردید
                     if (pdata.getData(player.id, "pLang") == 1) {
                         chat.send(player, `{ff0000}Versil BOT -> {05ff48}You promoted ${tplayername}`);
