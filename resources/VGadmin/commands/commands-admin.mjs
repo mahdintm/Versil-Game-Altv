@@ -411,11 +411,11 @@ function gethere(player, args) {
         if (checkadmin(player, 5)) {
             if (args[0] != undefined) {
                 let tplayer = findplayer(args[0]);
-                if (player.vehicle != null) {
+                if (tplayer.vehicle != null) {
                     const pos = { x: player.pos.x, y: player.pos.y, z: player.pos.z }
-                    player.vehicle.pos = new alt.Vector3(tplayer.pos.x + 2, tplayer.pos.y, tplayer.pos.z + 2);
-                    let tplayername = getplayername(tplayerid);
-                    let playername = getplayername(playerid);
+                    tplayer.vehicle.pos = new alt.Vector3(player.pos.x + 4, player.pos.y + 2, player.pos.z + 0.5);
+                    let tplayername = pdata.getplayername(tplayer.id);
+                    let playername = pdata.getplayername(player.id);
                     //send to player
                     if (pdata.getData(tplayer.id, "pLang") == 1) {
                         chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${playername} brought you.`);
@@ -433,12 +433,32 @@ function gethere(player, args) {
                         chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیشه ${tplayername} رفتید  `);
                     }
                 } else {
-                    player.spawn(tplayer.pos.x + 2, tplayer.pos.y, tplayer.pos.z);
+                    tplayer.spawn(player.pos.x + 2, player.pos.y, player.pos.z);
                 }
 
             } else {
                 let msg = "/gethere(tp) [Playername/Playerid]"
                 errorargs(player, msg)
+            }
+        } else {
+            auth(player)
+        }
+    } else {
+        notadmin(player)
+    }
+}
+
+//for CMD gethere tp / bring
+function revive(player, args) {
+    if (areadmin(player)) {
+        if (checkadmin(player, 5)) {
+            if (args[0] != undefined) {
+                let tplayer = findplayer(args[0]);
+                const pos = { x: tplayer.pos.x, y: tplayer.pos.y, z: tplayer.pos.z }
+                tplayer.spawn(pos.x, pos.y, pos.z);
+            } else {
+                const pos = { x: player.pos.x, y: player.pos.y, z: player.pos.z }
+                player.spawn(pos.x, pos.y, pos.z);
             }
         } else {
             auth(player)
@@ -468,6 +488,7 @@ chat.registerCmd('makeleader', makeleader);
 chat.registerCmd('ml', makeleader);
 chat.registerCmd('tp', gethere);
 chat.registerCmd('gethere', gethere);
+chat.registerCmd('revive', revive);
 
 chat.registerCmd('test', (player, args) => {
     // alt.emitClient(player, 'exitfromvehicle', player.vehicle, args[0])
