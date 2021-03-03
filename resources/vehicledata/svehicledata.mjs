@@ -20,7 +20,7 @@ alt.on('anyResourceStart', (name) => {
                     if (data[0] != undefined) {
                         data.find(dveh => {
                             if (dveh.type == "static") {
-                                const newveh = new alt.Vehicle(dveh.model, dveh.x, dveh.y, dveh.z, 0, 0, 0);
+                                const newveh = new alt.Vehicle(dveh.model, dveh.x, dveh.y, dveh.z, dveh.rx, dveh.ry, dveh.rz);
                                 vehicles[newveh.id] = data[0];
                                 plate = `ST ${staticveh}`;
                                 newveh.numberPlateText = plate;
@@ -28,7 +28,7 @@ alt.on('anyResourceStart', (name) => {
                                 staticveh++;
                             } else if (dveh.type == "faction") {
                                 if (dveh.factionid == 1) {
-                                    const newveh = new alt.Vehicle(dveh.model, dveh.x, dveh.y, dveh.z, 0, 0, 0);
+                                    const newveh = new alt.Vehicle(dveh.model, dveh.x, dveh.y, dveh.z, dveh.rx, dveh.ry, dveh.rz);
                                     vehicles[newveh.id] = data[0];
                                     plate = `PD ${pdveh}`;
                                     newveh.numberPlateText = plate;
@@ -37,7 +37,7 @@ alt.on('anyResourceStart', (name) => {
                                     pdveh++;
 
                                 } else if (dveh.factionid == 2) {
-                                    const newveh = new alt.Vehicle(dveh.model, dveh.x, dveh.y, dveh.z, 0, 0, 0);
+                                    const newveh = new alt.Vehicle(dveh.model, dveh.x, dveh.y, dveh.z, dveh.rx, dveh.ry, dveh.rz);
                                     vehicles[newveh.id] = data[0];
                                     plate = `FBI ${fbiveh}`;
                                     newveh.numberPlateText = plate;
@@ -45,7 +45,7 @@ alt.on('anyResourceStart', (name) => {
                                     factionveh++;
                                     fbiveh++;
                                 } else if (dveh.factionid == 3) {
-                                    const newveh = new alt.Vehicle(dveh.model, dveh.x, dveh.y, dveh.z, 0, 0, 0);
+                                    const newveh = new alt.Vehicle(dveh.model, dveh.x, dveh.y, dveh.z, dveh.rx, dveh.ry, dveh.rz);
                                     vehicles[newveh.id] = data[0];
                                     plate = `NG ${ngveh}`;
                                     newveh.numberPlateText = plate;
@@ -112,6 +112,7 @@ export function addplatenumfaction(id) {
         taxiveh++;
     }
 }
+
 
 
 export default { vehiclesetdata, getplatenumstatic, addplatenumstatic, getplatenumfaction, addplatenumfaction };
