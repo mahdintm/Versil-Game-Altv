@@ -20,7 +20,7 @@ alt.onServer('exitfromvehicle', (veh, mode) => {
         //player normal piade mishe
         game.taskLeaveVehicle(alt.Player.local.scriptID, veh.scriptID, 0)
     } else if (mode == 1) {
-        //player be birune mashin tele port misshe
+        //player be birune mashin teleport misshe
         game.taskLeaveVehicle(alt.Player.local.scriptID, veh.scriptID, 16)
     } else if (mode == 2) {
         //player piade mishe va dar ro baz mizare
