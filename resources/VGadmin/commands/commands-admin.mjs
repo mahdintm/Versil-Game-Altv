@@ -153,7 +153,7 @@ function crvehicle(player, args) {
             vdata.addplatenumstatic();
             newveh.numberPlateText = plate;
             vdata.vehiclesetdata(newveh.id, args[0], "static", 0, pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, plate);
-            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: rot.x, ry: rot.y, rz: rot.z }, 'vehicles', res => {});
+            db.upsertData({ model: args[0].toLowerCase(), type: "static", factionid: 0, x: pos.x, y: pos.y, z: pos.z, rx: rot.x, ry: rot.y, rz: rot.z }, 'vehicles', res => { });
         } else {
             chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crsvehicle(csv) [Model]");
         }
@@ -188,7 +188,7 @@ function crvehiclef(player, args) {
             }
             newveh.numberPlateText = plate;
             vdata.vehiclesetdata(newveh.id, args[0], "faction", args[1], pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, plate);
-            db.upsertData({ model: args[0].toLowerCase(), type: "faction", factionid: args[1], x: pos.x, y: pos.y, z: pos.z, rx: rot.x, ry: rot.y, rz: rot.z }, 'vehicles', res => {});
+            db.upsertData({ model: args[0].toLowerCase(), type: "faction", factionid: args[1], x: pos.x, y: pos.y, z: pos.z, rx: rot.x, ry: rot.y, rz: rot.z }, 'vehicles', res => { });
         } else {
             chat.send(player, "{ff0000}Versil BOT -> {ff0000}Error: /crfvehicle(cfv) [Model] [Faction-ID]");
         }
@@ -317,17 +317,17 @@ function gotoplayer(player, args) {
                     if (pdata.getData(tplayer.id, "pLang") == 1) {
                         chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${tplayername} came to you.`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 2) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}pishe shoma  ${tplayername} oomad`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 3) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}  اومد  ${tplayername} پیش شما `);
                     }
-                    //send to admin
+                    //send to adminz
                     if (pdata.getData(player.id, "pLang") == 1) {
                         chat.send(player, `{ff0000}Versil BOT -> {05ff48}You went to ${tplayername}`);
                     } else if (pdata.getData(player.id, "pLang") == 2) {
                         chat.send(player, `{ff0000}Versil BOT -> {05ff48}Shoma pishe ${tplayername} raftid`);
                     } else if (pdata.getData(player.id, "pLang") == 3) {
-                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیش  `);
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیشه  ${tplayername} رفتید  `);
                     }
                 } else {
                     player.spawn(tplayer.pos.x + 2, tplayer.pos.y, tplayer.pos.z);
