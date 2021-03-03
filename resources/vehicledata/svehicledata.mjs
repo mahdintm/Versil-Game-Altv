@@ -1,7 +1,7 @@
 import * as alt from 'alt';
 import SQL from '../db/database.mjs';
 import { Vehicles } from '../db/entities/data.mjs';
-const db = new SQL('mysql', '127.0.0.1', 3306, 'root', '', 'alt', [Vehicles]);
+const db = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', '5507d1a19a63c54e4ab4a07cf718ce20', 'alt', [Vehicles]);
 
 var vehicles = {}
 var staticveh = 1;

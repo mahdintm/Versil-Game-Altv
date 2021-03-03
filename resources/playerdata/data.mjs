@@ -1,7 +1,7 @@
 import * as alt from 'alt';
 import SQL from '../db/database.mjs';
 import { Account } from '../db/entities/data.mjs';
-const security = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', 'Waezakmi2new3mahdi', 'alt', [Account]);
+const security = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', '5507d1a19a63c54e4ab4a07cf718ce20re', 'alt', [Account]);
 const pInfo = {}
 
 export function loginData(id, data, pname) {
