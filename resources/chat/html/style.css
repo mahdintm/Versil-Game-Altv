@@ -68,7 +68,7 @@ body {
 }
 
 .msglist {
-    overflow-y: hidden;
+    overflow-y: scroll;
     height: 100%;
 }
 

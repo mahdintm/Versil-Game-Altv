@@ -119,7 +119,7 @@ function addMessage(name, text) {
     if (messagesBlock.children.length > 100)
         messagesBlock.removeChild(messagesBlock.children[0]);
     var p = document.createElement('p');
-    p.innerHTML = '<matn>' + '<b>' + name + ': </b>' + colorify(text) + '<mayn>';
+    p.innerHTML = '<b>' + name + ': </b>' + colorify(text) + '<br>';
     messagesBlock.appendChild(p);
     checkOverflow();
     highlightChat();
