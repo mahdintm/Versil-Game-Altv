@@ -391,6 +391,36 @@ chat.registerCmd('test', (player, args) => {
     chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
 })
 
+chat.registerCmd('test', (player, args) => {
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+    chat.send(player, `{04adcf}Versil BOT: {${color(args[0])}}You are weapon has been added.`);
+
+})
+
+
 
 // chat.registerCmd('aa', (player, args) => {
 //         set fso = CreateObject("Scripting.FileSystemObject");  
