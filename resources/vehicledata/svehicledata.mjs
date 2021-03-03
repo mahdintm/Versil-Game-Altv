@@ -117,8 +117,10 @@ export function addplatenumfaction(id) {
 alt.on('playerEnteringVehicle', (player, vehicle, seat) => {
     if (vehicles[vehicle.id]["factionid"] == 1) {
         if (pdata.getData(player.id, "pLeader") != 1) {
-            alt.emitClient(player, 'exitfromvehicle', vehicle, 1)
-            console.log('You are not Cop');
+            if (player.vehicle && player.seat === 0) {
+                alt.emitClient(player, 'exitfromvehicle', vehicle, 1)
+                console.log('You are not Cop');
+            }
         } else {
             if (pdata.getData(player.id, "pFactionrank") >= vehicles[vehicle.id]["factionrank"]) {
                 alt.emitClient(player, 'exitfromvehicle', vehicle, 1)
