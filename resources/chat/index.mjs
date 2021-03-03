@@ -14,8 +14,8 @@ function invokeCmd(player, cmd, args) {
 }
 
 alt.onClient('chatmessage', (player, msg) => {
+    var vgname = pdata.getplayername(player.id);
     if (msg[0] === '/') {
-        var vgname = pdata.getData(player.id, "pName");
         msg = msg.trim().slice(1);
 
         if (msg.length > 0) {
