@@ -110,11 +110,11 @@ function makeadmin(player, args) {
                     let playername = getplayername(playerid);
                     //send to player
                     if (pdata.getData(tplayer.id, "pLang") == 1) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${playername} came to you.`);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48} ${playername} make you admin.`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 2) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admine ${playername} pishe shoma oomad.`);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48} ${playername} shoma ra admin kard.`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 3) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}ادمینه ${playername} پیشه شما اومد .`);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48} ${playername} شما را ادمین کرد .`);
                     }
                     //send to admin
                     if (pdata.getData(player.id, "pLang") == 1) {
@@ -204,11 +204,11 @@ function givegun(player, args) {
                 let tplayer = findplayer(args[0]);
                 tplayer.giveWeapon(alt.hash(args[1]), args[2], true);
                 if (pdata.getData(tplayer.id, "pLang") == 1) {
-                    chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}You are weapon has been added ✔`);
+                    chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}You are weapon has been added .`);
                 } else if (pdata.getData(tplayer.id, "pLang") == 2) {
-                    chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+                    chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod.`);
                 } else if (pdata.getData(tplayer.id, "pLang") == 3) {
-                    chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
+                    chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد . `);
                 }
             } else {
                 let msg = "/givegun(gg) [Playername/Playerid] [weaponname] [ammo]"
@@ -420,7 +420,7 @@ function gethere(player, args) {
                     if (pdata.getData(tplayer.id, "pLang") == 1) {
                         chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${playername} brought you.`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 2) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${playername} shomaro bring dad.`);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${playername} shomaro teleport dad.`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 3) {
                         chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}ادمین ${playername} شمارو تلپورت کرد`);
                     }
