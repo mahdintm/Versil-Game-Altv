@@ -1,4 +1,5 @@
 import * as alt from 'alt';
+import pdata from 'playerdata';
 import SQL from '../db/database.mjs';
 import { Vehicles } from '../db/entities/data.mjs';
 const db = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', '5507d1a19a63c54e4ab4a07cf718ce20', 'alt', [Vehicles]);
@@ -113,6 +114,25 @@ export function addplatenumfaction(id) {
     }
 }
 
+alt.on('playerEnteringVehicle', (player, vehicle, seat) => {
+    if (vehicles[vehicle.id]["factionid"] == 1) {
+        if (pdata.getData(player.id, "pLeader") != 1) {
+            alt.emitClient(player, 'exitfromvehicle', vehicle, 1)
+            console.log('You are not Cop');
+        } else {
+            if (pdata.getData(player.id, "pFactionrank") >= vehicles[vehicle.id]["factionrank"]) {
+                alt.emitClient(player, 'exitfromvehicle', vehicle, 1)
+                console.log('shoma nemituni savar shi  1');
+            }
+        }
+    } else if (vehicles[vehicle.id]["factionid"] == 2) {
+        if (pdata.getData(player.id, "pLeader") != 2) {
+            alt.emitClient(player, 'exitfromvehicle', vehicle, 1)
+            console.log('shoma nemituni savar shi  2 ');
+        }
+    }
+
+})
 
 
 export default { vehiclesetdata, getplatenumstatic, addplatenumstatic, getplatenumfaction, addplatenumfaction };
