@@ -115,11 +115,11 @@ function addString(text) {
     highlightChat();
 }
 
-function addMessage(name, text, link) {
+function addMessage(name, text) {
     if (messagesBlock.children.length > 100)
         messagesBlock.removeChild(messagesBlock.children[0]);
     var p = document.createElement('p');
-    p.innerHTML = '<img src="' + link + '" alt="img player">' + '<matn>' + '<b>' + name + ': </b>' + colorify(text) + '<mayn>';
+    p.innerHTML = '<matn>' + '<b>' + name + ': </b>' + colorify(text) + '<mayn>';
     messagesBlock.appendChild(p);
     checkOverflow();
     highlightChat();

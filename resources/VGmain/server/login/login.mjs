@@ -5,7 +5,7 @@ import pdata from 'playerdata';
 import sc from 'VGscoreboard';
 import SQL from '../../../db/database.mjs';
 import { Account } from '../../../db/entities/data.mjs';
-const db = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', 'Waezakmi2new3mahdi', 'alt', [Account]);
+const db = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', '5507d1a19a63c54e4ab4a07cf718ce20', 'alt', [Account]);
 alt.onClient('registerServer', (player, user, pass, email) => {
     db.upsertData({ pName: user.toLowerCase(), pPassword: pass, pEmail: email }, 'Account', res => {});
     //alt.emitClient(player, 'loginbyregister', user, pass);
