@@ -19,3 +19,5 @@ update.sh
 update.log
 update.cfg
 altv-server
+client.ps1
+update.ps1
