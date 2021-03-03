@@ -405,7 +405,7 @@ function makeleader(player, args) {
         notadmin(player)
     }
 }
-//for CMD gethere tp
+//for CMD gethere tp / bring
 function gethere(player, args) {
     if (areadmin(player)) {
         if (checkadmin(player, 5)) {
@@ -418,19 +418,19 @@ function gethere(player, args) {
                     let playername = getplayername(playerid);
                     //send to player
                     if (pdata.getData(tplayer.id, "pLang") == 1) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${tplayername} came to you.`);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${playername}brought you.`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 2) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}aslahe shoma ezafe shod✔`);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${playername} shomaro tp dad.`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 3) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}اسلحه شما اضافه شد ✔ `);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}ادمین ${playername} شمارو تلپورت کرد`);
                     }
                     //send to admin .
                     if (pdata.getData(player.id, "pLang") == 1) {
-                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}You went to ${tplayername}`);
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}You brought to ${tplayername}`);
                     } else if (pdata.getData(player.id, "pLang") == 2) {
                         chat.send(player, `{ff0000}Versil BOT -> {05ff48}Shoma pishe ${tplayername} raftid`);
                     } else if (pdata.getData(player.id, "pLang") == 3) {
-                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیش  `);
+                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیشه ${tplayername} رفتید  `);
                     }
                 } else {
                     player.spawn(tplayer.pos.x + 2, tplayer.pos.y, tplayer.pos.z);
