@@ -418,7 +418,7 @@ function gethere(player, args) {
                     let playername = getplayername(playerid);
                     //send to player
                     if (pdata.getData(tplayer.id, "pLang") == 1) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${playername}brought you.`);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${playername} brought you.`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 2) {
                         chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${playername} shomaro tp dad.`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 3) {

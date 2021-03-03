@@ -16,7 +16,7 @@ function colorify(text) {
         text += '</font>';
         for (let i = matches.length - 1; i >= 0; --i) {
             let color = matches[i].found.substring(1, matches[i].found.length - 1);
-            let insertHtml = (i != 0 ? '</font>' : '') + '<font color="#' + color + '">';
+            let insertHtml = (i != 0 ? '</font>' : '') + '<font color="' + color + '">';
             text = text.slice(0, matches[i].index) + insertHtml + text.slice(matches[i].index + matches[i].found.length, text.length);
         }
     }

@@ -7,7 +7,7 @@
     }
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1920px) {
     .back {
         background-color: aquamarine;
         width: 20%;
@@ -16,7 +16,56 @@
     }
 }
 
+@media screen and (max-width: 1600px) {
+    .back {
+        background-color: aquamarine;
+        width: 20%;
+        position: absolute;
+        bottom: 30%;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .back {
+        background-color: aquamarine;
+        top: 48%;
+        width: 17%;
+        position: absolute;
+        bottom: 21%;
+    }
+}
+
+@media screen and (max-width: 1360px) {
+    .back {
+        background-color: aquamarine;
+        top: 40%;
+        width: 20%;
+        position: absolute;
+        bottom: 30%;
+    }
+}
+
 @media screen and (max-width: 1280px) {
+    .back {
+        background-color: aquamarine;
+        width: 25%;
+        position: absolute;
+        top: 45%;
+        bottom: 22%;
+    }
+}
+
+@media screen and (max-width: 1152px) {
+    .back {
+        background-color: aquamarine;
+        width: 25%;
+        position: absolute;
+        top: 45%;
+        bottom: 22%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
     .back {
         background-color: aquamarine;
         width: 25%;

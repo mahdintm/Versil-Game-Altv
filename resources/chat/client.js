@@ -53,23 +53,19 @@ alt.on('keyup', (key) => {
     if (!opened && key === 0x54 && alt.gameControlsEnabled()) {
         opened = true;
         view.emit('openChat', false);
-        alt.showCursor(true);
         alt.toggleGameControls(false);
     } else if (!opened && key === 0xBF && alt.gameControlsEnabled()) {
         opened = true;
         view.emit('openChat', true);
-        alt.showCursor(false);
         alt.toggleGameControls(false);
     } else if (opened && key == 0x1B) {
         opened = false;
         view.emit('closeChat');
-        alt.showCursor(false);
         alt.toggleGameControls(true);
     }
 
     if (key == 0x76) {
         hidden = !hidden;
-        alt.showCursor(false);
         game.displayHud(!hidden);
         game.displayRadar(!hidden);
         view.emit('hideChat', hidden);
