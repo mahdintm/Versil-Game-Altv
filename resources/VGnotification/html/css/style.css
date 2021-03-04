@@ -6,6 +6,15 @@
     font-style: normal;
 }
 
+@keyframes mymove {
+    from {
+        left: -100%;
+    }
+    to {
+        left: 0;
+    }
+}
+
 @font-face {
     font-family: Volkhov;
     src: url('/fonts/Volkhov-Regular.ttf');
@@ -19,11 +28,22 @@ body {
     font-family: Volkhov, yekan;
 }
 
+.mmo {
+    animation: ease-in-out;
+    transition: cubic-bezier(0.39, 0.575, 0.565, 1) 2s;
+    transition-timing-function: ease-in-out;
+}
+
 .notif {
-    background-color: rgba(0, 0, 0, .8);
-    color: blanchedalmond;
+    position: relative;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.95) 0%, rgba(79, 79, 79, 0.9) 88%, rgba(108, 108, 108, 0.9) 100%);
+    color: white;
     margin-top: 2px;
     backface-visibility: visible;
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+    animation-duration: 2s;
+    animation-name: mymove;
 }
 
 .back {
