@@ -1,7 +1,29 @@
+@font-face {
+    font-family: yekan;
+    src: url('/fonts/yekan-regular.eot');
+    src: url('/fonts/yekan-regular.eot') format('FontName-opentype'), url('/fonts/yekan-regular.woff') format('woff'), url('/fonts/yekan-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Volkhov;
+    src: url('/fonts/Volkhov-Regular.ttf');
+    src: url('/fonts/Volkhov-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-size: 16px;
+    font-family: Volkhov, yekan;
+}
+
 .notif {
-    background-color: black;
+    background-color: rgba(0, 0, 0, .8);
     color: blanchedalmond;
     margin-top: 2px;
+    backface-visibility: visible;
 }
 
 .back {
@@ -9,9 +31,39 @@
     flex-direction: column-reverse;
 }
 
+.imglogo {
+    position: relative;
+    display: inline;
+    padding-left: 6px;
+    padding-top: 5px;
+}
+
+.title {
+    display: inline;
+    position: absolute;
+    padding-left: 3%;
+    margin-top: 3%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    width: 65%;
+}
+
+.sutitle {
+    display: inline-flex;
+    position: absolute;
+    text-align: center;
+    width: 65%;
+    margin-top: 11%;
+    padding-left: 3%;
+}
+
+.data {
+    margin: 3%;
+    text-align: center;
+}
+
 @media screen and (max-width: 2560px) {
     .back {
-        background-color: aquamarine;
         width: 20%;
         position: absolute;
         bottom: 45%;
@@ -20,7 +72,6 @@
 
 @media screen and (max-width: 1920px) {
     .back {
-        background-color: aquamarine;
         width: 17%;
         top: 46%;
         position: absolute;
@@ -30,17 +81,18 @@
 
 @media screen and (max-width: 1600px) {
     .back {
-        background-color: aquamarine;
         top: 57%;
         width: 17%;
         position: absolute;
         bottom: 21%;
     }
+    .imglogo {
+        width: 20%;
+    }
 }
 
 @media screen and (max-width: 1440px) {
     .back {
-        background-color: aquamarine;
         top: 45%;
         width: 17%;
         position: absolute;
@@ -50,7 +102,6 @@
 
 @media screen and (max-width: 1360px) {
     .back {
-        background-color: aquamarine;
         top: 49%;
         width: 17%;
         position: absolute;
@@ -60,7 +111,6 @@
 
 @media screen and (max-width: 1280px) {
     .back {
-        background-color: aquamarine;
         width: 18%;
         position: absolute;
         top: 47%;
@@ -70,7 +120,6 @@
 
 @media screen and (max-height: 720px) {
     .back {
-        background-color: aquamarine;
         width: 17%;
         position: absolute;
         top: 52%;
@@ -80,7 +129,6 @@
 
 @media screen and (max-width: 1152px) {
     .back {
-        background-color: aquamarine;
         width: 22%;
         position: absolute;
         top: 45%;
@@ -90,7 +138,6 @@
 
 @media screen and (max-width: 1024px) {
     .back {
-        background-color: aquamarine;
         width: 18%;
         position: absolute;
         top: 45%;
@@ -100,7 +147,6 @@
 
 @media screen and (max-width: 800px) {
     .back {
-        background-color: aquamarine;
         width: 20%;
         position: absolute;
         top: 45%;
