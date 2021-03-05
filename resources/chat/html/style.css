@@ -141,6 +141,20 @@ body {
     }
 }
 
+@media screen and (max-width: 1600px) {
+    body {
+        font-size: 16px;
+    }
+    .chatbox {
+        width: 500px;
+        height: 300px;
+    }
+    .msginput input {
+        width: 480px;
+        margin-top: 10px;
+    }
+}
+
 @media screen and (max-width: 1440px) {
     body {
         font-size: 16px;
@@ -155,13 +169,27 @@ body {
     }
 }
 
+@media screen and (max-width: 1360px) {
+    body {
+        font-size: 14px;
+    }
+    .chatbox {
+        width: 400px;
+        height: 250px;
+    }
+    .msginput input {
+        width: 380px;
+        margin-top: 10px;
+    }
+}
+
 @media screen and (max-width: 1280px) {
     body {
         font-size: 14px;
     }
     .chatbox {
         width: 400px;
-        height: 300px;
+        height: 250px;
     }
     .msginput input {
         width: 380px;
