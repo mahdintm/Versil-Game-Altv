@@ -1,12 +1,20 @@
 @font-face {
     font-family: yekan;
-    src: url('/fonts/yekan-regular.eot');
-    src: url('/fonts/yekan-regular.eot') format('FontName-opentype'), url('/fonts/yekan-regular.woff') format('woff'), url('/fonts/yekan-regular.ttf') format('truetype');
+    src: url('../fonts/yekan-regular.eot');
+    src: url('../fonts/yekan-regular.eot') format('FontName-opentype'), url('../fonts/yekan-regular.woff') format('woff'), url('../fonts/yekan-regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
-@keyframes mymove {
+@font-face {
+    font-family: Volkhov;
+    src: url('../fonts/Volkhov-Regular.ttf');
+    src: url('../fonts/Volkhov-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@keyframes moveopen {
     from {
         left: -100%;
     }
@@ -15,12 +23,13 @@
     }
 }
 
-@font-face {
-    font-family: Volkhov;
-    src: url('/fonts/Volkhov-Regular.ttf');
-    src: url('/fonts/Volkhov-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+@keyframes moveclose {
+    from {
+        left: 0%;
+    }
+    to {
+        left: -100%;
+    }
 }
 
 body {
@@ -42,11 +51,29 @@ body {
     backface-visibility: visible;
     border-top-right-radius: 9px;
     border-bottom-right-radius: 9px;
-    animation-duration: 2s;
-    animation-name: mymove;
+    transition: 400ms;
+    animation-duration: 900ms;
+    animation-name: moveopen;
+    left: 0;
+    /*test */
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    transition: all 2s;
+    flex-grow: 0.001;
+}
+
+.dsbl {
+    left: -100% !important;
+    transition: 900ms;
+}
+
+* {
+    transition: 900ms !important;
 }
 
 .back {
+    /* flex-basis: auto; */
     display: flex;
     flex-direction: column-reverse;
 }
@@ -73,13 +100,15 @@ body {
     position: absolute;
     text-align: center;
     width: 65%;
-    margin-top: 11%;
+    margin-top: 13%;
     padding-left: 3%;
+    font-size: 80%;
 }
 
 .data {
     margin: 3%;
     text-align: center;
+    padding-bottom: 3%;
 }
 
 @media screen and (max-width: 2560px) {
@@ -87,6 +116,16 @@ body {
         width: 20%;
         position: absolute;
         bottom: 45%;
+    }
+    .data {
+        font-size: 67%;
+    }
+    .title {
+        font-size: 95%;
+    }
+    .sutitle {
+        font-size: 70%;
+        margin-top: 9%;
     }
 }
 
@@ -96,6 +135,16 @@ body {
         top: 46%;
         position: absolute;
         bottom: 22%;
+    }
+    .data {
+        font-size: 67%;
+    }
+    .title {
+        font-size: 95%;
+    }
+    .sutitle {
+        font-size: 70%;
+        margin-top: 11%;
     }
 }
 
@@ -108,6 +157,16 @@ body {
     }
     .imglogo {
         width: 20%;
+    }
+    .data {
+        font-size: 67%;
+    }
+    .title {
+        font-size: 95%;
+    }
+    .sutitle {
+        font-size: 70%;
+        margin-top: 14%;
     }
 }
 
@@ -136,6 +195,16 @@ body {
         top: 47%;
         bottom: 22%;
     }
+    .data {
+        font-size: 67%;
+    }
+    .title {
+        font-size: 95%;
+    }
+    .sutitle {
+        font-size: 70%;
+        margin-top: 14%;
+    }
 }
 
 @media screen and (max-height: 720px) {
@@ -144,6 +213,16 @@ body {
         position: absolute;
         top: 52%;
         bottom: 22%;
+    }
+    .data {
+        font-size: 67%;
+    }
+    .title {
+        font-size: 95%;
+    }
+    .sutitle {
+        font-size: 70%;
+        margin-top: 14%;
     }
 }
 
@@ -154,6 +233,16 @@ body {
         top: 45%;
         bottom: 22%;
     }
+    .data {
+        font-size: 67%;
+    }
+    .title {
+        font-size: 95%;
+    }
+    .sutitle {
+        font-size: 70%;
+        margin-top: 14%;
+    }
 }
 
 @media screen and (max-width: 1024px) {
@@ -163,6 +252,16 @@ body {
         top: 45%;
         bottom: 22%;
     }
+    .data {
+        font-size: 60%;
+    }
+    .title {
+        font-size: 90%;
+    }
+    .sutitle {
+        font-size: 65%;
+        margin-top: 15%;
+    }
 }
 
 @media screen and (max-width: 800px) {
@@ -171,5 +270,15 @@ body {
         position: absolute;
         top: 45%;
         bottom: 22%;
+    }
+    .data {
+        font-size: 60%;
+    }
+    .title {
+        font-size: 90%;
+    }
+    .sutitle {
+        font-size: 60%;
+        margin-top: 15%;
     }
 }

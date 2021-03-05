@@ -7,3 +7,8 @@ alt.on('anyResourceStart', (name) => {
         webview.focus();
     }
 })
+
+alt.onServer('addnoti', (img, title, sutitle, text) => {
+    webview.emit('addnoti', img, title, sutitle, text);
+    console.log(img, title, sutitle, text)
+})
