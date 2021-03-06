@@ -5,9 +5,6 @@ import pdata from 'playerdata';
 import sc from 'VGscoreboard';
 import './login/login.mjs';
 
-alt.on('playerConnect', player => {
-    alt.emitClient(player, 'loginweb:Load')
-});
 alt.on('playerDisconnect', player => {
     sc.deleterow(player.id);
     console.log("man pak shodm");
