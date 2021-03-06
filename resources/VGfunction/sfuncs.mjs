@@ -97,4 +97,9 @@ export function deleteplayerid(playerid) {
     }
 }
 
+export function hourtoms(hour) {
+    let time = (hour * (60 * 60)) * 1000;
+    return time;
+}
+
 export default { getplayerid, setplayerid, setplayermodel, spawnplayer, sleep, adminchat, deleteplayerid, founderchat };
