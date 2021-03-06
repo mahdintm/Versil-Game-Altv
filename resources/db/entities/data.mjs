@@ -84,3 +84,57 @@ export const Vehicles = new orm.EntitySchema({
 
     }
 });
+
+export const hwBans = new orm.EntitySchema({
+    name: 'hwBans',
+    columns: {
+        id: {
+            primary: true,
+            type: 'int',
+            generated: true
+        },
+        hwID: {
+            type: 'varchar',
+            length: 100
+        },
+        time: {
+            type: 'varchar',
+            length: 20
+        },
+        aName: {
+            type: 'varchar',
+            default: 0
+        },
+        reason: {
+            type: 'varchar',
+            default: 0
+        },
+    }
+});
+
+export const BansHR = new orm.EntitySchema({
+    name: 'BansHR',
+    columns: {
+        id: {
+            primary: true,
+            type: 'int',
+            generated: true
+        },
+        hwID: {
+            type: 'varchar',
+            length: 20
+        },
+        time: {
+            type: 'varchar',
+            length: 20
+        },
+        aName: {
+            type: 'varchar',
+            default: 0
+        },
+        reason: {
+            type: 'varchar',
+            default: 0
+        },
+    }
+});
