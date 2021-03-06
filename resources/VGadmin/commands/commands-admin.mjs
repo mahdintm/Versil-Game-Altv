@@ -3,6 +3,7 @@ import pdata from 'playerdata';
 import chat from 'chat';
 import vdata from 'vehicledata';
 import vg from 'VGfunction';
+//import discord from 'Discord';
 import SQL from '../../db/database.mjs';
 import { Vehicles } from '../../db/entities/data.mjs';
 const db = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', '5507d1a19a63c54e4ab4a07cf718ce20', 'alt', [Vehicles]);
@@ -492,9 +493,8 @@ chat.registerCmd('revive', revive);
 
 chat.registerCmd('test', (player, args) => {
     // alt.emitClient(player, 'exitfromvehicle', player.vehicle, args[0])
-    console.log("exhw", player.hwidExHash);
-    console.log("hw", player.hwidHash);
-    // alt.emitClient(player, 'addnoti', "versil", "Versil BoT", "Admin System", "In Mat {#452569}asdsd");
+    alt.emit('message', (args[0]))
+        // alt.emitClient(player, 'addnoti', "versil", "Versil BoT", "Admin System", "In Mat {#452569}asdsd");
 })
 
 chat.registerCmd('test1', (player, args) => {

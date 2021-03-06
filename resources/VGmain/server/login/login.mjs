@@ -44,8 +44,8 @@ alt.onClient('checkajax', (player, username) => {
 
 function checkhwban(player) {
     let ckeckb = true
-    for (let i = 1; i < 1000; i++) {
-        if (i != 999) {
+    for (let i = 1; i < 100; i++) {
+        if (i != 99) {
             console.log(i)
             db.fetchAllByField('id', i, 'hwBans', data => {
                 if (data[0] != undefined) {
