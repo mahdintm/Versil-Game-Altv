@@ -23,14 +23,10 @@ client.on('message', message => {
             .split(" ");
         if (CMD_NAME === "discord") {
             if (args[0] === "test") {
-                if (!message.guild.me.hasPermission('MANAGE_NICKNAMES')) return message.channel.send('I don\'t have permission to change your nickname!');
                 const member = message.guild.members.cache.get(func.getUserFromMention(args[1]));
-                if (member) {
-                    console.log("Name Changed")
-                    member.setNickname(args[2]);
-                } else {
-                    console.log("error user not found")
-                }
+                var hook = new Discord.WebhookClient("818015361307246642", "0d_bmgVzAuJuvFC-9WtrWGlhuNiax6xv9M_0EwyRRz6aXotHwoXDik7g_4dxUkERsJLT")
+                hook.send(member.avatarURL)
+
 
             } else if (args[0] === "kick") {
                 //kick system
@@ -48,6 +44,10 @@ client.on('message', message => {
                 //removeSS role system
 
                 dcom.getrole(message, args)
+            } else if (args[0] === "changename") {
+                //removeSS role system
+
+                dcom.changename(message, args)
             }
         } else if (CMD_NAME == "server") {
 
@@ -55,10 +55,11 @@ client.on('message', message => {
     }
 
 });
-// if (message.content === 'hello') {
+
+
+// export function addhook() {
 
 // }
-// });
 
 client.login(config.token);
 
