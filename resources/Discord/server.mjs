@@ -3,7 +3,7 @@ import Discord from 'discord.js';
 import config from './config.json';
 import dcom from './Commands/discord/commands.mjs'
 import func from './functions/funcs.mjs';
-import adminsys from 'VGadmin';
+// import adminsys from 'VGadmin';
 
 
 var PREFIX = config.prefix;
@@ -51,23 +51,19 @@ client.on('message', message => {
                 dcom.changename(message, args)
             }
         } else if (CMD_NAME == "server") {
-            if (args[0] == "makeadmin" || agrs[0 == "ma"]) {
-                adminsys.makeadmin(player.id, args[])
-            } else if (args[0] == "makeleader" || args[0 == "ml"]) {
+            // if (args[0] == "makeadmin" || agrs[0 == "ma"]) {
+            //     adminsys.makeadmin(player.id, args[])
+            // } else if (args[0] == "makeleader" || args[0 == "ml"]) {
 
-            } else if (args[0] == "sethp") {
+            // } else if (args[0] == "sethp") {
 
-            }
+            // }
 
         }
     }
 
 });
 
-
-// export function addhook() {
-
-// }
 
 client.login(config.token);
 

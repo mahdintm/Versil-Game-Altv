@@ -1,4 +1,3 @@
-/// <reference types="@altv/types-server" />
 import dotenv from 'dotenv';
 import fs from 'fs';
 
@@ -51,9 +50,9 @@ if (process.env['ENABLE_WHITELIST'] && process.env['ENABLE_WHITELIST'] !== 'fals
     }
 
     console.log(`[Whitelist] Whitelist is ENABLED.`);
-    import('./bot');
-    import('./verify');
-    import('./express');
+    import ('./bot');
+    import ('./verify');
+    import ('./express');
 } else {
     if (!process.env['CLIENT_ID']) {
         console.error(`CLIENT_ID does not have a value in the '.env' file. Add the value then restart your server.`);
@@ -73,6 +72,6 @@ if (process.env['ENABLE_WHITELIST'] && process.env['ENABLE_WHITELIST'] !== 'fals
     }
 
     console.log(`[Whitelist] Whitelist is NOT ENABLED. Starting in Discord Auth Only mode.`);
-    import('./verify');
-    import('./express');
+    import ('./verify');
+    import ('./express');
 }
