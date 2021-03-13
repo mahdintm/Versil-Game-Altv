@@ -42,8 +42,11 @@ export const Account = new orm.EntitySchema({
         pLang: {
             type: 'int',
             default: '1'
+        },
+        pLang: {
+            type: 'int',
+            default: '0'
         }
-
     }
 });
 

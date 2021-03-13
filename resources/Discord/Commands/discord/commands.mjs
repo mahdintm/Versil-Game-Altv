@@ -50,6 +50,7 @@ export function giverole(message, args) {
 }
 
 export function getrole(message, args) {
+
     const member = message.guild.members.cache.get(func.getUserFromMention(args[1]));
     const role = message.guild.roles.cache.get(func.getRoleFromMention(args[2]));
     if (member) {
@@ -64,4 +65,17 @@ export function getrole(message, args) {
     }
 }
 
-export default { kick, ban, giverole, getrole }
+export function changename(message, args) {
+    if (!message.member.hasPermission('MANAGE_NICKNAMES')) {
+        return message.reply('I don\'t have permission to change your nickname!');
+    }
+    const member = message.guild.members.cache.get(func.getUserFromMention(args[1]));
+    if (member) {
+        console.log("Name Changed")
+        member.setNickname(args[2]);
+    } else {
+        console.log("error user not found")
+    }
+}
+
+export default { kick, ban, giverole, getrole, changename }

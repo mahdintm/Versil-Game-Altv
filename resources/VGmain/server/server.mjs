@@ -7,7 +7,6 @@ import './login/login.mjs';
 
 alt.on('playerDisconnect', player => {
     sc.deleterow(player.id);
-    console.log("man pak shodm");
     vg.deleteplayerid(player.id);
     pdata.cleardata(player.id);
 });
