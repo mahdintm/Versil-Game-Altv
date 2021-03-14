@@ -14,7 +14,8 @@ export const Account = new orm.EntitySchema({
         },
         pDiscord: {
             type: 'varchar',
-            length: 100
+            length: 100,
+            default: '0'
         },
         pPassword: {
             type: 'varchar',

@@ -1,6 +1,10 @@
 # Versil-Game
 #For developer Group
 
+Prots:
+7788 tcp/udp for alt v server
+7790 tcp for authentiocation discord
+
 Install this pkgs
 
 npm install typeorm

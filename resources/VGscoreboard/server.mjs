@@ -3,7 +3,6 @@ import vg from 'VGfunction';
 var sb = {};
 
 export function addrow(id, playerid, name, ping) {
-    console.log("Serverside : ", id, " ", playerid, " ", name, " ", ping)
     sb[playerid] = { "id": id, "idalt": playerid, "name": name, "ping": ping }
     alt.emitClient(null, 'addrow', id, name, ping)
 }

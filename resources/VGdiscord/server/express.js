@@ -4,7 +4,7 @@ import axios from 'axios';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
-import { isWhitelistOn, isWhitelisted } from './bot';
+import { isWhitelistOn, isWhitelisted, isjoin } from './bot';
 
 const htmlPath = path.join(alt.getResourcePath(alt.resourceName), 'server/html');
 const stylesPath = path.join(alt.getResourcePath(alt.resourceName), 'server/html/styles');
@@ -43,21 +43,28 @@ async function handleMainRedirect(req, res) {
         return;
     }
 
-    const discordData = { ...request.data };
+    const discordData = {...request.data };
     request = await axios.get(`https://discordapp.com/api/users/@me`, {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             Authorization: `${discordData.token_type} ${discordData.access_token}`,
         },
     });
-
+    // id, username, avatar, discriminator, public_flags, flags, locale, mfa_enabled
+    const player = [...alt.Player.all].find(player => player.token === userToken);
+    const isjoind = isjoin(request.data.id);
+    if (!isjoind) {
+        alt.emitClient(player, 'discord:AuthExit');
+        alt.emitClient(player, 'discord:veryfied');
+        res.sendFile(path.join(htmlPath, '/notjoin.html'), err => {});
+        return;
+    }
     if (!request.data || !request.data.id || !request.data.username) {
         res.sendFile(path.join(htmlPath, '/error.html'), err => {});
         return;
     }
 
-    // id, username, avatar, discriminator, public_flags, flags, locale, mfa_enabled
-    const player = [...alt.Player.all].find(player => player.token === userToken);
+
     if (!player || !player.valid) {
         res.sendFile(path.join(htmlPath, '/error.html'), err => {});
         return;
@@ -72,6 +79,7 @@ async function handleMainRedirect(req, res) {
     }
 
     alt.emitClient(player, 'discord:AuthExit');
+    alt.emitClient(player, 'discord:veryfied');
     alt.emit('discord:AuthDone', player, request.data);
     res.sendFile(path.join(htmlPath, '/done.html'), err => {});
 }

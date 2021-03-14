@@ -9,9 +9,9 @@ const config = {
     clientId: process.env['CLIENT_ID'],
     roleWhitelistId: process.env['ROLE_WHITELIST_ID'],
 };
+var PREFIX = "!";
 
 let whitelist = [];
-let interval;
 
 // Events
 discordClient.on('ready', handleReady);
@@ -19,16 +19,83 @@ discordClient.on('error', handleError);
 discordClient.on('rateLimit', handleRateLimit);
 discordClient.on('guildMemberUpdate', handleUserUpdate);
 
+//-----------------------Start Commands-----------------------//
+discordClient.on('message', message => {
+    if (message.author.bot) {
+        return;
+    }
+    if (message.content.startsWith(PREFIX)) {
+        const [CMD_NAME, ...args] = message.content
+            .trim()
+            .substring(PREFIX.length)
+            .split(" ");
+        if (CMD_NAME === "discord") {
+            if (args[0] === "test") {
+                var hook = new Discord.WebhookClient("818015361307246642", "0d_bmgVzAuJuvFC-9WtrWGlhuNiax6xv9M_0EwyRRz6aXotHwoXDik7g_4dxUkERsJLT")
+                var mem = discordClient.users.cache.get('591234375828373517');
+                console.log()
+                const embed = new Discord.MessageEmbed()
+                    .setColor('#0099ff')
+                    .setTitle('Admin System')
+                    .setURL(mem.displayAvatarURL())
+                    .setAuthor(`<@${'591234375828373517'}>`, mem.avatarURL())
+                    .setDescription('@Mahdi بن شد.')
+                    .setThumbnail('https://i.imgur.com/wSTFkRM.png')
+                    .addFields({ name: 'دلیل', value: 'چیت.' }, { name: '\u200B', value: '\u200B' }, { name: 'تاریخ بن شدن', value: new Date().toLocaleString(), inline: true }, { name: 'تاریخ ازاد شدن', value: new Date(Date.now() + (args[1] * 86400000)).toLocaleString(), inline: true })
+                    .setFooter('Versil Game Log  •  ' + new Date().toLocaleString(), 'https://forum.versil.ir/uploads/monthly_2020_08/facicon.png');
+
+                hook.send('', {
+                    username: 'Versil Game',
+                    avatarURL: 'https://forum.versil.ir/uploads/monthly_2020_08/facicon.png',
+                    embeds: [embed],
+                });
+            } //else if (args[0] === "kick") {
+            //     //kick system
+
+            //     dcom.kick(message, args)
+            // } else if (args[0] === 'ban') {
+            //     //ban system
+
+            //     dcom.ban(message, args)
+            // } else if (args[0] === "giverole") {
+            //     //add role system
+
+            //     dcom.giverole(message, args)
+            // } else if (args[0] === "getrole") {
+            //     //removeSS role system
+
+            //     dcom.getrole(message, args)
+            // } else if (args[0] === "changename") {
+            //     //removeSS role system
+
+            //     dcom.changename(message, args)
+            // }
+        } else if (CMD_NAME == "server") {
+            // if (args[0] == "makeadmin" || agrs[0 == "ma"]) {
+            //     adminsys.makeadmin(player.id, args[])
+            // } else if (args[0] == "makeleader" || args[0 == "ml"]) {
+
+            // } else if (args[0] == "sethp") {
+
+            // }
+
+        }
+    }
+
+});
+//-----------------------End Commands-----------------------//
+
+
+
 function handleReady() {
     console.log(`[Whitelist] Discord Bot has Authenticated.`);
-
     if (!config.botTokenSecret || !config.serverId || !config.clientId || !config.roleWhitelistId) {
         console.error(`Configuration is missing. Please setup your .env file.`);
         return;
     }
 
-    refreshWhitelist();
-    interval = alt.setInterval(refreshWhitelist, 60000);
+    //     refreshWhitelist();
+    //     interval = alt.setInterval(refreshWhitelist, 60000);
 }
 
 function handleError(err) {
@@ -116,16 +183,38 @@ function refreshWhitelist() {
     alt.log(`Refreshed Whitelist. Whitelisted Members: ${members.length}`);
 }
 
+export function isjoin(id) {
+    const server = discordClient.guilds.cache.get(config.serverId);
+    const member = server.members.cache.get(id);
+    if (member == undefined) {
+        return false
+    } else {
+        return true
+    }
+}
+
 export function isWhitelisted(id) {
     console.log(id);
     const server = discordClient.guilds.cache.get(config.serverId);
     const member = server.members.cache.get(id);
+    console.log("member: ", member)
     member.roles.add("820242307243704330");
+
     // if (whitelist.includes(id)) {
     //     return true;
     // }
 
     return true;
+}
+
+export function giveroleverifyed(id) {
+    console.log(id);
+
+    if (whitelist.includes(id)) {
+        return true;
+    }
+
+    return false;
 }
 
 export function isWhitelistOn() {

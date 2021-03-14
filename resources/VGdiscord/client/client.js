@@ -1,3 +1,4 @@
+/// <reference types="@altv/types-natives" />
 /// <reference types="@altv/types-client" />
 import * as alt from 'alt-client';
 
@@ -5,17 +6,25 @@ let view;
 let discordURL;
 
 alt.log('[Test]');
-
+var user = undefined;
+var pass = undefined;
 alt.onServer('discord:Auth', handleDiscordAuth);
 alt.onServer('discord:AuthExit', handleAuthExit);
 alt.on('discord:Auth', handleDiscordAuth);
 alt.on('discord:AuthExit', handleAuthExit);
 
-function handleDiscordAuth(url) {
+alt.onServer('discord:veryfied', discordveryfied);
+
+function discordveryfied() {
+    alt.emitServer('serverlogin', user, pass);
+}
+
+function handleDiscordAuth(url, puser, ppass) {
     if (view && view.destroy) {
         view.destroy();
     }
-
+    user = puser;
+    pass = ppass;
     discordURL = url;
     view = new alt.WebView('http://resource/client/html/index.html');
     view.on('discord:BearerToken', handleBearerToken);
