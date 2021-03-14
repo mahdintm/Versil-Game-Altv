@@ -27,6 +27,8 @@ function handleReady() {
         return;
     }
 
+    refreshWhitelist();
+    interval = alt.setInterval(refreshWhitelist, 60000);
 }
 
 function handleError(err) {
@@ -38,8 +40,10 @@ function handleRateLimit(err) {
     console.log(err);
 }
 
-
-
+/**
+ * Automatically update the discord white list.
+ * @param  {Discord.User} user
+ */
 async function handleUserUpdate(oldUser, user) {
     if (!user) {
         return;
@@ -73,7 +77,11 @@ async function handleUserUpdate(oldUser, user) {
     alt.log(`[Whitelist] ${member.displayName} was added to the whitelist.`);
 }
 
-
+/**
+ * this function get all the users that have the role
+ * 'whitelist' and put them in the array whitelist
+ * @returns {void}
+ */
 function refreshWhitelist() {
     alt.log(`Refreshing Whitelist`);
 
@@ -110,28 +118,15 @@ function refreshWhitelist() {
 
 export function isWhitelisted(id) {
     console.log(id);
-
     const server = discordClient.guilds.cache.get(config.serverId);
     const member = server.members.cache.get(id);
     member.roles.add("820242307243704330");
+    // if (whitelist.includes(id)) {
+    //     return true;
+    // }
 
-    if (whitelist.includes(id)) {
-        return true;
-    }
-
-    return false;
+    return true;
 }
-
-export function giveroleverifyed(id) {
-    console.log(id);
-
-    if (whitelist.includes(id)) {
-        return true;
-    }
-
-    return false;
-}
-
 
 export function isWhitelistOn() {
     if (!process.env['ENABLE_WHITELIST'] || process.env['ENABLE_WHITELIST'] === 'false') {
