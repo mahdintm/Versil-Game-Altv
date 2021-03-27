@@ -11,7 +11,8 @@ alt.onClient('registerServer', (player, user, pass, email) => {
     db.upsertData({ pName: user.toLowerCase(), pPassword: pass, pEmail: email }, 'Account', res => {
         alt.emitClient(player, 'loginbyregister', user, pass);
     });
-})
+});
+//for Login Player
 alt.onClient('serverlogin', (player, user, pass) => {
     db.fetchAllByField('pName', user, 'Account', data => {
         if (data[0] != undefined) {

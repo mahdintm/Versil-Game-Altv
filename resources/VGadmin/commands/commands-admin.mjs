@@ -493,8 +493,8 @@ chat.registerCmd('revive', revive);
 
 chat.registerCmd('test', (player, args) => {
     // alt.emitClient(player, 'exitfromvehicle', player.vehicle, args[0])
-    alt.emit('message', (args[0]))
-        // alt.emitClient(player, 'addnoti', "versil", "Versil BoT", "Admin System", "In Mat {#452569}asdsd");
+    player.dimension = args[0];
+    // alt.emitClient(player, 'addnoti', "versil", "Versil BoT", "Admin System", "In Mat {#452569}asdsd");
 })
 
 chat.registerCmd('test1', (player, args) => {

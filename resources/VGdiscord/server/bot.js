@@ -1,6 +1,8 @@
 /// <reference types="@altv/types-server" />
 import * as alt from 'alt-server';
 import Discord from 'discord.js';
+import './../app.js';
+import './../config.json';
 
 const discordClient = new Discord.Client();
 const config = {
