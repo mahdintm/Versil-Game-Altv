@@ -4,19 +4,23 @@ import SQL from '../db/database.mjs';
 import { Vehicles } from '../db/entities/data.mjs';
 const db = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', '5507d1a19a63c54e4ab4a07cf718ce20', 'alt', [Vehicles]);
 
+var maxveh = 1000;
 var vehicles = {}
+var pveh = {}
 var staticveh = 1;
 var factionveh = 1;
 var pdveh = 1;
 var fbiveh = 1;
 var ngveh = 1;
 var eventveh = 1;
+var personalveh = 1;
+var loadedpersonalveh = 0;
 var plate;
 
 alt.on('anyResourceStart', (name) => {
     if (name == "vehicledata") {
         alt.setTimeout(() => {
-            for (let i = 1; i < 1000; i++) {
+            for (let i = 1; i < maxveh; i++) {
                 db.fetchAllByField('id', i, 'vehicles', data => {
                     if (data[0] != undefined) {
                         data.find(dveh => {
@@ -54,6 +58,9 @@ alt.on('anyResourceStart', (name) => {
                                     factionveh++;
                                     ngveh++;
                                 }
+                            } else if (dveh.type == "personal") {
+                                pveh[personalveh] = data[0];
+                                personalveh++;
                             }
                         })
                     }
@@ -62,6 +69,26 @@ alt.on('anyResourceStart', (name) => {
         }, 1000);
     }
 })
+
+export function loadpersonalveh(player) {
+    for (let i = 1; i < maxveh; i++) {
+        if (pveh[i]["owner"] == pdata.getData(player.id, "pid")) {
+            const newpveh = new alt.Vehicle(pveh[i]["model"], pveh[i]["x"], pveh[i]["y"], pveh[i]["z"], pveh[i]["rx"], pveh[i]["ry"], pveh[i]["rz"]);
+            vehicles[newveh.id] = pveh[i];
+            plate = pveh[i]["plate"];
+            newpveh.numberPlateText = plate;
+            loadedpersonalveh++;
+        }
+    }
+}
+
+export function deletepersonalveh(player) {
+    for (let i = 1; i < maxveh; i++) {
+        if (pveh[i]["owner"] == pdata.getData(player.id, "pid")) {
+
+        }
+    }
+}
 
 export function vehiclesetdata(id, model, type, factionid, x, y, z, rx, ry, rz, plate) {
     vehicles[id] = {};
