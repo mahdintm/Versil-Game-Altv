@@ -15,6 +15,14 @@ var badwords = [
     "koskesh",
     "کص کش",
     "kos",
+    "ko3",
+    "kir",
+    "kooni",
+    "کونی",
+    "کیر",
+    "گاییدمت",
+    "گایید",
+
 ];
 //--------------------------------- System Finding ---------------------------------//
 export function findfosh(msg) {
