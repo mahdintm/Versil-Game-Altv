@@ -27,6 +27,7 @@ alt.onClient('serverlogin', (player, user, pass) => {
                         let id = vg.setplayerid(player.id);
                         sc.addrow(id, player.id, pdata.getplayername(player.id), player.ping);
                         alt.emitClient(player, 'loginweb:close');
+                        alt.emitClient(player, "nativeset", player);
                     }
                 } else {
                     alt.emitClient(player, 'loginweb:erroruserpass');

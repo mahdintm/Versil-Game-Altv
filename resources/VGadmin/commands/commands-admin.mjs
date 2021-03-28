@@ -75,18 +75,22 @@ function veh(player, args) {
     if (checkadmin(player, 2)) {
         const pos = { x: player.pos.x, y: player.pos.y, z: player.pos.z }
         const rot = { x: player.rot.x, y: player.rot.y, z: player.rot.z }
-        const newveh = new alt.Vehicle(args[0], pos.x, pos.y, pos.z, rot.x, rot.y, rot.z);
-        console.log(newveh.model);
-        console.log(newveh.id);
-        newveh.numberPlateText = `AV ${newveh.id}`;
-        alt.emitClient(player, 'setIntoVehicle', newveh);
-        if (pdata.getData(player.id, "pLang") == 1) {
-            chat.send(player, `{ff0000}Versil BOT -> {05ff48}You'vehicle has been spawned ✔`);
-        } else if (pdata.getData(player.id, "pLang") == 2) {
-            chat.send(player, `{ff0000}Versil BOT -> {05ff48}mashin shoma ba movafaghiyat spawn shod ✔`);
-        } else if (pdata.getData(player.id, "pLang") == 3) {
-            chat.send(player, `{ff0000}Versil BOT -> {05ff48}ماشین شما اسپان شد ✔ `);
+        try {
+            const newveh = new alt.Vehicle(args[0], pos.x, pos.y, pos.z, rot.x, rot.y, rot.z);
+            newveh.numberPlateText = `AV ${newveh.id}`;
+            vdata.vehiclesetdata(newveh.id, args[0], "adminveh", 0, pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, "A");
+            alt.emitClient(player, 'setIntoVehicle', newveh);
+            if (pdata.getData(player.id, "pLang") == 1) {
+                chat.send(player, `{ff0000}Versil BOT -> {05ff48}You'vehicle has been spawned ✔`);
+            } else if (pdata.getData(player.id, "pLang") == 2) {
+                chat.send(player, `{ff0000}Versil BOT -> {05ff48}mashin shoma ba movafaghiyat spawn shod ✔`);
+            } else if (pdata.getData(player.id, "pLang") == 3) {
+                chat.send(player, `{ff0000}Versil BOT -> {05ff48}ماشین شما اسپان شد ✔ `);
+            }
+        } catch (e) {
+            console.log("error")
         }
+
     } else {
         notadmin(player);
     }
@@ -371,8 +375,8 @@ function makeleader(player, args) {
                 if (args[1] >= 0 && args[1] <= 5) {
                     let tplayer = findplayer(args[0]);
                     pdata.setData(tplayer.id, "pLeader", args[1])
-                    let tplayername = getplayername(tplayerid);
-                    let playername = getplayername(playerid);
+                    let tplayername = pdata.getplayername(tplayer.id);
+                    let playername = pdata.getplayername(player.id);
                     //send to player
                     if (pdata.getData(tplayer.id, "pLang") == 1) {
                         //شما توسط ادمین مهدی لیدر فکشن 1 شدی
@@ -469,6 +473,7 @@ function revive(player, args) {
     }
 }
 
+
 chat.registerCmd('vehicle', veh);
 chat.registerCmd('veh', veh);
 chat.registerCmd('mypos', mypos);
@@ -493,7 +498,9 @@ chat.registerCmd('revive', revive);
 
 chat.registerCmd('test', (player, args) => {
     // alt.emitClient(player, 'exitfromvehicle', player.vehicle, args[0])
-    player.dimension = args[0];
+    // player.dimension = args[0];
+    var vehicle = alt.Vehicle.getByID(parseInt(args[0]));
+    if (vehicle) vehicle.destroy();
     // alt.emitClient(player, 'addnoti', "versil", "Versil BoT", "Admin System", "In Mat {#452569}asdsd");
 })
 

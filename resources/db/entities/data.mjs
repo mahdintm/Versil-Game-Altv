@@ -3,7 +3,7 @@ import orm from 'typeorm';
 export const Account = new orm.EntitySchema({
     name: 'Account',
     columns: {
-        id: {
+        pId: {
             primary: true,
             type: 'int',
             generated: true
@@ -43,11 +43,8 @@ export const Account = new orm.EntitySchema({
         pLang: {
             type: 'int',
             default: '1'
-        },
-        pLang: {
-            type: 'int',
-            default: '0'
         }
+
     }
 });
 

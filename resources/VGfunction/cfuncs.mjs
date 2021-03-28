@@ -34,3 +34,25 @@ alt.onServer('exitfromvehicle', (veh, mode) => {
     }
 
 })
+alt.onServer("nativeset", (player) => {
+
+    // native.hideHudComponentThisFrame(6);
+    // native.hideHudComponentThisFrame(7);
+    // native.hideHudComponentThisFrame(8);
+    // native.hideHudComponentThisFrame(9);
+
+    game.setPedConfigFlag(player.scriptID, 429, true); // Do not start engine automatically 
+    game.setPedConfigFlag(player.scriptID, 241, true); // PED_FLAG_DISABLE_STOPPING_VEH_ENGINE
+    game.setPedConfigFlag(player.scriptID, 184, true); // PASSENGER SEAT TO DRIVER SEAT
+
+    game.setPedHelmet(player.scriptID, false);
+    game.setPedSuffersCriticalHits(player.scriptID, false);
+
+    game.disableControlAction(0, 140, true); // Disable weapon knockout
+
+    // if (player.getSyncedMeta('IsDead') != 0)
+    //     game.setPedToRagdoll(player.scriptID, -1, -1, 0, 0, 0, 0);
+
+    // //Disable Auto Passenger To Driver
+    // game.setPedConfigFlag(player.scriptID, 184, true);
+})
