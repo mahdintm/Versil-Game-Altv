@@ -1,6 +1,20 @@
 var badwords = [
-    "daus",
-    "jakesh"
+    "madar jende",
+    "kosnane",
+    "madarghahve",
+    "madarjende",
+    "kosnnt",
+    "kosenanat",
+    "nanejende",
+    "jende",
+    "madaretogaiidam",
+    "کصه ننت",
+    "خوارتو گاییدم",
+    "خارتو گاییدم",
+    "ko3kesh",
+    "koskesh",
+    "کص کش",
+    "kos",
 ];
 //--------------------------------- System Finding ---------------------------------//
 export function findfosh(msg) {
