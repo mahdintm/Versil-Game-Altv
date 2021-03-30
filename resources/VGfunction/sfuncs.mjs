@@ -3,6 +3,12 @@ import pdata from 'playerdata';
 import chat from 'chat';
 var Ids = {};
 
+
+alt.on("adminwarn", (player, msg, msgdiscord) => {
+    alt.emit('sendhookadminwarn', player, msgdiscord);
+    adminwarn(pdata.getplayername(player.id), msg)
+})
+
 export function adminchat(adminname, msg) {
     let play;
     for (let i = 0; i < 1000; i++) {
@@ -22,6 +28,17 @@ export function adminchat(adminname, msg) {
                 } else {
                     chat.send(play, `{BBDE42}AdminChat: {fcb212}${adminname} : {ffffff}${msg}`);
                 }
+            }
+        }
+    }
+}
+export function adminwarn(adminname, msg) {
+    let play;
+    for (let i = 0; i < 1000; i++) {
+        if (pdata.getpinfo(i) != undefined) {
+            play = alt.Player.getByID(i);
+            if (pdata.getData(i, "pAdmin") >= 1) {
+                chat.send(play, `{DDCC00}AdminWarn: {fcb212}${adminname} : {DAF7A6}${msg}`);
             }
         }
     }

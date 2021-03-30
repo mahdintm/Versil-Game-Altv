@@ -1,7 +1,8 @@
 import * as alt from 'alt';
 import SQL from '../db/database.mjs';
+import mysqldata from '../db/config.json'
 import { Account } from '../db/entities/data.mjs';
-const security = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', '5507d1a19a63c54e4ab4a07cf718ce20', 'alt', [Account]);
+const security = new SQL('mysql', mysqldata.host_mysql, mysqldata.port_mysql, mysqldata.user_mysql, mysqldata.pass_mysql, mysqldata.db_mysql, [Account]);
 const pInfo = {}
 
 export function loginData(id, data, pname) {

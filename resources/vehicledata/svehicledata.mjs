@@ -1,8 +1,9 @@
 import * as alt from 'alt';
 import pdata from 'playerdata';
 import SQL from '../db/database.mjs';
+import mysqldata from '../db/config.json';
 import { Vehicles } from '../db/entities/data.mjs';
-const db = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', '5507d1a19a63c54e4ab4a07cf718ce20', 'alt', [Vehicles]);
+const db = new SQL('mysql', mysqldata.host_mysql, mysqldata.port_mysql, mysqldata.user_mysql, mysqldata.pass_mysql, mysqldata.db_mysql, [Vehicles]);
 
 var maxveh = 1000;
 var vehicles = {}

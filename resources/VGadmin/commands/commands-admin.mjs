@@ -4,9 +4,10 @@ import chat from 'chat';
 import vdata from 'vehicledata';
 import vg from 'VGfunction';
 //import discord from 'Discord';
+import mysqldata from '../../db/config.json';
 import SQL from '../../db/database.mjs';
 import { Vehicles } from '../../db/entities/data.mjs';
-const db = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', '5507d1a19a63c54e4ab4a07cf718ce20', 'alt', [Vehicles]);
+const db = new SQL('mysql', mysqldata.host_mysql, mysqldata.port_mysql, mysqldata.user_mysql, mysqldata.pass_mysql, mysqldata.db_mysql, [Vehicles]);
 //------------------------------------------------------------ Functions ------------------------------------------------------------//
 //for check admini level
 function checkadmin(player, admin) {
@@ -87,6 +88,7 @@ function veh(player, args) {
             } else if (pdata.getData(player.id, "pLang") == 3) {
                 chat.send(player, `{ff0000}Versil BOT -> {05ff48}ماشین شما اسپان شد ✔ `);
             }
+            alt.emit('adminwarn', player, `Admin ${playername} goes to ${tplayername} player`, `Admin <@!${playerdiscord}> goes to <@!${tplayerdiscord}> player`)
         } catch (e) {
             console.log("error")
         }
@@ -313,18 +315,20 @@ function gotoplayer(player, args) {
         if (checkadmin(player, 5)) {
             if (args[0] != undefined) {
                 let tplayer = findplayer(args[0]);
+                let tplayername = pdata.getplayername(tplayer.id);
+                let playername = pdata.getplayername(player.id);
+                let tplayerdiscord = pdata.getData(tplayer.id, "pDiscord");
+                let playerdiscord = pdata.getData(player.id, "pDiscord");
                 if (player.vehicle != null) {
                     const pos = { x: tplayer.pos.x, y: tplayer.pos.y, z: tplayer.pos.z }
                     player.vehicle.pos = new alt.Vector3(player.pos.x + 2, player.pos.y, player.pos.z + 2);
-                    let tplayername = getplayername(tplayerid);
-                    let playername = getplayername(playerid);
                     //send to player
                     if (pdata.getData(tplayer.id, "pLang") == 1) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48} Admin ${tplayername} came to you.`);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48} Admin ${playername} came to you.`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 2) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48} pishe shoma  ${tplayername} oomad`);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48} pishe shoma  ${playername} oomad`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 3) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}  اومد  ${tplayername} پیش شما `);
+                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}  اومد  ${playername} پیش شما `);
                     }
                     //send to adminz
                     if (pdata.getData(player.id, "pLang") == 1) {
@@ -334,26 +338,26 @@ function gotoplayer(player, args) {
                     } else if (pdata.getData(player.id, "pLang") == 3) {
                         chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیشه  ${tplayername} رفتید  `);
                     }
+                    alt.emit('adminwarn', player, `Admin ${playername} goes to ${tplayername} player`, `Admin <@!${playerdiscord}> goes to <@!${tplayerdiscord}> player`)
                 } else {
                     player.spawn(tplayer.pos.x + 2, tplayer.pos.y, tplayer.pos.z);
-                    let tplayername = getplayername(tplayerid);
-                    let playername = getplayername(playerid);
                     //send to player
                     if (pdata.getData(tplayer.id, "pLang") == 1) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}Admin ${tplayername} came to you.`);
+                        chat.send(tplayer, `{ff0000}Versil BOT: {05ff48}Admin ${playername} came to you.`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 2) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48} pishe shoma  ${tplayername} oomad`);
+                        chat.send(tplayer, `{ff0000}Versil BOT: {05ff48} pishe shoma  ${playername} oomad`);
                     } else if (pdata.getData(tplayer.id, "pLang") == 3) {
-                        chat.send(tplayer, `{ff0000}Versil BOT -> {05ff48}  اومد  ${tplayername} پیش شما `);
+                        chat.send(tplayer, `{ff0000}Versil BOT: {05ff48}  اومد  ${playername} پیش شما `);
                     }
-                    //send to adminz
+                    //send to admin
                     if (pdata.getData(player.id, "pLang") == 1) {
-                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}You went to ${tplayername}`);
+                        chat.send(player, `{ff0000}Versil BOT: {05ff48}You went to ${tplayername}`);
                     } else if (pdata.getData(player.id, "pLang") == 2) {
-                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}Shoma pishe ${tplayername} raftid`);
+                        chat.send(player, `{ff0000}Versil BOT: {05ff48}Shoma pishe ${tplayername} raftid`);
                     } else if (pdata.getData(player.id, "pLang") == 3) {
-                        chat.send(player, `{ff0000}Versil BOT -> {05ff48}شما پیشه  ${tplayername} رفتید  `);
+                        chat.send(player, `{ff0000}Versil BOT: {05ff48}شما پیشه  ${tplayername} رفتید  `);
                     }
+                    alt.emit('adminwarn', player, `Admin ${playername} goes to ${tplayername} player`, `Admin <@!${playerdiscord}> goes to <@!${tplayerdiscord}> player`)
                 }
 
             } else {
@@ -499,9 +503,10 @@ chat.registerCmd('revive', revive);
 chat.registerCmd('test', (player, args) => {
     // alt.emitClient(player, 'exitfromvehicle', player.vehicle, args[0])
     // player.dimension = args[0];
-    var vehicle = alt.Vehicle.getByID(parseInt(args[0]));
-    if (vehicle) vehicle.destroy();
-    // alt.emitClient(player, 'addnoti', "versil", "Versil BoT", "Admin System", "In Mat {#452569}asdsd");
+    // var vehicle = alt.Vehicle.getByID(parseInt(args[0]));
+    // if (vehicle) vehicle.destroy();
+    alt.emit('adminwarn', player, args[0])
+        // alt.emitClient(player, 'addnoti', "versil", "Versil BoT", "Admin System", "In Mat {#452569}asdsd");
 })
 
 chat.registerCmd('test1', (player, args) => {

@@ -3,10 +3,11 @@ import * as alt from 'alt';
 import vg from 'VGfunction';
 import pdata from 'playerdata';
 import sc from 'VGscoreboard';
+import mysqldata from '../../../db/config.json';
 import SQL from '../../../db/database.mjs';
 import { Account, hwBans } from '../../../db/entities/data.mjs';
 // import Discord from 'VGdiscord';
-const db = new SQL('mysql', '127.0.0.1', 3306, 'Mahdi', '5507d1a19a63c54e4ab4a07cf718ce20', 'alt', [Account, hwBans]);
+const db = new SQL('mysql', mysqldata.host_mysql, mysqldata.port_mysql, mysqldata.user_mysql, mysqldata.pass_mysql, mysqldata.db_mysql, [Account, hwBans]);
 alt.onClient('registerServer', (player, user, pass, email) => {
     db.upsertData({ pName: user.toLowerCase(), pPassword: pass, pEmail: email }, 'Account', res => {
         alt.emitClient(player, 'loginbyregister', user, pass);

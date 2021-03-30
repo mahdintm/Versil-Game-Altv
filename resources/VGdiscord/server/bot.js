@@ -1,8 +1,10 @@
 /// <reference types="@altv/types-server" />
 import * as alt from 'alt-server';
 import Discord from 'discord.js';
-import './../app.js';
-import './../config.json';
+import pdata from 'playerdata';
+import dcom from '../Commands/discord/commands.mjs';
+import '../Hooks/hook.mjs';
+
 
 const discordClient = new Discord.Client();
 const config = {
@@ -51,27 +53,27 @@ discordClient.on('message', message => {
                     avatarURL: 'https://forum.versil.ir/uploads/monthly_2020_08/facicon.png',
                     embeds: [embed],
                 });
-            } //else if (args[0] === "kick") {
-            //     //kick system
+            } else if (args[0] === "kick") {
+                //kick system
 
-            //     dcom.kick(message, args)
-            // } else if (args[0] === 'ban') {
-            //     //ban system
+                dcom.kick(message, args)
+            } else if (args[0] === 'ban') {
+                //ban system
 
-            //     dcom.ban(message, args)
-            // } else if (args[0] === "giverole") {
-            //     //add role system
+                dcom.ban(message, args)
+            } else if (args[0] === "giverole") {
+                //add role system
 
-            //     dcom.giverole(message, args)
-            // } else if (args[0] === "getrole") {
-            //     //removeSS role system
+                dcom.giverole(message, args)
+            } else if (args[0] === "getrole") {
+                //removeSS role system
 
-            //     dcom.getrole(message, args)
-            // } else if (args[0] === "changename") {
-            //     //removeSS role system
+                dcom.getrole(message, args)
+            } else if (args[0] === "changename") {
+                //removeSS role system
 
-            //     dcom.changename(message, args)
-            // }
+                dcom.changename(message, args)
+            }
         } else if (CMD_NAME == "server") {
             // if (args[0] == "makeadmin" || agrs[0 == "ma"]) {
             //     adminsys.makeadmin(player.id, args[])
@@ -86,8 +88,28 @@ discordClient.on('message', message => {
 
 });
 //-----------------------End Commands-----------------------//
+//-----------------------Start Hooks-----------------------//
+alt.on('sendhookadminwarn', (player, text) => {
+    var discordid = pdata.getData(player.id, "pDiscord")
+    var hook = new Discord.WebhookClient("826562739941015593", "JS672AjjxpbbpOALVCHwvzMdivkQH1wgKw4VsunqNcTCqsQgyySaeADu50NU1_JQs-Pk")
+    var mem = discordClient.users.cache.get(discordid);
+    console.log(mem)
+    const embed = new Discord.MessageEmbed()
+        .setColor('#FFEC00')
+        .setTitle('Admin System')
+        .setAuthor(pdata.getplayername(player.id), mem.avatarURL())
+        .setDescription(`Admin-Warn:<@!${discordid}>`)
+        // .setThumbnail('https://i.imgur.com/wSTFkRM.png')
+        .addFields({ name: 'Reason', value: text }, { name: '\u200B', value: '\u200B' }, { name: 'تاریخ و زمان وقوع', value: new Date().toLocaleString(), inline: true })
+        .setFooter('Versil Game Log  •  ' + new Date().toLocaleString(), 'https://forum.versil.ir/uploads/monthly_2020_08/facicon.png');
 
-
+    hook.send('', {
+        username: 'Versil Game',
+        avatarURL: 'https://forum.versil.ir/uploads/monthly_2020_08/facicon.png',
+        embeds: [embed],
+    });
+});
+//-----------------------End Hooks-----------------------//
 
 function handleReady() {
     console.log(`[Whitelist] Discord Bot has Authenticated.`);
