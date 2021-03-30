@@ -1,5 +1,6 @@
 import alt from 'alt';
 import pdata from 'playerdata';
+import antifosh from 'VGantifosh'
 
 let cmdHandlers = {};
 
@@ -28,11 +29,11 @@ alt.onClient('chatmessage', (player, msg) => {
         }
     } else {
         msg = msg.trim();
-
+        let fmsg = antifosh.findfosh(msg)
         if (msg.length > 0) {
             alt.log('[chat:msg] ' + vgname + ': ' + msg);
 
-            alt.emitClient(null, 'chatmessage', vgname, msg.replace(/</g, '&lt;').replace(/'/g, '&#39').replace(/"/g, '&#34'));
+            alt.emitClient(null, 'chatmessage', vgname, fmsg.replace(/</g, '&lt;').replace(/'/g, '&#39').replace(/"/g, '&#34'));
         }
     }
 });
