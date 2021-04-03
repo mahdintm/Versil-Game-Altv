@@ -93,7 +93,6 @@ alt.on('sendhookadminwarn', (player, text) => {
     var discordid = pdata.getData(player.id, "pDiscord")
     var hook = new Discord.WebhookClient("826562739941015593", "JS672AjjxpbbpOALVCHwvzMdivkQH1wgKw4VsunqNcTCqsQgyySaeADu50NU1_JQs-Pk")
     var mem = discordClient.users.cache.get(discordid);
-    console.log(mem)
     const embed = new Discord.MessageEmbed()
         .setColor('#FFEC00')
         .setTitle('Admin System')

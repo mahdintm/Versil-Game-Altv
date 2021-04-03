@@ -55,4 +55,7 @@ alt.onServer("nativeset", (player) => {
 
     // //Disable Auto Passenger To Driver
     // game.setPedConfigFlag(player.scriptID, 184, true);
+
+    //Time set
+    alt.setMsPerGameMinute(60000);
 })

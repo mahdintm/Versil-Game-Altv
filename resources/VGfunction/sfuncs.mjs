@@ -1,9 +1,22 @@
 import * as alt from 'alt';
 import pdata from 'playerdata';
 import chat from 'chat';
+import serverdata from '../db/config.json';
 var Ids = {};
 
+setInterval(() => {
+    var timeNow = new Date();
+    var nowHoure = timeNow.getHours();
+    var nowMinute = timeNow.getMinutes();
+    var nowSecond = timeNow.getSeconds()
+    if (nowMinute < 1 && nowSecond < 1) {
+        rasesaat()
+    }
+}, 1000);
 
+function rasesaat() {
+
+}
 alt.on("adminwarn", (player, msg, msgdiscord) => {
     alt.emit('sendhookadminwarn', player, msgdiscord);
     adminwarn(pdata.getplayername(player.id), msg)
@@ -11,7 +24,7 @@ alt.on("adminwarn", (player, msg, msgdiscord) => {
 
 export function adminchat(adminname, msg) {
     let play;
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < serverdata.max_player; i++) {
         if (pdata.getpinfo(i) != undefined) {
             if (pdata.getData(i, "pAdmin") >= 1) {
                 play = alt.Player.getByID(i);
@@ -34,7 +47,7 @@ export function adminchat(adminname, msg) {
 }
 export function adminwarn(adminname, msg) {
     let play;
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < serverdata.max_player; i++) {
         if (pdata.getpinfo(i) != undefined) {
             play = alt.Player.getByID(i);
             if (pdata.getData(i, "pAdmin") >= 1) {
@@ -45,7 +58,7 @@ export function adminwarn(adminname, msg) {
 }
 export function founderchat(adminname, msg) {
     let play;
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < serverdata.max_player; i++) {
         if (pdata.getpinfo(i) != undefined) {
             if (pdata.getData(i, "pAdmin") >= 6) {
                 play = alt.Player.getByID(i);
@@ -97,7 +110,7 @@ export function spawnplayer(id) {
 };
 
 export function setplayerid(playerid) {
-    for (let i = 1; i < 1000; i++) {
+    for (let i = 1; i < serverdata.max_player; i++) {
         if (Ids[i] == undefined) {
             Ids[i] = playerid;
             return i;
@@ -106,7 +119,7 @@ export function setplayerid(playerid) {
 };
 
 export function deleteplayerid(playerid) {
-    for (let i = 1; i < 1000; i++) {
+    for (let i = 1; i < serverdata.max_player; i++) {
         if (Ids[i] == playerid) {
             Ids[i] = undefined;
             break;

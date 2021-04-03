@@ -2,10 +2,11 @@ import * as alt from 'alt';
 import pdata from 'playerdata';
 import SQL from '../db/database.mjs';
 import mysqldata from '../db/config.json';
+import serverdata from '../db/config.json';
 import { Vehicles } from '../db/entities/data.mjs';
 const db = new SQL('mysql', mysqldata.host_mysql, mysqldata.port_mysql, mysqldata.user_mysql, mysqldata.pass_mysql, mysqldata.db_mysql, [Vehicles]);
 
-var maxveh = 1000;
+var maxveh = serverdata.max_vehicle;
 var vehicles = {}
 var pveh = {}
 var staticveh = 1;
@@ -73,24 +74,32 @@ alt.on('anyResourceStart', (name) => {
 
 export function loadpersonalveh(player) {
     for (let i = 1; i < maxveh; i++) {
-        if (pveh[i]["owner"] == pdata.getData(player.id, "pId")) {
-            const newpveh = new alt.Vehicle(pveh[i]["model"], pveh[i]["x"], pveh[i]["y"], pveh[i]["z"], pveh[i]["rx"], pveh[i]["ry"], pveh[i]["rz"]);
-            vehicles[newveh.id] = pveh[i];
-            plate = pveh[i]["plate"];
-            newpveh.numberPlateText = plate;
-            loadedpersonalveh++;
+        if (pveh[i] != undefined) {
+            if (pveh[i]["owner"] == pdata.getData(player.id, "pId")) {
+                const newpveh = new alt.Vehicle(pveh[i]["model"], pveh[i]["x"], pveh[i]["y"], pveh[i]["z"], pveh[i]["rx"], pveh[i]["ry"], pveh[i]["rz"]);
+                vehicles[newpveh.id] = pveh[i];
+                plate = pveh[i]["plate"];
+                newpveh.numberPlateText = plate;
+                loadedpersonalveh++;
+            }
         }
     }
 }
 
 export function deletepersonalveh(player) {
     for (let i = 1; i < maxveh; i++) {
-        if (pveh[i]["owner"] == pdata.getData(player.id, "pId")) {
-            var vehicle = alt.Vehicle.getByID(parseInt(args[0]));
-            if (vehicle) vehicle.destroy();
-            loadedpersonalveh--;
+        if (vehicles[i] != undefined) {
+            if (vehicles[i]["owner"] == pdata.getData(player.id, "pId")) {
+                var vehicle = alt.Vehicle.getByID(parseInt(i));
+                if (vehicle) vehicle.destroy();
+                loadedpersonalveh--;
+            }
         }
     }
+}
+
+export function updateposveh(id, xv, yv, zv, rxv, ryv, rzv) {
+    db.updatePartialData(vehicles[id]["id"], { x: xv, y: yv, z: zv, rx: rxv, ry: ryv, rz: rzv }, Vehicles, res => {})
 }
 
 export function vehiclesetdata(id, model, type, factionid, x, y, z, rx, ry, rz, plate) {
@@ -171,4 +180,4 @@ alt.on('playerEnteringVehicle', (player, vehicle, seat) => {
 })
 
 
-export default { vehiclesetdata, getplatenumstatic, addplatenumstatic, getplatenumfaction, addplatenumfaction };
+export default { vehiclesetdata, getplatenumstatic, addplatenumstatic, getplatenumfaction, updateposveh, addplatenumfaction, loadpersonalveh, deletepersonalveh };

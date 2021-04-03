@@ -477,6 +477,24 @@ function revive(player, args) {
     }
 }
 
+function setweather(player, args) {
+    if (areadmin(player)) {
+        if (checkadmin(player, 5)) {
+            if (args[0] != undefined) {
+                for (let i = 0; i < alt.Player.all.length; i++) {
+                    alt.Player.all[i].setWeather(args[0]);
+                }
+            } else {
+                chat.send(player, `{ff0000}Versil BOT -> {05ff48} Error:`);
+            }
+        } else {
+            auth(player)
+        }
+    } else {
+        notadmin(player)
+    }
+}
+
 
 chat.registerCmd('vehicle', veh);
 chat.registerCmd('veh', veh);
@@ -499,15 +517,19 @@ chat.registerCmd('ml', makeleader);
 chat.registerCmd('tp', gethere);
 chat.registerCmd('gethere', gethere);
 chat.registerCmd('revive', revive);
+chat.registerCmd('setweather', setweather);
 
 chat.registerCmd('test', (player, args) => {
     // alt.emitClient(player, 'exitfromvehicle', player.vehicle, args[0])
     // player.dimension = args[0];
     // var vehicle = alt.Vehicle.getByID(parseInt(args[0]));
     // if (vehicle) vehicle.destroy();
-    alt.emit('adminwarn', player, args[0])
-        // alt.emitClient(player, 'addnoti', "versil", "Versil BoT", "Admin System", "In Mat {#452569}asdsd");
+    // let DateTime = Date();
+    player.setWeather(args[0])
+        // player.SetDateTime(DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+        // alt.emitClient(player, 'addnoti', "versil", "Versil BoT", "Admin System", args[0]);
 })
+
 
 chat.registerCmd('test1', (player, args) => {
     chat.send(player, `{04adcf}Versil BOT: You are weapon has been added.`);

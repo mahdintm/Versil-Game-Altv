@@ -3,11 +3,12 @@ import * as alt from 'alt';
 import vg from 'VGfunction';
 import pdata from 'playerdata';
 import sc from 'VGscoreboard';
-import mysqldata from '../../../db/config.json';
+import serverdata from '../../../db/config.json';
 import SQL from '../../../db/database.mjs';
+import vdata from 'vehicledata';
 import { Account, hwBans } from '../../../db/entities/data.mjs';
 // import Discord from 'VGdiscord';
-const db = new SQL('mysql', mysqldata.host_mysql, mysqldata.port_mysql, mysqldata.user_mysql, mysqldata.pass_mysql, mysqldata.db_mysql, [Account, hwBans]);
+const db = new SQL('mysql', serverdata.host_mysql, serverdata.port_mysql, serverdata.user_mysql, serverdata.pass_mysql, serverdata.db_mysql, [Account, hwBans]);
 alt.onClient('registerServer', (player, user, pass, email) => {
     db.upsertData({ pName: user.toLowerCase(), pPassword: pass, pEmail: email }, 'Account', res => {
         alt.emitClient(player, 'loginbyregister', user, pass);
@@ -29,6 +30,7 @@ alt.onClient('serverlogin', (player, user, pass) => {
                         sc.addrow(id, player.id, pdata.getplayername(player.id), player.ping);
                         alt.emitClient(player, 'loginweb:close');
                         alt.emitClient(player, "nativeset", player);
+                        vdata.loadpersonalveh(player)
                     }
                 } else {
                     alt.emitClient(player, 'loginweb:erroruserpass');
@@ -52,8 +54,8 @@ alt.onClient('checkajax', (player, username) => {
 
 function checkhwban(player) {
     let ckeckb = true
-    for (let i = 1; i < 100; i++) {
-        if (i != 99) {
+    for (let i = 1; i < serverdata.max_player; i++) {
+        if (i != serverdata.max_player - 1) {
             db.fetchAllByField('id', i, 'hwBans', data => {
                 if (data[0] != undefined) {
                     data.find(dhwban => {

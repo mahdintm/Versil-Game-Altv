@@ -3,5 +3,7 @@
     "port_mysql": "3306",
     "user_mysql": "Mahdi",
     "pass_mysql": "5507d1a19a63c54e4ab4a07cf718ce20",
-    "db_mysql": "alt"
+    "db_mysql": "alt",
+    "max_player": "100",
+    "max_vehicle": "1000"
 }

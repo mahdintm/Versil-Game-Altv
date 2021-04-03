@@ -1,8 +1,8 @@
 import * as alt from 'alt';
 import SQL from '../db/database.mjs';
-import mysqldata from '../db/config.json'
+import serverdata from '../db/config.json'
 import { Account } from '../db/entities/data.mjs';
-const security = new SQL('mysql', mysqldata.host_mysql, mysqldata.port_mysql, mysqldata.user_mysql, mysqldata.pass_mysql, mysqldata.db_mysql, [Account]);
+const security = new SQL('mysql', serverdata.host_mysql, serverdata.port_mysql, serverdata.user_mysql, serverdata.pass_mysql, serverdata.db_mysql, [Account]);
 const pInfo = {}
 
 export function loginData(id, data, pname) {
@@ -38,7 +38,7 @@ function mysqlupdate(id, data, value) {
 }
 
 export function findbyname(value) {
-    for (var i = 0; i < 1000; i++) {
+    for (var i = 0; i < serverdata.max_player; i++) {
         if (pInfo[i] != undefined) {
             if (pInfo[i]["pName"].toLowerCase() == value.toLowerCase()) {
                 return alt.Player.getByID(i);

@@ -17,6 +17,10 @@ export const Account = new orm.EntitySchema({
             length: 100,
             default: '0'
         },
+        pCash: {
+            type: 'int',
+            default: 2000
+        },
         pPassword: {
             type: 'varchar',
             length: 100
@@ -63,6 +67,10 @@ export const Vehicles = new orm.EntitySchema({
         type: {
             type: 'varchar',
             length: 20
+        },
+        owner: {
+            type: 'int',
+            default: 0
         },
         factionid: {
             type: 'int',
