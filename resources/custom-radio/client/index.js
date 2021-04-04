@@ -20,7 +20,7 @@ const view = {
     isLoaded: false,
 };
 
-const getCurrentVolume = () => native.getProfileSetting(306) / 50;
+const getCurrentVolume = () => native.getProfileSetting(306) / 2;
 
 let tickerId = undefined;
 
