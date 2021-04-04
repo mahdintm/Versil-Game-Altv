@@ -30,7 +30,9 @@ alt.onClient('serverlogin', (player, user, pass) => {
                         sc.addrow(id, player.id, pdata.getplayername(player.id), player.ping);
                         alt.emitClient(player, 'loginweb:close');
                         alt.emitClient(player, "nativeset", player);
-                        vdata.loadpersonalveh(player)
+                        vdata.loadpersonalveh(player);
+                        alt.emitClient(player, 'hud:Load', pdata.getplayername(player.id), pdata.getplayermoney(player.id));
+                        console.log("alooo")
                     }
                 } else {
                     alt.emitClient(player, 'loginweb:erroruserpass');

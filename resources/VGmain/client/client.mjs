@@ -1,5 +1,4 @@
 import * as alt from 'alt';
-console.log("im starts");
 let webview;
 alt.onServer('loginweb:Load', () => {
     webview = new alt.WebView('http://resource/client/login/html/index.html');

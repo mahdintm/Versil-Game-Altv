@@ -1,0 +1,158 @@
+#mainhud {
+    position: absolute;
+    right: 0%;
+}
+
+body {
+    color: white;
+}
+
+.item {
+    transition: all .5s;
+    opacity: 0.8;
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.95) 0%, rgba(79, 79, 79, 0.9) 88%, rgba(108, 108, 108, 0.9) 100%);
+}
+
+p {
+    margin-top: 0px;
+}
+
+@media screen and (max-width: 2560px) {
+    #mainhud {
+        width: 200px;
+    }
+    .item {
+        height: 40px;
+        margin-top: 5px;
+    }
+    p {
+        padding-top: 10px;
+    }
+}
+
+@media screen and (max-width: 1920px) {
+    #mainhud {
+        width: 200px;
+    }
+    .item {
+        height: 35px;
+        margin-top: 5px;
+    }
+    p {
+        font-size: 0.958em;
+        padding-top: 4%;
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    #mainhud {
+        width: 170px;
+    }
+    .item {
+        height: 35px;
+        margin-top: 5px;
+    }
+    p {
+        font-size: 0.958em;
+        padding-top: 4%;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    #mainhud {
+        width: 200px;
+    }
+    .item {
+        height: 40px;
+        margin-top: 5px;
+    }
+    p {
+        padding-top: 10px;
+    }
+}
+
+@media screen and (max-width: 1360px) {
+    #mainhud {
+        width: 200px;
+    }
+    .item {
+        height: 40px;
+        margin-top: 5px;
+    }
+    p {
+        padding-top: 10px;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    #mainhud {
+        width: 170px;
+    }
+    .item {
+        height: 35px;
+        margin-top: 5px;
+    }
+    p {
+        font-size: 0.958em;
+        padding-top: 4%;
+    }
+}
+
+@media screen and (max-height: 720px) {
+    #mainhud {
+        width: 170px;
+    }
+    .item {
+        height: 35px;
+        margin-top: 5px;
+    }
+    p {
+        font-size: 0.958em;
+        padding-top: 4%;
+    }
+}
+
+@media screen and (max-width: 1152px) {
+    #mainhud {
+        width: 180px;
+    }
+    .item {
+        height: 33px;
+        margin-top: 5px;
+    }
+    p {
+        font-size: 0.958em;
+        padding-top: 4%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #mainhud {
+        width: 160px;
+    }
+    .item {
+        height: 30px;
+        margin-top: 5px;
+    }
+    p {
+        font-size: 0.88em;
+        padding-top: 4%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #mainhud {
+        width: 150px;
+    }
+    .item {
+        height: 30px;
+        margin-top: 5px;
+    }
+    p {
+        font-size: 0.88em;
+        padding-top: 4%;
+    }
+}

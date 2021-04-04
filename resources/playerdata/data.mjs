@@ -47,6 +47,10 @@ export function findbyname(value) {
     }
 }
 
+export function getplayermoney(playerid) {
+    return pInfo[playerid]["pCash"]
+}
+
 export function getplayername(playerid) {
     return pInfo[playerid]["pName"];
 }
@@ -59,4 +63,4 @@ export function getpinfo(playerid) {
     return pInfo[playerid];
 }
 
-export default { getData, setData, loginData, findbyname, getplayername, cleardata, getpinfo };
+export default { getData, setData, loginData, findbyname, getplayername, cleardata, getpinfo, getplayermoney };
