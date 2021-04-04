@@ -1,5 +1,5 @@
 {
-    "host_mysql": "192.168.90.13",
+    "host_mysql": "127.0.0.1",
     "port_mysql": "3306",
     "user_mysql": "Mahdi",
     "pass_mysql": "5507d1a19a63c54e4ab4a07cf718ce20",
